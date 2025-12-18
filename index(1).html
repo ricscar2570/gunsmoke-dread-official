@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUNSMOKE & DREAD — Manuale Completo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blood-red: #8b0000;
+            --blood-dark: #5c0000;
+            --rust: #a0522d;
+            --sand: #d4a574;
+            --sand-light: #e8d4b8;
+            --parchment: #f4e4bc;
+            --ink-black: #1a1a1a;
+            --wood-dark: #3d2914;
+            --void-purple: #1a0a1f;
+            --eldritch-green: #0d3d0d;
+            --gold: #c9a227;
+            --silver: #a8a8a8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            background: var(--ink-black);
+            color: var(--parchment);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: 
+                radial-gradient(ellipse at top, rgba(139, 0, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(26, 10, 31, 0.8) 0%, transparent 50%),
+                linear-gradient(180deg, var(--ink-black) 0%, #2a1a0a 50%, var(--ink-black) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0,0,0,0.1) 2px,
+                    rgba(0,0,0,0.1) 4px
+                );
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .brand-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: flicker 3s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; text-shadow: 0 0 20px var(--blood-red); }
+            50% { opacity: 0.8; text-shadow: 0 0 10px var(--blood-red); }
+            75% { opacity: 0.9; text-shadow: 0 0 30px var(--blood-red); }
+        }
+
+        .hero h1 {
+            font-family: 'Rye', cursive;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: var(--sand);
+            text-shadow: 
+                3px 3px 0 var(--blood-dark),
+                6px 6px 10px rgba(0,0,0,0.8);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 .amp {
+            color: var(--blood-red);
+            font-size: 0.8em;
+        }
+
+        .hero-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--silver);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        .hero-tagline {
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--sand-light);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .system-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--wood-dark), #2a1a0a);
+            border: 2px solid var(--rust);
+            padding: 0.5rem 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--sand);
+            letter-spacing: 0.1em;
+            margin-bottom: 3rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: var(--sand);
+            font-size: 2rem;
+            opacity: 0.6;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            background: linear-gradient(180deg, var(--ink-black) 0%, #1a0f05 100%);
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Rye', cursive;
+            font-size: 2.5rem;
+            color: var(--sand);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: var(--rust);
+            font-size: 1.5rem;
+        }
+
+        .section-header .divider::before,
+        .section-header .divider::after {
+            content: '';
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--rust), transparent);
+        }
+
+        /* CARD GRID */
+        .manual-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .manual-card {
+            position: relative;
+            background: linear-gradient(145deg, #2a1a0a, #1a0f05);
+            border: 2px solid var(--rust);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .manual-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blood-red), var(--rust), var(--blood-red));
+        }
+
+        .manual-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--sand);
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.5),
+                0 0 20px rgba(139, 0, 0, 0.3);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            background: linear-gradient(180deg, rgba(139, 0, 0, 0.2), transparent);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--ink-black);
+            border: 2px solid var(--rust);
+            border-radius: 50%;
+        }
+
+        .card-title-block {
+            flex: 1;
+        }
+
+        .card-number {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: var(--rust);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .card-title {
+            font-family: 'Rye', cursive;
+            font-size: 1.3rem;
+            color: var(--sand);
+            margin: 0;
+        }
+
+        .card-body {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .card-description {
+            font-size: 1rem;
+            color: var(--sand-light);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            background: rgba(160, 82, 45, 0.3);
+            border: 1px solid var(--rust);
+            color: var(--sand);
+            border-radius: 2px;
+        }
+
+        .card-arrow {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: var(--rust);
+            transition: transform 0.3s ease;
+        }
+
+        .manual-card:hover .card-arrow {
+            transform: translateX(5px);
+            color: var(--sand);
+        }
+
+        /* SPECIAL CARDS */
+        .card-volumes {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 768px) {
+            .card-volumes {
+                grid-column: span 1;
+            }
+        }
+
+        .card-grimoire {
+            border-color: var(--void-purple);
+            background: linear-gradient(145deg, #1a0a1f, #0d0510);
+        }
+
+        .card-grimoire::before {
+            background: linear-gradient(90deg, #4a0080, #8b0000, #4a0080);
+        }
+
+        .card-grimoire:hover {
+            border-color: #8b4dff;
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.5),
+                0 0 20px rgba(139, 0, 139, 0.3);
+        }
+
+        /* INFO BOXES */
+        .info-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            padding-top: 4rem;
+            border-top: 2px solid var(--rust);
+        }
+
+        .info-box {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .info-box .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-box h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--sand);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box p {
+            color: var(--sand-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--ink-black);
+            border-top: 3px solid var(--blood-red);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-family: 'Rye', cursive;
+            font-size: 1.5rem;
+            color: var(--sand);
+            margin-bottom: 1rem;
+        }
+
+        .footer-legal {
+            font-size: 0.85rem;
+            color: var(--silver);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .footer-legal a {
+            color: var(--rust);
+        }
+
+        /* LOADING ANIMATION */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--ink-black);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-icon {
+            font-size: 4rem;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-family: 'Rye', cursive;
+            color: var(--sand);
+            margin-top: 1rem;
+            letter-spacing: 0.2em;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .hero {
+                padding: 1.5rem;
+            }
+            
+            .card-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .manual-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            .hero {
+                min-height: auto;
+                padding: 2rem;
+            }
+            
+            .manual-card {
+                break-inside: avoid;
+                border: 1px solid #333;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-overlay" id="loader">
+        <div class="loading-icon">🔫</div>
+        <div class="loading-text">Caricamento...</div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="brand-icon">🐍</div>
+            <h1>GUNSMOKE <span class="amp">&</span> DREAD</h1>
+            <p class="hero-subtitle">Weird West Horror</p>
+            <p class="hero-tagline">
+                "Nel West, la morte è solo l'inizio. Sotto la sabbia dormono orrori antichi, 
+                e il confine tra vivi e morti si fa sempre più sottile..."
+            </p>
+            <div class="system-badge">
+                ⚙️ Basato su Daggerheart SRD 1.0
+            </div>
+        </div>
+        <div class="scroll-indicator">▼</div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="section-header">
+                <h2>📜 Indice del Manuale</h2>
+                <div class="divider">🔥</div>
+            </div>
+
+            <div class="manual-grid">
+                <!-- PARTE I -->
+                <a href="GUNSMOKE_PARTE_I.html" class="manual-card">
+                    <div class="card-header">
+                        <div class="card-icon">📖</div>
+                        <div class="card-title-block">
+                            <div class="card-number">Parte I</div>
+                            <h3 class="card-title">Introduzione & Regole</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Il cuore del sistema: Hope & Fear, Tenuta Mentale, combattimento, armi da fuoco e tutto ciò che serve per iniziare.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">Sistema Base</span>
+                            <span class="tag">Tenuta Mentale</span>
+                            <span class="tag">Combattimento</span>
+                        </div>
+                    </div>
+                    <span class="card-arrow">→</span>
+                </a>
+
+                <!-- PARTE II -->
+                <a href="GUNSMOKE_PARTE_II_VOLUME_I.html" class="manual-card">
+                    <div class="card-header">
+                        <div class="card-icon">🚂</div>
+                        <div class="card-title-block">
+                            <div class="card-number">Parte II — Volume I</div>
+                            <h3 class="card-title">Sangue sui Binari</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Una rapina a un treno va storta. I banditi uccisi si rialzano. Silver Hollow nasconde segreti antichi nelle sue miniere.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">4 Atti</span>
+                            <span class="tag">Il Serpente</span>
+                            <span class="tag">Lv. 2→3</span>
+                        </div>
+                    </div>
+                    <span class="card-arrow">→</span>
+                </a>
+
+                <!-- PARTE III -->
+                <a href="GUNSMOKE_PARTE_III_VOLUME_II.html" class="manual-card">
+                    <div class="card-header">
+                        <div class="card-icon">🌊</div>
+                        <div class="card-title-block">
+                            <div class="card-number">Parte III — Volume II</div>
+                            <h3 class="card-title">Dove l'Oceano Incontra la Sabbia</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Geometri scomparsi, un oceano sotterraneo e una città sommersa dove qualcosa di antico attende di risvegliarsi.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">3 Atti</span>
+                            <span class="tag">Il Guardiano</span>
+                            <span class="tag">Lv. 4→5</span>
+                        </div>
+                    </div>
+                    <span class="card-arrow">→</span>
+                </a>
+
+                <!-- PARTE IV -->
+                <a href="GUNSMOKE_PARTE_IV_BESTIARIO.html" class="manual-card">
+                    <div class="card-header">
+                        <div class="card-icon">👹</div>
+                        <div class="card-title-block">
+                            <div class="card-number">Parte IV</div>
+                            <h3 class="card-title">Bestiario</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Tutti gli orrori del Weird West: banditi, cultisti, non-morti, ibridi oceanici e i terrificanti boss finali.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">Creature</span>
+                            <span class="tag">Boss</span>
+                            <span class="tag">Fauna</span>
+                        </div>
+                    </div>
+                    <span class="card-arrow">→</span>
+                </a>
+
+                <!-- PARTE V -->
+                <a href="GUNSMOKE_PARTE_V_GM_GUIDE.html" class="manual-card">
+                    <div class="card-header">
+                        <div class="card-icon">🎭</div>
+                        <div class="card-title-block">
+                            <div class="card-number">Parte V</div>
+                            <h3 class="card-title">Guida del Game Master</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Safety tools, atmosfera horror, tecniche narrative, gestione della tensione e consigli per sessioni memorabili.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">Safety Tools</span>
+                            <span class="tag">Atmosfera</span>
+                            <span class="tag">Horror Tips</span>
+                        </div>
+                    </div>
+                    <span class="card-arrow">→</span>
+                </a>
+
+                <!-- PARTE VI -->
+                <a href="GUNSMOKE_PARTE_VI_PERSONAGGI.html" class="manual-card">
+                    <div class="card-header">
+                        <div class="card-icon">🔫</div>
+                        <div class="card-title-block">
+                            <div class="card-number">Parte VI</div>
+                            <h3 class="card-title">Jack, Sarah & Doc</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Il pistolero tormentato, la predicatrice guerriera e il medico scettico. Schede complete Livello 2 e Livello 5.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">3 PG</span>
+                            <span class="tag">Lv. 2</span>
+                            <span class="tag">Lv. 5</span>
+                        </div>
+                    </div>
+                    <span class="card-arrow">→</span>
+                </a>
+
+                <!-- PARTE VII -->
+                <a href="GUNSMOKE_PARTE_VII_COMPENDIO_COMPLETO.html" class="manual-card">
+                    <div class="card-header">
+                        <div class="card-icon">📚</div>
+                        <div class="card-title-block">
+                            <div class="card-number">Parte VII</div>
+                            <h3 class="card-title">Compendio del GM</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Scene horror pre-costruite, meccaniche avanzate della Tenuta, culti segreti e progressione dei veterani.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">Scene Horror</span>
+                            <span class="tag">Culti</span>
+                            <span class="tag">Avanzato</span>
+                        </div>
+                    </div>
+                    <span class="card-arrow">→</span>
+                </a>
+
+                <!-- PARTE VIII -->
+                <a href="GUNSMOKE_PARTE_VIII_PERSONAGGI.html" class="manual-card">
+                    <div class="card-header">
+                        <div class="card-icon">🎯</div>
+                        <div class="card-title-block">
+                            <div class="card-number">Parte VIII</div>
+                            <h3 class="card-title">Elena, William & Isabella</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            La cacciatrice vendicativa, il guerriero Navajo e l'attrice fuggitiva. Schede complete Livello 2 e Livello 5.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">3 PG</span>
+                            <span class="tag">Lv. 2</span>
+                            <span class="tag">Lv. 5</span>
+                        </div>
+                    </div>
+                    <span class="card-arrow">→</span>
+                </a>
+
+                <!-- PARTE IX -->
+                <a href="GUNSMOKE_PARTE_IX_APPENDICI.html" class="manual-card">
+                    <div class="card-header">
+                        <div class="card-icon">📋</div>
+                        <div class="card-title-block">
+                            <div class="card-number">Parte IX</div>
+                            <h3 class="card-title">Appendici</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Glossario Daggerheart, tutti gli stat block in formato compatto, riferimento rapido e conformità SRD.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">Glossario</span>
+                            <span class="tag">Stat Blocks</span>
+                            <span class="tag">Quick Ref</span>
+                        </div>
+                    </div>
+                    <span class="card-arrow">→</span>
+                </a>
+
+                <!-- PARTE X -->
+                <a href="GUNSMOKE_PARTE_X_MAPPE_HANDOUT.html" class="manual-card">
+                    <div class="card-header">
+                        <div class="card-icon">🗺️</div>
+                        <div class="card-title-block">
+                            <div class="card-number">Parte X</div>
+                            <h3 class="card-title">Mappe & Handout</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            5 mappe dettagliate e 7 handout stampabili: wanted poster, diari, lettere, profezie e simboli occulti.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">5 Mappe</span>
+                            <span class="tag">7 Handout</span>
+                            <span class="tag">Stampabili</span>
+                        </div>
+                    </div>
+                    <span class="card-arrow">→</span>
+                </a>
+
+                <!-- PARTE XI - GRIMOIRE -->
+                <a href="GUNSMOKE_PARTE_XI_GRIMORIO.html" class="manual-card card-grimoire">
+                    <div class="card-header">
+                        <div class="card-icon">👁️</div>
+                        <div class="card-title-block">
+                            <div class="card-number">Parte XI — Segreto</div>
+                            <h3 class="card-title">Il Grimorio</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            ⚠️ SOLO PER IL GM — Lore degli Antichi, la Verità Segreta, guida alla campagna completa e 8 creature extra.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">🐍 Il Serpente</span>
+                            <span class="tag">🐙 Il Guardiano</span>
+                            <span class="tag">👁️ Cthulhu</span>
+                        </div>
+                    </div>
+                    <span class="card-arrow">→</span>
+                </a>
+            </div>
+
+            <!-- Info Section -->
+            <div class="info-section">
+                <div class="info-box">
+                    <div class="icon">🎲</div>
+                    <h3>Sistema Daggerheart</h3>
+                    <p>Basato sul Daggerheart SRD 1.0 di Darrington Press. Meccaniche Hope & Fear, sistema a soglie di danno e condizioni narrative.</p>
+                </div>
+                <div class="info-box">
+                    <div class="icon">🧠</div>
+                    <h3>Tenuta Mentale</h3>
+                    <p>Sistema originale di sanità mentale con 10 segmenti, 5 fasi di deterioramento e conseguenze permanenti per l'orrore cosmico.</p>
+                </div>
+                <div class="info-box">
+                    <div class="icon">⏱️</div>
+                    <h3>Due Avventure Complete</h3>
+                    <p>12-16 ore di gioco totali. Volume I per personaggi Lv. 2-3, Volume II per Lv. 4-5. Giocabili separatamente o in campagna.</p>
+                </div>
+                <div class="info-box">
+                    <div class="icon">👥</div>
+                    <h3>6 Personaggi Pregenerati</h3>
+                    <p>Schede complete con background, abilità, equipaggiamento e connessioni. Versioni Livello 2 (novizi) e Livello 5 (veterani).</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-brand">🔫 GUNSMOKE & DREAD 🐍</div>
+        <p class="footer-legal">
+            Questo materiale è conforme al <strong>Daggerheart System Reference Document 1.0</strong> 
+            e alla <strong>Darrington Press Community Gaming License</strong>.<br>
+            Daggerheart è un trademark di Darrington Press LLC.
+        </p>
+    </footer>
+
+    <script>
+        // Hide loader when page is ready
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader').classList.add('hidden');
+            }, 500);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
