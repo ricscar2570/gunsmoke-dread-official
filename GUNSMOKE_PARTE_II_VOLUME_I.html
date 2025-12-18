@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUNSMOKE & DREAD — Parte II: Volume I - Ombre nel Deserto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Special+Elite&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --parchment: #f4e4c1;
+            --parchment-dark: #e8d4a8;
+            --brown-dark: #3d2914;
+            --brown-medium: #5c3d1e;
+            --brown-light: #8b6914;
+            --blood-red: #8b0000;
+            --gold: #d4a017;
+            --ink-black: #1a1a1a;
+            --shadow: rgba(0,0,0,0.3);
+            --desert-orange: #c4621a;
+            --night-blue: #1a2a3a;
+            --cosmic-purple: #2d1b4e;
+            --mine-green: #0a2a1a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--brown-dark);
+            background: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="30" r="1" fill="%23d4c4a1" opacity="0.15"/><circle cx="70" cy="70" r="0.8" fill="%23c4b491" opacity="0.1"/></svg>') repeat,
+                linear-gradient(180deg, var(--parchment) 0%, var(--parchment-dark) 100%);
+            background-size: 60px 60px, 100% 100%;
+            background-attachment: fixed;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           NAVIGATION
+        ═══════════════════════════════════════════════════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, var(--brown-dark) 0%, #2a1a0a 100%);
+            padding: 0;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 4px 0 25px var(--shadow);
+            border-right: 3px solid var(--gold);
+        }
+
+        .nav-header {
+            text-align: center;
+            padding: 25px 15px;
+            background: linear-gradient(180deg, rgba(196,98,26,0.2) 0%, transparent 100%);
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .nav-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+        }
+
+        .nav-header .subtitle {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.65rem;
+            color: var(--parchment);
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .nav-header .volume-badge {
+            display: inline-block;
+            background: var(--desert-orange);
+            color: white;
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        .nav-section { padding: 12px 15px; }
+
+        .nav-section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(212,160,23,0.3);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav a {
+            display: block;
+            color: var(--parchment);
+            text-decoration: none;
+            padding: 6px 10px;
+            margin: 2px 0;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        nav a:hover {
+            background: rgba(212,160,23,0.15);
+            border-left-color: var(--gold);
+            color: var(--gold);
+            transform: translateX(5px);
+        }
+
+        nav a.sub { padding-left: 22px; font-size: 0.75rem; opacity: 0.9; }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           MAIN CONTENT
+        ═══════════════════════════════════════════════════════════════════════ */
+        main {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 60px 50px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           VOLUME HERO
+        ═══════════════════════════════════════════════════════════════════════ */
+        .volume-hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: 
+                radial-gradient(ellipse at center bottom, rgba(196,98,26,0.3) 0%, transparent 60%),
+                linear-gradient(180deg, #3d2914 0%, #2a1a0a 40%, #1a0a00 100%);
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .volume-hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><path d="M0,150 Q100,120 200,140 T400,130 T600,150 T800,120 T1000,140 T1200,130 L1200,200 L0,200 Z" fill="%231a0a00"/></svg>') no-repeat center bottom;
+            background-size: cover;
+            opacity: 0.5;
+        }
+
+        .volume-hero .volume-number {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.9rem;
+            color: var(--desert-orange);
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .volume-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            color: var(--gold);
+            text-shadow: 0 0 40px rgba(196,98,26,0.5), 3px 3px 6px rgba(0,0,0,0.8);
+            letter-spacing: 6px;
+            margin-bottom: 15px;
+        }
+
+        .volume-hero .tagline {
+            font-family: 'IM Fell English', serif;
+            font-size: 1.3rem;
+            color: var(--parchment);
+            font-style: italic;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .volume-hero .location {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.85rem;
+            color: var(--desert-orange);
+            letter-spacing: 3px;
+        }
+
+        .volume-hero .train-icon {
+            font-size: 4rem;
+            margin: 40px 0;
+            opacity: 0.7;
+        }
+
+        .volume-hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-stat {
+            text-align: center;
+            padding: 15px 25px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            border: 1px solid rgba(212,160,23,0.3);
+        }
+
+        .hero-stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+
+        .hero-stat-label {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            color: var(--parchment);
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           ACT HEADERS
+        ═══════════════════════════════════════════════════════════════════════ */
+        .act-header {
+            text-align: center;
+            padding: 80px 50px;
+            position: relative;
+            margin: 0 -50px;
+        }
+
+        .act-header.act1 {
+            background: linear-gradient(180deg, var(--brown-dark) 0%, var(--desert-orange) 50%, var(--brown-dark) 100%);
+        }
+
+        .act-header.act2 {
+            background: linear-gradient(180deg, var(--brown-dark) 0%, var(--night-blue) 50%, var(--brown-dark) 100%);
+        }
+
+        .act-header.act3 {
+            background: linear-gradient(180deg, var(--brown-dark) 0%, var(--brown-medium) 50%, var(--brown-dark) 100%);
+        }
+
+        .act-header.act4 {
+            background: linear-gradient(180deg, var(--brown-dark) 0%, var(--cosmic-purple) 50%, var(--brown-dark) 100%);
+        }
+
+        .act-header .act-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .act-header .act-number {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.85rem;
+            color: var(--gold);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .act-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            letter-spacing: 5px;
+            margin: 15px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .act-header .act-subtitle {
+            font-family: 'IM Fell English', serif;
+            font-style: italic;
+            color: var(--parchment);
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           SCENE HEADERS
+        ═══════════════════════════════════════════════════════════════════════ */
+        .scene-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 50px 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--brown-light);
+        }
+
+        .scene-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--brown-dark) 0%, var(--brown-medium) 100%);
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+        }
+
+        .scene-header h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--brown-dark);
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
+
+        .scene-header h3 small {
+            display: block;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.65rem;
+            color: var(--brown-medium);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           READ ALOUD BOX
+        ═══════════════════════════════════════════════════════════════════════ */
+        .read-aloud {
+            background: linear-gradient(135deg, rgba(26,26,26,0.95) 0%, rgba(10,10,10,0.98) 100%);
+            color: var(--parchment);
+            padding: 35px 45px;
+            margin: 35px 0;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 
+                0 8px 40px rgba(0,0,0,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.05);
+            border-left: 5px solid var(--blood-red);
+        }
+
+        .read-aloud::before {
+            content: '📖 LEGGI AD ALTA VOCE';
+            position: absolute;
+            top: -12px;
+            left: 30px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--blood-red);
+            background: var(--parchment);
+            padding: 4px 12px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+
+        .read-aloud p {
+            font-family: 'IM Fell English', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            line-height: 1.9;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .read-aloud p:last-child { margin-bottom: 0; }
+
+        .read-aloud .prompt {
+            font-family: 'Cinzel', serif;
+            font-style: normal;
+            color: var(--gold);
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(212,160,23,0.3);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           GM TIP BOX
+        ═══════════════════════════════════════════════════════════════════════ */
+        .gm-tip {
+            background: linear-gradient(145deg, rgba(212,160,23,0.12) 0%, rgba(212,160,23,0.04) 100%);
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 25px 30px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .gm-tip::before {
+            content: '💡 CONSIGLIO GM';
+            position: absolute;
+            top: -12px;
+            left: 25px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--gold);
+            background: var(--parchment);
+            padding: 4px 12px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+
+        .gm-tip p { margin: 0; }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           WARNING BOX
+        ═══════════════════════════════════════════════════════════════════════ */
+        .warning-box {
+            background: linear-gradient(145deg, rgba(139,0,0,0.12) 0%, rgba(139,0,0,0.04) 100%);
+            border: 2px solid var(--blood-red);
+            border-radius: 10px;
+            padding: 25px 30px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .warning-box::before {
+            content: '⚠️ ATTENZIONE';
+            position: absolute;
+            top: -12px;
+            left: 25px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--blood-red);
+            background: var(--parchment);
+            padding: 4px 12px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           TENUTA MENTALE CHECK
+        ═══════════════════════════════════════════════════════════════════════ */
+        .tenuta-check {
+            background: linear-gradient(135deg, rgba(45,27,78,0.15) 0%, rgba(45,27,78,0.05) 100%);
+            border: 2px solid var(--cosmic-purple);
+            border-radius: 10px;
+            padding: 25px 30px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .tenuta-check::before {
+            content: '💀 PROVA DI TENUTA';
+            position: absolute;
+            top: -12px;
+            left: 25px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--cosmic-purple);
+            background: var(--parchment);
+            padding: 4px 12px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+
+        .tenuta-check .check-title {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            color: var(--cosmic-purple);
+            margin-bottom: 10px;
+        }
+
+        .tenuta-results {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .tenuta-result {
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .tenuta-result.success {
+            background: rgba(34,139,34,0.1);
+            border-left: 3px solid #228b22;
+        }
+
+        .tenuta-result.fail {
+            background: rgba(139,0,0,0.1);
+            border-left: 3px solid var(--blood-red);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           STAT BLOCK (CREATURES)
+        ═══════════════════════════════════════════════════════════════════════ */
+        .creature-block {
+            background: linear-gradient(145deg, var(--parchment) 0%, var(--parchment-dark) 100%);
+            border: 3px solid var(--blood-red);
+            border-radius: 12px;
+            padding: 0;
+            margin: 35px 0;
+            overflow: hidden;
+            box-shadow: 0 6px 25px var(--shadow);
+        }
+
+        .creature-header {
+            background: linear-gradient(90deg, var(--blood-red), #aa2020);
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .creature-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .creature-type {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.8);
+            background: rgba(0,0,0,0.2);
+            padding: 4px 10px;
+            border-radius: 10px;
+        }
+
+        .creature-body { padding: 25px; }
+
+        .creature-stats {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(139,0,0,0.2);
+        }
+
+        .creature-stat {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.85rem;
+        }
+
+        .creature-stat strong {
+            color: var(--blood-red);
+        }
+
+        .creature-section {
+            margin-top: 15px;
+        }
+
+        .creature-section h5 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--blood-red);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .creature-section ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .creature-section li {
+            margin: 6px 0;
+            font-size: 0.95rem;
+        }
+
+        .creature-note {
+            background: rgba(212,160,23,0.1);
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--gold);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           NPC CARD
+        ═══════════════════════════════════════════════════════════════════════ */
+        .npc-card {
+            background: var(--parchment);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 30px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 2px solid var(--brown-light);
+        }
+
+        .npc-header {
+            background: linear-gradient(90deg, var(--brown-dark), var(--brown-medium));
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .npc-icon { font-size: 2rem; }
+
+        .npc-name {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .npc-role {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--parchment);
+            opacity: 0.8;
+        }
+
+        .npc-body { padding: 25px; }
+
+        .npc-description {
+            font-style: italic;
+            color: var(--brown-medium);
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(92,61,30,0.15);
+        }
+
+        .npc-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .npc-info h6 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: var(--brown-dark);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .npc-info ul {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 0.9rem;
+        }
+
+        .npc-info li { margin: 4px 0; }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           LOCATION CARD
+        ═══════════════════════════════════════════════════════════════════════ */
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 35px 0;
+        }
+
+        .location-card {
+            background: var(--parchment);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--desert-orange);
+            transition: transform 0.2s ease;
+        }
+
+        .location-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .location-card-header {
+            padding: 18px 20px;
+            background: rgba(196,98,26,0.1);
+            border-bottom: 1px solid rgba(196,98,26,0.2);
+        }
+
+        .location-card-header h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--brown-dark);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .location-card-body {
+            padding: 20px;
+        }
+
+        .location-card-body p {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            font-style: italic;
+            color: var(--brown-medium);
+        }
+
+        .location-card-body ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .location-card-body li {
+            font-size: 0.85rem;
+            margin: 5px 0;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           DAWN CLOCK
+        ═══════════════════════════════════════════════════════════════════════ */
+        .dawn-clock {
+            background: linear-gradient(180deg, var(--night-blue) 0%, #0a1520 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .dawn-clock h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .clock-segments {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .clock-segment {
+            width: 50px;
+            height: 35px;
+            border-radius: 5px;
+            border: 2px solid rgba(212,160,23,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--gold);
+            background: rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .clock-segment.filled {
+            background: var(--gold);
+            color: var(--night-blue);
+        }
+
+        .clock-labels {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .clock-labels span {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--parchment);
+            opacity: 0.7;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           WAVE TABLE
+        ═══════════════════════════════════════════════════════════════════════ */
+        .wave-table {
+            margin: 35px 0;
+        }
+
+        .wave-row {
+            display: flex;
+            margin-bottom: 12px;
+            background: var(--parchment);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .wave-number {
+            width: 100px;
+            padding: 20px;
+            background: var(--night-blue);
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wave-content {
+            flex: 1;
+            padding: 15px 25px;
+        }
+
+        .wave-content strong {
+            color: var(--blood-red);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           TRAIN MAP
+        ═══════════════════════════════════════════════════════════════════════ */
+        .train-map {
+            background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            font-family: 'Special Elite', monospace;
+            color: #00ff00;
+            overflow-x: auto;
+        }
+
+        .train-map h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .train-map pre {
+            font-size: 0.8rem;
+            line-height: 1.4;
+            text-align: center;
+            white-space: pre;
+        }
+
+        .train-map .legend {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0,255,0,0.2);
+            font-size: 0.75rem;
+            color: #88ff88;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           EPILOGUE CARDS
+        ═══════════════════════════════════════════════════════════════════════ */
+        .epilogue-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .epilogue-card {
+            background: var(--parchment);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .epilogue-card.victory .epilogue-header { background: linear-gradient(90deg, #228b22, #2a9a2a); }
+        .epilogue-card.buried .epilogue-header { background: linear-gradient(90deg, var(--desert-orange), #d4721a); }
+        .epilogue-card.corrupt .epilogue-header { background: linear-gradient(90deg, var(--blood-red), #aa2020); }
+        .epilogue-card.sacrifice .epilogue-header { background: linear-gradient(90deg, var(--cosmic-purple), #4a2a6e); }
+
+        .epilogue-header {
+            padding: 20px 25px;
+            color: white;
+        }
+
+        .epilogue-header h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .epilogue-header small {
+            display: block;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .epilogue-body {
+            padding: 25px;
+        }
+
+        .epilogue-body p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .epilogue-reward {
+            background: rgba(212,160,23,0.1);
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            border-left: 3px solid var(--gold);
+        }
+
+        .epilogue-reward strong {
+            color: var(--gold);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           COMPLICATIONS TABLE
+        ═══════════════════════════════════════════════════════════════════════ */
+        .complications-table {
+            margin: 35px 0;
+        }
+
+        .complication-row {
+            display: flex;
+            align-items: stretch;
+            margin-bottom: 10px;
+            background: var(--parchment);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .complication-cost {
+            width: 80px;
+            padding: 15px;
+            background: var(--blood-red);
+            color: white;
+            font-family: 'Cinzel', serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .complication-content {
+            flex: 1;
+            padding: 15px 20px;
+        }
+
+        .complication-content strong {
+            color: var(--brown-dark);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           TYPOGRAPHY
+        ═══════════════════════════════════════════════════════════════════════ */
+        h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--brown-medium);
+            margin: 45px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--brown-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            color: var(--brown-dark);
+            margin: 30px 0 15px;
+        }
+
+        p { margin-bottom: 16px; text-align: justify; }
+
+        strong { color: var(--brown-dark); }
+        em { font-style: italic; }
+
+        ul, ol { margin: 15px 0; padding-left: 25px; }
+        li { margin: 8px 0; }
+
+        .divider {
+            text-align: center;
+            margin: 60px 0;
+            color: var(--gold);
+            font-size: 1.5rem;
+            letter-spacing: 15px;
+            opacity: 0.6;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           TABLES
+        ═══════════════════════════════════════════════════════════════════════ */
+        .table-container {
+            margin: 30px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--parchment);
+        }
+
+        thead {
+            background: linear-gradient(180deg, var(--brown-dark) 0%, var(--brown-medium) 100%);
+        }
+
+        th {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.75rem;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(92,61,30,0.12);
+            vertical-align: top;
+            font-size: 0.95rem;
+        }
+
+        tbody tr:nth-child(even) { background: var(--parchment-dark); }
+        tbody tr:hover { background: rgba(212,160,23,0.1); }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════════════════════════════════════ */
+        footer {
+            background: linear-gradient(180deg, var(--brown-dark) 0%, #0a0500 100%);
+            color: var(--parchment);
+            padding: 60px;
+            text-align: center;
+        }
+
+        footer .brand {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            text-align: center;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════════════════════════════════════ */
+        @media (max-width: 1100px) {
+            nav { width: 240px; }
+            main { margin-left: 240px; }
+        }
+
+        @media (max-width: 900px) {
+            .location-grid { grid-template-columns: 1fr; }
+            .epilogue-grid { grid-template-columns: 1fr; }
+            .npc-info-grid { grid-template-columns: 1fr; }
+            .tenuta-results { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            nav { display: none; }
+            main { margin-left: 0; }
+            .content-wrapper { padding: 40px 25px; }
+            .act-header { margin: 0 -25px; padding: 60px 25px; }
+            .volume-hero h1 { font-size: 2.2rem; }
+            .volume-hero-stats { flex-direction: column; gap: 15px; }
+            .clock-segments { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-header">
+            <h1>GUNSMOKE & DREAD</h1>
+            <div class="subtitle">Parte II</div>
+            <div class="volume-badge">🌵 Volume I</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">🔫 Atto I</div>
+            <a href="#atto1">La Rapina al Treno</a>
+            <a href="#situazione" class="sub">La Situazione</a>
+            <a href="#banditi" class="sub">I Banditi</a>
+            <a href="#morti-alzano" class="sub">I Morti si Alzano</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">💀 Atto II</div>
+            <a href="#atto2">La Notte dei Morti</a>
+            <a href="#orologio" class="sub">Orologio dell'Alba</a>
+            <a href="#ondate" class="sub">Le Ondate</a>
+            <a href="#alba" class="sub">L'Alba Arriva</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">🏜 Atto III</div>
+            <a href="#atto3">Silver Hollow</a>
+            <a href="#luoghi" class="sub">Luoghi Chiave</a>
+            <a href="#indizi" class="sub">Raccogliere Indizi</a>
+            <a href="#orrore" class="sub">Primo Orrore</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">⛏ Atto IV</div>
+            <a href="#atto4">Il Tempio del Serpente</a>
+            <a href="#miniera" class="sub">La Miniera</a>
+            <a href="#tempio" class="sub">Il Tempio</a>
+            <a href="#jeremiah" class="sub">Padre Jeremiah</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">📜 Finali</div>
+            <a href="#epiloghi">I 4 Epiloghi</a>
+            <a href="#bestiario">Bestiario</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Volume Hero -->
+        <section class="volume-hero">
+            <div class="volume-number">Volume I</div>
+            <h1>OMBRE NEL DESERTO</h1>
+            <p class="tagline">Dove l'azione western diventa incubo</p>
+            <div class="location">New Mexico, Agosto 1885</div>
+            <div class="train-icon">🚂</div>
+            <div class="volume-hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">4</div>
+                    <div class="hero-stat-label">Atti</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">10-14</div>
+                    <div class="hero-stat-label">Ore di Gioco</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">Liv. 2→3</div>
+                    <div class="hero-stat-label">Progressione</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">4</div>
+                    <div class="hero-stat-label">Epiloghi</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Introduction -->
+        <div class="content-wrapper">
+            <h3>📜 Introduzione</h3>
+            <p><strong>Nuovo Messico, Agosto 1885.</strong> Una rapina al treno che va terribilmente storta. I banditi morti che si rialzano. Una cittadina mineraria maledetta. Un culto antico che venera qualcosa di mostruoso nelle profondità della terra.</p>
+
+            <p><em>Sangue sui Binari</em> è un'avventura horror western completa in quattro atti che porta i personaggi dall'azione frenetica di una rapina al confronto con orrori cosmici indicibili.</p>
+
+            <div class="warning-box">
+                <p><strong>Contenuto Maturo:</strong> Questa avventura contiene violenza grafica, orrore corporeo e temi psicologicamente disturbanti. Discuti gli strumenti di sicurezza (Carta X, Linee e Veli) con il gruppo prima di giocare.</p>
+            </div>
+
+            <h4>🎭 Tono e Atmosfera</h4>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Atto</th>
+                            <th>Durata</th>
+                            <th>Luogo</th>
+                            <th>Tono</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>🔫 <strong>Atto I</strong></td>
+                            <td>45-90 min</td>
+                            <td>Treno in movimento</td>
+                            <td>Azione western cinematografica</td>
+                        </tr>
+                        <tr>
+                            <td>💀 <strong>Atto II</strong></td>
+                            <td>90-120 min</td>
+                            <td>Treno fermo nel deserto</td>
+                            <td>Orrore di sopravvivenza</td>
+                        </tr>
+                        <tr>
+                            <td>🏜 <strong>Atto III</strong></td>
+                            <td>2-3 ore</td>
+                            <td>Silver Hollow</td>
+                            <td>Mistero investigativo</td>
+                        </tr>
+                        <tr>
+                            <td>⛏ <strong>Atto IV</strong></td>
+                            <td>3-4 ore</td>
+                            <td>Miniera / Tempio</td>
+                            <td>Orrore cosmico</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="gm-tip">
+                <p>Questa avventura è completamente autocontenuta con conclusione soddisfacente, ma prepara il terreno per il Volume II. Se i giocatori non continuano, la minaccia locale è eliminata e i PG sono eroi. Ma chi continua scoprirà che questo era solo l'inizio...</p>
+            </div>
+        </div>
+
+        <!-- ACT I -->
+        <div class="act-header act1" id="atto1">
+            <div class="act-icon">🔫</div>
+            <div class="act-number">Atto I</div>
+            <h2>LA RAPINA AL TRENO</h2>
+            <p class="act-subtitle">Dove l'azione western diventa incubo</p>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="scene-header" id="situazione">
+                <div class="scene-icon">📍</div>
+                <h3>La Situazione <small>Giovedì pomeriggio, Agosto 1885</small></h3>
+            </div>
+
+            <p>I tre personaggi si trovano su un treno della <strong>Southwestern & Pacific Railroad</strong> partito da Tucson due ore fa, diretto verso Phoenix. Sono stati assunti dalla Cattleman's Bank per scortare cinquemila dollari in oro — le buste paga mensili per i minatori.</p>
+
+            <p><strong>Paga:</strong> Cinquanta dollari ciascuno, da pagare all'arrivo. Il carico è custodito nel vagone merci in una cassaforte sorvegliata da due guardie della compagnia — uomini di mezza età, uniformi blu sbiadite, compiacenti per routine.</p>
+
+            <div class="read-aloud">
+                <p>L'atmosfera è rilassata. Il calore pomeridiano rende tutti sonnolenti. Il rumore ritmico delle ruote sui binari, il paesaggio desertico che scorre, le conversazioni sonnolente dei passeggeri.</p>
+                <p>Nessuno sospetta che nei prossimi minuti la violenza esploderà, e che prima dell'alba affronterete orrori che sfidano ogni comprensione della realtà.</p>
+                <p class="prompt">Cosa volete fare?</p>
+            </div>
+
+            <div class="train-map">
+                <h4>🚂 Disposizione del Treno</h4>
+<pre>
+    🚂              📦              👥              👥              🚪
+ LOCOMOTIVA    VAGONE MERCI    PASSEGGERI 1    PASSEGGERI 2    VAGONE CODA
+ Conducente    Cassaforte +       Civili          Civili        Balcone
+               2 Guardie
+</pre>
+                <div class="legend">Muoversi tra zone adiacenti = azione minore. Il tetto è accessibile ma richiede Prova di Agility (12) per non cadere.</div>
+            </div>
+
+            <div class="scene-header" id="banditi">
+                <div class="scene-icon">🤠</div>
+                <h3>I Banditi <small>La Banda di Clay Morrison</small></h3>
+            </div>
+
+            <p>Sei uomini a cavallo aspettano nascosti dietro un affioramento roccioso tre miglia avanti. Hanno studiato gli orari per settimane, scelto questo punto dove il treno rallenta in curva.</p>
+
+            <div class="npc-card">
+                <div class="npc-header">
+                    <div class="npc-icon">🤠</div>
+                    <div>
+                        <div class="npc-name">Clay Morrison</div>
+                        <div class="npc-role">Capo della Banda • 35 anni, ex-soldato confederato</div>
+                    </div>
+                </div>
+                <div class="npc-body">
+                    <p class="npc-description">Barba incolta, occhi stanchi. Guida la banda non per avidità ma per disperazione.</p>
+                    <div class="npc-info-grid">
+                        <div class="npc-info">
+                            <h6>Motivazione</h6>
+                            <ul>
+                                <li>Sua sorella Elizabeth muore di tubercolosi</li>
+                                <li>Le cure costano più di quanto potrebbe guadagnare in cinque anni</li>
+                                <li>Questa rapina è l'ultimo tentativo disperato</li>
+                            </ul>
+                        </div>
+                        <div class="npc-info">
+                            <h6>Comportamento</h6>
+                            <ul>
+                                <li>Non vuole uccidere — vuole l'oro e fuggire</li>
+                                <li>Esegue con efficienza militare</li>
+                                <li>Se possibile, evita vittime civili</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gm-tip">
+                <p><strong>Non sono mostri.</strong> Sono uomini che hanno fatto scelte discutibili spinti da circostanze terribili. Quando un bandito muore, descrivi la sua morte in modo umano. Questi non sono blocchi di statistiche eliminati. Sono vite spente. Dovrebbe pesare emotivamente.</p>
+            </div>
+
+            <h4>👥 Gli Altri Banditi</h4>
+            <ul>
+                <li><strong>Tommy "Kid" Walsh (19):</strong> Troppo giovane per questo</li>
+                <li><strong>Miguel Rodriguez (32):</strong> Derubato della sua terra da proprietari terrieri</li>
+                <li><strong>Samuel Brooks (45):</strong> Ex-minatore mutilato in un incidente</li>
+                <li><strong>Marcus Green (28):</strong> Libertà legale ma senza opportunità</li>
+                <li><strong>Jacob "Old Jake" Patterson (57):</strong> Veterano stanco</li>
+            </ul>
+
+            <h4>😱 Complicazioni (Spendi Fear)</h4>
+            <div class="complications-table">
+                <div class="complication-row">
+                    <div class="complication-cost">1 Fear</div>
+                    <div class="complication-content"><strong>Panico tra i Passeggeri:</strong> Un civile terrorizzato corre nella linea di fuoco</div>
+                </div>
+                <div class="complication-row">
+                    <div class="complication-cost">2 Fear</div>
+                    <div class="complication-content"><strong>Bambina Esposta:</strong> Una bambina di sei anni paralizzata sotto un sedile dove sta per iniziare uno scontro</div>
+                </div>
+                <div class="complication-row">
+                    <div class="complication-cost">2 Fear</div>
+                    <div class="complication-content"><strong>Pallottola Vagante:</strong> Un colpo perso rompe una lanterna/linea del vapore/supporto strutturale</div>
+                </div>
+                <div class="complication-row">
+                    <div class="complication-cost">3 Fear</div>
+                    <div class="complication-content"><strong>"È Mio Fratello!":</strong> Un bandito riconosce un personaggio (Guerra Civile? Città natale?). Momento drammatico.</div>
+                </div>
+            </div>
+
+            <div class="scene-header" id="morti-alzano">
+                <div class="scene-icon">☠️</div>
+                <h3>I Morti si Alzano <small>Il Colpo di Scena</small></h3>
+            </div>
+
+            <p>Dopo il combattimento, c'è relativa calma. Il treno continua. I passeggeri sopravvissuti sono traumatizzati ma vivi. I personaggi hanno minuti per curare i feriti, parlare con i sopravvissuti, esaminare i corpi.</p>
+
+            <div class="gm-tip">
+                <p><strong>Se Doc esamina i corpi (Prova di Knowledge 12):</strong> "Questi uomini sono morti per ferite da arma da fuoco standard. Ma c'è qualcosa di strano. La temperatura corporea non sta diminuendo normalmente — senti un calore innaturale emanare da loro. E se presti attenzione, giureresti di vedere spasmi muscolari molto più intensi dei normali riflessi post-mortem."</p>
+            </div>
+
+            <p>Circa dieci minuti dopo la fine del combattimento, <strong>il sole tramonta completamente</strong>. L'oscurità cala rapidamente sul deserto. E poi sentite qualcosa. Un suono sottile — respiri rochi? Rantoli?</p>
+
+            <div class="read-aloud">
+                <p>Chi è vicino ai corpi vede per primo. Le dita di un cadavere si contraggono — non uno spasmo, un movimento deliberato. Le dita si chiudono in pugno e si aprono, tastando l'aria.</p>
+                <p>Il petto del cadavere si gonfia. Non respira — i polmoni sono perforati, vedi sangue schiumante dal foro — ma il petto si solleva comunque, come se qualcosa pompasse aria attraverso pura forza innaturale.</p>
+                <p>Gli occhi del morto si aprono di scatto. Completamente bianchi. Non ci sono pupille, non iridi — solo bianco latte che riflette la luce delle lanterne.</p>
+                <p>E poi il cadavere inizia a muoversi. Lentamente, goffamente, innaturalmente. <strong>Tutti i corpi. Tutti i banditi che avete ucciso. Si stanno alzando. E hanno fame.</strong></p>
+                <p class="prompt">Cosa volete fare?</p>
+            </div>
+
+            <div class="tenuta-check">
+                <div class="check-title">Presenza Terrificante — Istinto difficoltà 12</div>
+                <div class="tenuta-results">
+                    <div class="tenuta-result success">
+                        <strong>Successo:</strong> Riesci a mantenere il controllo. Nessun effetto.
+                    </div>
+                    <div class="tenuta-result fail">
+                        <strong>Fallimento:</strong> Riempi 1 segmento di Tenuta Mentale e sei Scosso (-1d6) per 1 azione. Fallimento grave (6+ sotto): 2 segmenti + tira 1d6 per reazione (fuga/congelamento/frenesia).
+                    </div>
+                </div>
+            </div>
+
+            <p>Il conducente, terrorizzato, tira i freni di emergenza. Il treno stride fino a fermarsi nel mezzo del deserto, miglia dalla stazione più vicina. Il sistema frenante è parzialmente danneggiato — ripararlo richiederà tempo.</p>
+
+            <div class="divider">🐍 ═══ FINE ATTO I ═══ 🐍</div>
+        </div>
+
+        <!-- ACT II -->
+        <div class="act-header act2" id="atto2">
+            <div class="act-icon">💀</div>
+            <div class="act-number">Atto II</div>
+            <h2>LA NOTTE DEI MORTI</h2>
+            <p class="act-subtitle">Sopravvivere fino all'alba</p>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="scene-header">
+                <div class="scene-icon">🌙</div>
+                <h3>La Situazione <small>Bloccati nell'Oscurità</small></h3>
+            </div>
+
+            <p>Il treno è fermo. Riparare i freni richiede trenta minuti di lavoro da qualcuno con competenza meccanica. La locomotiva produce ancora vapore, quindi le luci a gas nei vagoni rimangono accese — <em>piccole isole di luce calda in un oceano di oscurità</em>. Ma quelle luci attirano attenzione.</p>
+
+            <p>I passeggeri sono oltre il terrore razionale. Alcuni pregano istericamente. Altri piangono. Alcuni sono catatonici. La vecchia signora ripete <em>"Non è possibile"</em> come un mantra spezzato.</p>
+
+            <div class="dawn-clock" id="orologio">
+                <h4>⏰ L'Orologio dell'Alba</h4>
+                <div class="clock-segments">
+                    <div class="clock-segment">1</div>
+                    <div class="clock-segment">2</div>
+                    <div class="clock-segment">3</div>
+                    <div class="clock-segment">4</div>
+                    <div class="clock-segment">5</div>
+                    <div class="clock-segment">6</div>
+                    <div class="clock-segment">7</div>
+                    <div class="clock-segment">8</div>
+                </div>
+                <div class="clock-labels">
+                    <span>🌑 NOTTE</span>
+                    <span>🌅 ALBA</span>
+                </div>
+            </div>
+
+            <p>L'Atto Secondo è strutturato intorno a un <strong>Orologio dell'Alba</strong> (8 segmenti). Rappresenta le ore che mancano all'alba. Avanza di 1 segmento per "ondata" (~45 minuti narrativi). A 8/8, il sole sorge e i non-morti crollano. <em>I personaggi NON POSSONO accelerare l'orologio. Devono semplicemente SOPRAVVIVERE.</em></p>
+
+            <h4>⚔️ Scelte Strategiche</h4>
+            <p>Prima che inizi il vero assedio, i personaggi devono decidere la strategia. Non c'è scelta "giusta":</p>
+
+            <div class="location-grid">
+                <div class="location-card">
+                    <div class="location-card-header">
+                        <h4>🚂 Fortificare il Treno</h4>
+                    </div>
+                    <div class="location-card-body">
+                        <ul>
+                            <li>✓ Protezione fisica, i civili sono già qui</li>
+                            <li>✗ Claustrofobico, se i morti entrano è difficile fuggire</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="location-card">
+                    <div class="location-card-header">
+                        <h4>🏜️ Fuggire nel Deserto</h4>
+                    </div>
+                    <div class="location-card-body">
+                        <ul>
+                            <li>✓ Movimento, forse evitare scontri</li>
+                            <li>✗ Deserto notturno letale, civili non in condizioni, i morti potrebbero seguire</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="location-card">
+                    <div class="location-card-header">
+                        <h4>🔧 Riparare e Scappare</h4>
+                    </div>
+                    <div class="location-card-body">
+                        <ul>
+                            <li>✓ Se riuscito, risolve tutto</li>
+                            <li>✗ Richiede qualcuno esposto fuori (30 min, Knowledge 14), potrebbe fallire</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="location-card">
+                    <div class="location-card-header">
+                        <h4>🔫 Cacciare Attivamente</h4>
+                    </div>
+                    <div class="location-card-body">
+                        <ul>
+                            <li>✓ Primo tiro, elimina minaccia</li>
+                            <li>✗ L'oscurità favorisce i morti, rischio di essere circondati</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h4 id="ondate">🌊 La Struttura delle Ondate</h4>
+
+            <div class="wave-table">
+                <div class="wave-row">
+                    <div class="wave-number">1-2</div>
+                    <div class="wave-content"><strong>Attacchi di prova.</strong> 1-2 morti per volta. Relativamente gestibili. <em>"Forse possiamo farcela."</em></div>
+                </div>
+                <div class="wave-row">
+                    <div class="wave-number">3-4</div>
+                    <div class="wave-content"><strong>Intensificazione.</strong> 3-4 morti coordinati. Primi segni che stanno imparando. <em>"Questo sta diventando serio."</em></div>
+                </div>
+                <div class="wave-row">
+                    <div class="wave-number">5-6</div>
+                    <div class="wave-content"><strong>Assedio vero.</strong> Attacchi da direzioni multiple. Brecce nelle difese. Qualche PNG muore. <em>"Potremmo non sopravvivere."</em></div>
+                </div>
+                <div class="wave-row">
+                    <div class="wave-number">7-8</div>
+                    <div class="wave-content"><strong>Disperazione.</strong> Risorse finite (munizioni, HP, utilizzi abilità). Esaurimento totale. L'alba non arriverà mai. Poi... arriva.</div>
+                </div>
+            </div>
+
+            <div class="gm-tip">
+                <p><strong>💔 La Perdita È Inevitabile:</strong> A un certo punto (probabilmente ondata 5 o 6), qualcuno dovrebbe morire. Non arbitrariamente — come conseguenza logica di scelte e sfortuna. Quando succede, dai spazio al dolore. E quando quella persona si rialza 10 minuti dopo, i personaggi devono affrontare la scelta impossibile di distruggerla.</p>
+            </div>
+
+            <div class="scene-header" id="alba">
+                <div class="scene-icon">🌅</div>
+                <h3>L'Alba Arriva <small>Fine dell'Incubo</small></h3>
+            </div>
+
+            <div class="read-aloud">
+                <p>Il cielo a est inizia a schiarirsi. Non è ancora pieno giorno — solo il primo accenno pallido di grigio che precede l'alba vera. Ma è sufficiente.</p>
+                <p>I morti sentono qualcosa che i vivi non possono percepire. Si fermano a metà attacco. Le teste si girano tutte nella stessa direzione, verso est, verso la luce che sta arrivando.</p>
+                <p>Uno per uno, crollano. Non drammaticamente — semplicemente cadono. I corpi diventano inerti. Gli occhi bianchi si chiudono. Il non-morto ritorna ad essere morto.</p>
+                <p>Il silenzio che segue è quasi assordante. I sopravvissuti rimangono fermi, incapaci di credere che sia finita. Qualcuno piange. Qualcun altro ride con isteria al limite della follia. <strong>Il sole sta sorgendo sul deserto. E per la prima volta da quando i morti si sono alzati, i personaggi possono permettersi di sperare.</strong></p>
+                <p class="prompt">Cosa volete fare?</p>
+            </div>
+
+            <h4>🔍 Dopo l'Alba — Gli Indizi</h4>
+            <ul>
+                <li><strong>Esame dei corpi (Knowledge 14):</strong> Sostanza nera e viscosa nei tessuti. Odore di zolfo e qualcosa di più antico.</li>
+                <li><strong>Effetti personali (Instinct 12):</strong> Mappa con X rossa: "Miniera Silverstone - EVITARE", sopra scritto "Dove si nasconde?"</li>
+                <li><strong>Proiettili d'argento:</strong> Tre proiettili con simboli strani incisi</li>
+                <li><strong>Taccuino bruciato:</strong> Schizzo di un portale e scritto in spirale: "non tornare NON TORNARE"</li>
+            </ul>
+
+            <div class="divider">🐍 ═══ FINE ATTO II ═══ 🐍</div>
+        </div>
+
+        <!-- ACT III -->
+        <div class="act-header act3" id="atto3">
+            <div class="act-icon">🏜️</div>
+            <div class="act-number">Atto III</div>
+            <h2>INVESTIGAZIONE A SILVER HOLLOW</h2>
+            <p class="act-subtitle">Dove la paranoia cresce e i segreti emergono</p>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="read-aloud">
+                <p>La diligenza ti deposita sulla polverosa strada principale nel tardo pomeriggio. Il sole torrido batte su edifici di legno sbiaditi. Silver Hollow un tempo prosperava: vedi la torre della miniera abbandonata sopra la collina, il saloon con la veranda crollante, il negozio con l'insegna che cigola nel vento.</p>
+                <p>Ma qualcosa è... sbagliato. La strada è troppo deserta per quest'ora del giorno. Finestre chiuse. Nessun bambino gioca. Solo silenzio, eccetto il vento che trasporta un odore di... cosa? Decomposizione? Zolfo?</p>
+                <p>Piccola chiesa di legno sulla collina. Campanile danneggiato, campana pende storta. E davanti, piantata nel terreno: <strong>una croce rovesciata, bruciata nel legno.</strong></p>
+                <p class="prompt">Benvenuti a Silver Hollow. Cosa fate?</p>
+            </div>
+
+            <h3 id="luoghi">🗺️ Luoghi Chiave</h3>
+
+            <div class="location-grid">
+                <div class="location-card">
+                    <div class="location-card-header">
+                        <h4>🏛️ Ufficio dello Sceriffo</h4>
+                    </div>
+                    <div class="location-card-body">
+                        <p>Centro operazioni, primo contatto con l'autorità locale</p>
+                        <ul>
+                            <li>Incontro con Hank Morrison</li>
+                            <li>Bacheca con foto delle persone scomparse</li>
+                            <li>Celle vuote (nessun criminale da settimane)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="location-card">
+                    <div class="location-card-header">
+                        <h4>🍺 Saloon Silver Lady</h4>
+                    </div>
+                    <div class="location-card-body">
+                        <p>Nucleo informativo, dove si raccolgono le voci</p>
+                        <ul>
+                            <li>5-6 minatori che bevono in silenzio</li>
+                            <li>Frank il barista conosce tutti i pettegolezzi</li>
+                            <li>Vecchio Pete, ex-minatore, ha visto cose strane</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="location-card">
+                    <div class="location-card-header">
+                        <h4>⛪ Chiesa Danneggiata</h4>
+                    </div>
+                    <div class="location-card-body">
+                        <p>Scena del crimine, cuore della corruzione</p>
+                        <ul>
+                            <li>Devastata dall'interno, panche rovesciate</li>
+                            <li>Simboli spiraliformi scolpiti sull'altare</li>
+                            <li>Macchie di sangue vecchie di 3 settimane</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="location-card">
+                    <div class="location-card-header">
+                        <h4>⛏️ Miniera Abbandonata</h4>
+                    </div>
+                    <div class="location-card-body">
+                        <p>Ingresso principale del dungeon dell'Atto IV</p>
+                        <ul>
+                            <li>Sulla collina sopra la città</li>
+                            <li>Impronte fresche di molte persone</li>
+                            <li>Odore di decomposizione dall'interno</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="npc-card">
+                <div class="npc-header">
+                    <div class="npc-icon">👤</div>
+                    <div>
+                        <div class="npc-name">Sceriffo Hank Morrison</div>
+                        <div class="npc-role">52 anni • Stempiato, baffi grigi, occhiaie profonde, mani tremanti</div>
+                    </div>
+                </div>
+                <div class="npc-body">
+                    <p class="npc-description">Era competente, ma gli eventi recenti lo hanno distrutto. Cerca disperatamente aiuto ma si vergogna ad ammettere che la situazione lo supera.</p>
+                    <div class="npc-info-grid">
+                        <div class="npc-info">
+                            <h6>✓ Cosa Sa</h6>
+                            <ul>
+                                <li>12 cittadini scomparsi in 6 settimane</li>
+                                <li>Padre Jeremiah impazzì 3 settimane fa — uccise 3 parrocchiani</li>
+                                <li>Simboli strani ovunque — scritti col sangue</li>
+                                <li>Suoni dalla miniera di notte — canti, urla</li>
+                                <li>Il vice Billy è scomparso ieri notte</li>
+                            </ul>
+                        </div>
+                        <div class="npc-info">
+                            <h6>✗ Cosa NON Sa</h6>
+                            <ul>
+                                <li>Jeremiah trovò un tempio antico nella miniera</li>
+                                <li>Metà dei cittadini "scomparsi" sono ora cultisti volontari</li>
+                                <li>Il rituale finale è programmato per tra 3 notti</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scene-header" id="indizi">
+                <div class="scene-icon">🔍</div>
+                <h3>Raccogliere Indizi <small>3-4 ore prima del tramonto</small></h3>
+            </div>
+
+            <h4>📜 Il Diario di Jeremiah (Instinct 13)</h4>
+            <p>Nascosto sotto un'asse allentata nella chiesa:</p>
+
+            <div class="read-aloud" style="border-left-color: var(--cosmic-purple);">
+                <p><strong>15 luglio:</strong> L'ho trovato. Sotto la vena d'argento. Un tempio. Antico. Le pareti parlano.</p>
+                <p><strong>18 luglio:</strong> Ho sentito LA VOCE. Conosce il mio nome. Conosce i miei peccati. Mi perdona.</p>
+                <p><strong>22 luglio:</strong> Il Serpente è tutto. Dio era solo un'ombra. Ora vedo.</p>
+                <p><strong>28 luglio:</strong> I fedeli crescono. Tra 12 giorni, la luna piena. Egli si risveglierà.</p>
+                <p><strong>2 agosto:</strong> Chi non crede deve essere offerto. Il sangue apre la porta.</p>
+            </div>
+
+            <div class="scene-header" id="orrore">
+                <div class="scene-icon">😱</div>
+                <h3>Primo Orrore <small>Il Calar della Notte</small></h3>
+            </div>
+
+            <div class="read-aloud">
+                <p>Il sole tramonta dietro le montagne, tingendo il deserto di rosso sangue. La temperatura crolla rapidamente — da torrido a gelido in pochi minuti. Silver Hollow diventa una città fantasma. Ogni porta si chiude. Ogni finestra si sbarra.</p>
+                <p>Sentite... silenzio totale. Poi, dalla direzione della miniera, arriva un suono. Non è vento. È... canto? No. Più profondo. Gutturale. Come se dozzine di voci cantassero in una lingua che fa male alle orecchie.</p>
+                <p>E tra i canti, sentite altro — passi. Strascicanti. Trascinati. <strong>Qualcosa sta venendo giù dalla collina.</strong></p>
+                <p class="prompt">Cosa volete fare?</p>
+            </div>
+
+            <div class="tenuta-check">
+                <div class="check-title">Canto Alieno — Istinto difficoltà 13</div>
+                <div class="tenuta-results">
+                    <div class="tenuta-result success">
+                        <strong>Successo:</strong> 1 segmento (profondamente inquietante)
+                    </div>
+                    <div class="tenuta-result fail">
+                        <strong>Fallimento:</strong> 2 segmenti + nausea (-1d6 alla prima prova)
+                    </div>
+                </div>
+            </div>
+
+            <div class="creature-block">
+                <div class="creature-header">
+                    <div class="creature-name">👹 Non-Morti di Silver Hollow</div>
+                    <div class="creature-type">Non-Morto</div>
+                </div>
+                <div class="creature-body">
+                    <div class="creature-stats">
+                        <div class="creature-stat"><strong>HP:</strong> 4 ciascuno</div>
+                        <div class="creature-stat"><strong>Armor:</strong> 0</div>
+                        <div class="creature-stat"><strong>Velocità:</strong> Lenta</div>
+                        <div class="creature-stat"><strong>Difficoltà:</strong> 12</div>
+                    </div>
+                    <div class="creature-section">
+                        <h5>⚔️ Attacchi</h5>
+                        <ul>
+                            <li><strong>Colpo:</strong> +4, 1d8+2 physical</li>
+                            <li><strong>Morso:</strong> +4, 1d6+2 physical + malattia (Strength 12 o infetto)</li>
+                        </ul>
+                    </div>
+                    <div class="creature-section">
+                        <h5>✨ Abilità</h5>
+                        <ul>
+                            <li><strong>Non-Morto:</strong> Immune a veleno, Fear, charm</li>
+                            <li><strong>Inesorabile:</strong> Il movimento non rallenta per terreno o ferite</li>
+                            <li><strong>Debolezza alla Testa:</strong> Critical hit (doppio 12) = morte istantanea</li>
+                        </ul>
+                    </div>
+                    <div class="creature-note">
+                        💡 <strong>Nota:</strong> Riconoscete i vestiti — erano cittadini di Silver Hollow. Sulla fronte di ciascuno: un simbolo scolpito, sanguinante, fresco.
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider">🐍 ═══ FINE ATTO III ═══ 🐍</div>
+        </div>
+
+        <!-- ACT IV -->
+        <div class="act-header act4" id="atto4">
+            <div class="act-icon">⛏️</div>
+            <div class="act-number">Atto IV</div>
+            <h2>IL TEMPIO DEL SERPENTE</h2>
+            <p class="act-subtitle">Dove la realtà si spezza e gli orrori attendono</p>
+        </div>
+
+        <div class="content-wrapper">
+            <h3 id="miniera">🗺️ Struttura della Miniera</h3>
+            <p>La miniera ha 3 livelli principali che i PG attraversano. Tempo stimato: 4-5 ore di gioco.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Livello</th>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1</strong></td>
+                            <td>Tunnel Commerciali</td>
+                            <td>Operazioni minerarie normali, abbandonato ma stabile</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2</strong></td>
+                            <td>Tunnel Profondi</td>
+                            <td>Dove operano i cultisti, trappole, combattimenti</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong></td>
+                            <td>La Scoperta</td>
+                            <td>Sfondamento verso il tempio preumano, boss finale</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>📍 Livello 1: Tunnel Commerciali</h4>
+            <ul>
+                <li><strong>Area 1-A — Ingresso:</strong> Travi scricchiolanti, binari per carrelli, lanterne esaurite</li>
+                <li><strong>Area 1-B — Stoccaggio:</strong> Altare improvvisato con sangue recente e caldo, pagine della Bibbia bruciate</li>
+                <li><strong>Area 1-C — Pozzo:</strong> Discesa di 20m con scala o carrello a carrucola</li>
+            </ul>
+
+            <div class="warning-box">
+                <p><strong>Pericolo Ambientale — Gas Tossico:</strong> Alcune sezioni hanno gas naturale. Se usano torce vicino: Instinct 13 per notare l'odore, altrimenti ESPLOSIONE! (Agility 15 o 4d6 fuoco)</p>
+            </div>
+
+            <h4>📍 Livello 2: Tunnel Profondi</h4>
+
+            <div class="read-aloud">
+                <p>Il Livello 2 è... diverso. Le pareti qui non sono più roccia naturale. Vedete pietra scolpita. Liscia. Nera. Con motivi geometrici che non hanno del tutto senso.</p>
+                <p>E la temperatura è crollata — gelido qua sotto. Il vostro respiro è visibile. Ma non c'è ragione per questo — siete in profondità sottoterra, dovrebbe essere caldo.</p>
+            </div>
+
+            <div class="creature-block">
+                <div class="creature-header">
+                    <div class="creature-name">👹 Cultisti del Serpente</div>
+                    <div class="creature-type">Umanoide</div>
+                </div>
+                <div class="creature-body">
+                    <div class="creature-stats">
+                        <div class="creature-stat"><strong>HP:</strong> 5 ciascuno</div>
+                        <div class="creature-stat"><strong>Armor:</strong> 0</div>
+                        <div class="creature-stat"><strong>Velocità:</strong> Standard</div>
+                        <div class="creature-stat"><strong>Difficoltà:</strong> 13</div>
+                    </div>
+                    <div class="creature-section">
+                        <h5>⚔️ Attacchi</h5>
+                        <ul>
+                            <li><strong>Coltello Rituale:</strong> +4, 1d6+2 fisico</li>
+                            <li><strong>Revolver:</strong> +3, 2d6 fisico (6 colpi)</li>
+                        </ul>
+                    </div>
+                    <div class="creature-section">
+                        <h5>✨ Abilità</h5>
+                        <ul>
+                            <li><strong>Fanatico:</strong> +1d6 contro Fear/Charm</li>
+                            <li><strong>Morte Devota:</strong> A 0 HP, ultimo attacco come Reazione</li>
+                            <li><strong>Branco:</strong> Se 3 adiacenti al bersaglio, +1d6</li>
+                        </ul>
+                    </div>
+                    <div class="creature-note">
+                        💡 <strong>Nota:</strong> 1 cultista corre per allertare se non fermato subito. Urlano devozioni: "Per il Serpente!"
+                    </div>
+                </div>
+            </div>
+
+            <div class="tenuta-check">
+                <div class="check-title">Fossa Comune (Area 2-C) — Istinto difficoltà 15</div>
+                <p>Vista macabra: pila di 8-10 cadaveri in vari stadi di decomposizione. Simbolo scolpito su ogni fronte.</p>
+                <div class="tenuta-results">
+                    <div class="tenuta-result success">
+                        <strong>Successo:</strong> 3 segmenti (morte di massa, profanazione)
+                    </div>
+                    <div class="tenuta-result fail">
+                        <strong>Fallimento:</strong> 5 segmenti + Nausea Violenta (-1d6 prove fisiche per 10 min)
+                    </div>
+                </div>
+            </div>
+
+            <div class="scene-header" id="tempio">
+                <div class="scene-icon">🏛️</div>
+                <h3>Il Tempio del Serpente <small>Livello 3 — La Scoperta</small></h3>
+            </div>
+
+            <div class="read-aloud">
+                <p>Il tunnel improvvisamente... cambia. Non è più un tunnel minerario. È qualcos'altro. Le pareti sono pietra nera liscia — impossibilmente liscia. Scolpita con precisione che nessun attrezzo umano potrebbe ottenere.</p>
+                <p>E su ogni superficie: simboli. Spirali. Serpenti. Forme geometriche che fanno male a guardare direttamente.</p>
+                <p>E alla fine del tunnel: una porta. Alta 4 metri. Arco scolpito con creature — metà serpente, metà... qualcosa di diverso. Con troppi occhi. <strong>Questa è l'entrata al TEMPIO.</strong></p>
+            </div>
+
+            <div class="tenuta-check">
+                <div class="check-title">Architettura Preumana — Istinto difficoltà 16</div>
+                <div class="tenuta-results">
+                    <div class="tenuta-result success">
+                        <strong>Successo:</strong> 3 segmenti (architettura impossibile)
+                    </div>
+                    <div class="tenuta-result fail">
+                        <strong>Fallimento:</strong> 5 segmenti + Realizzazione Cosmica: Capisci che questo è ANTICO — milioni di anni. L'umanità è un battito di ciglia.
+                    </div>
+                </div>
+            </div>
+
+            <div class="read-aloud">
+                <p>Varchi la porta e... lo spazio si apre. Impossibilmente grande. La camera è delle dimensioni di una cattedrale. Il soffitto perso nel buio. Pilastri scolpiti con serpenti intrecciati. Le pareti brillano di una debole bioluminescenza verde. E su ogni superficie: simboli che... si muovono.</p>
+                <p>Al centro: un altare massiccio. Attorno: 20-30 cultisti che cantano. Al centro, con le braccia alzate: <strong>Padre Jeremiah. Ma non è più... umano.</strong></p>
+            </div>
+
+            <div class="creature-block" id="jeremiah">
+                <div class="creature-header">
+                    <div class="creature-name">👹 Padre Jeremiah Trasformato</div>
+                    <div class="creature-type">Boss — Orrore Cosmico</div>
+                </div>
+                <div class="creature-body">
+                    <div class="creature-stats">
+                        <div class="creature-stat"><strong>HP:</strong> 14</div>
+                        <div class="creature-stat"><strong>Armor:</strong> 3</div>
+                        <div class="creature-stat"><strong>Velocità:</strong> Veloce</div>
+                        <div class="creature-stat"><strong>Difficoltà:</strong> 16</div>
+                    </div>
+                    <div class="creature-section">
+                        <h5>⚔️ Attacchi</h5>
+                        <ul>
+                            <li><strong>Artigli:</strong> +7, 2d8+4 physical</li>
+                            <li><strong>Colpo del Serpente:</strong> +7, 2d10+4 + veleno (Strength 15)</li>
+                            <li><strong>Colpo di Bastone:</strong> +6, 3d6+3 + push</li>
+                        </ul>
+                    </div>
+                    <div class="creature-section">
+                        <h5>✨ Abilità</h5>
+                        <ul>
+                            <li><strong>Multiattacco:</strong> 2 attacchi per azione</li>
+                            <li><strong>Rigenerazione:</strong> Recupera 8 HP/azione</li>
+                            <li><strong>Presenza Empia:</strong> Aura Close, -1d6 ai tiri di Tenuta</li>
+                            <li><strong>Voce del Serpente:</strong> Presence 16 (1/combattimento)</li>
+                            <li><strong>Evoca Ombre:</strong> 2d4 serpenti spettrali (1/combattimento)</li>
+                        </ul>
+                    </div>
+                    <div class="creature-note">
+                        💡 <strong>Fasi:</strong> 70-40 HP bastone/artigli • 40-20 serpente/ombre • Sotto 20 Forma Finale (Resist fisica, Vulnerable al radioso). Se Sarah ragiona con lui, conflitto interno.
+                    </div>
+                </div>
+            </div>
+
+            <h4>⚔️ Le Tre Opzioni</h4>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Approccio</th>
+                            <th>Requisiti</th>
+                            <th>Difficoltà</th>
+                            <th>Esito</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Combattimento</strong></td>
+                            <td>Attaccare Jeremiah direttamente</td>
+                            <td>Alta</td>
+                            <td>Epilogo A o D</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Sabotaggio</strong></td>
+                            <td>Knowledge 16, dinamite, fuga rapida</td>
+                            <td>Media</td>
+                            <td>Epilogo B</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Unirsi</strong></td>
+                            <td>Presence 18 per negoziare</td>
+                            <td>N/D</td>
+                            <td>Epilogo C (negativo)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="divider">🐍 ═══════ 🐍 ═══════ 🐍</div>
+
+            <h3 id="epiloghi">📜 I Quattro Epiloghi Possibili</h3>
+
+            <div class="epilogue-grid">
+                <div class="epilogue-card victory">
+                    <div class="epilogue-header">
+                        <h4>🏆 Epilogo A: Vittoria Eroica</h4>
+                        <small>Innesco: Sconfiggi Jeremiah in combattimento</small>
+                    </div>
+                    <div class="epilogue-body">
+                        <p>Silver Hollow è salvata. L'entità torna dormiente. I PG guadagnano reputazione come Cacciatori di Mostri. La cittadina celebra, ma i sopravvissuti porteranno per sempre le cicatrici di ciò che hanno visto.</p>
+                        <div class="epilogue-reward">
+                            <strong>🎁 Ricompensa:</strong> Milestone, $100 ciascuno, Bastone Rituale di Jeremiah (focus magic)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="epilogue-card buried">
+                    <div class="epilogue-header">
+                        <h4>🏔️ Epilogo B: Sepolto ma Non Morto</h4>
+                        <small>Innesco: Far crollare il tempio con sabotaggio</small>
+                    </div>
+                    <div class="epilogue-body">
+                        <p>Soluzione temporanea. L'entità è intrappolata ma viva. Il tempio crolla, sigillando l'orrore sotto tonnellate di roccia. Ma nelle notti di luna piena, si sentono ancora i canti dalla montagna...</p>
+                        <div class="epilogue-reward">
+                            <strong>🎁 Ricompensa:</strong> Milestone parziale, aggancio per il seguito
+                        </div>
+                    </div>
+                </div>
+
+                <div class="epilogue-card corrupt">
+                    <div class="epilogue-header">
+                        <h4>💀 Epilogo C: Corruzione</h4>
+                        <small>Innesco: Unirsi al rituale o TPK</small>
+                    </div>
+                    <div class="epilogue-body">
+                        <p>Finale negativo. I PG diventano cultisti del Serpente. Campagna terminata — o seguito con nuovi eroi che devono fermare i vecchi personaggi, ora nemici.</p>
+                        <div class="epilogue-reward">
+                            <strong>🎁 Ricompensa:</strong> Nessun avanzamento — Campagna terminata
+                        </div>
+                    </div>
+                </div>
+
+                <div class="epilogue-card sacrifice">
+                    <div class="epilogue-header">
+                        <h4>✨ Epilogo D: Sacrificio Eroico</h4>
+                        <small>Innesco: Un PG si sacrifica per fermare il rituale</small>
+                    </div>
+                    <div class="epilogue-body">
+                        <p>Il sacrificio sigilla l'entità definitivamente. Il personaggio muore da eroe — il suo nome sarà ricordato per generazioni. Gli altri sono cambiati per sempre, portando il peso di ciò che il compagno ha fatto per loro.</p>
+                        <div class="epilogue-reward">
+                            <strong>🎁 Ricompensa:</strong> Level Up per i sopravvissuti, leggenda permanente
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider">🐍 ═══════ 🐍 ═══════ 🐍</div>
+
+            <h3 id="bestiario">📊 Bestiario Rapido</h3>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Creatura</th>
+                            <th>HP</th>
+                            <th>Diff.</th>
+                            <th>Attacco Principale</th>
+                            <th>Speciale</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>👹 Bandito</td>
+                            <td>6</td>
+                            <td>13</td>
+                            <td>Revolver 1d8+2</td>
+                            <td>Copertura Rapida (+2 Evasione)</td>
+                        </tr>
+                        <tr>
+                            <td>☠️ Bandito Risorto</td>
+                            <td>6</td>
+                            <td>12</td>
+                            <td>Artigli 1d8+3</td>
+                            <td>Rigenerazione, Immune Fear</td>
+                        </tr>
+                        <tr>
+                            <td>🐍 Cultista</td>
+                            <td>5</td>
+                            <td>13</td>
+                            <td>Coltello 1d6+2</td>
+                            <td>Fanatico, Morte Devota</td>
+                        </tr>
+                        <tr>
+                            <td>👻 Serpente Spettrale</td>
+                            <td>3</td>
+                            <td>14</td>
+                            <td>Morso 1d6+2 magic</td>
+                            <td>Ignora Armor, Forma Semi-Solida</td>
+                        </tr>
+                        <tr>
+                            <td>😈 Jeremiah Trasformato</td>
+                            <td>14</td>
+                            <td>16</td>
+                            <td>Artigli 2d8+4 ×2</td>
+                            <td>Rigenerazione 8, Evoca Ombre</td>
+                        </tr>
+                        <tr>
+                            <td>🐙 Manifestazione del Serpente</td>
+                            <td>18</td>
+                            <td>16</td>
+                            <td>Tentacoli 2d8+4 ×1d4</td>
+                            <td>Ondata Psichica, Legata agli Idoli</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="gm-tip">
+                <p><strong>Consigli Finali:</strong> Bilancia azione e orrore. Accumula Fear per complicazioni drammatiche. Quando qualcuno muore, descrivi umanamente. I PG sono eroi, non vittime — le loro scelte contano.</p>
+            </div>
+
+            <p style="text-align: center; font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--brown-medium); margin-top: 60px;">
+                <em>Fine del Volume I — Il Volume II attende...</em><br>
+                <span style="font-size: 0.9rem; opacity: 0.7;">🌊 Dove l'Oceano Incontra la Polvere 🌊</span>
+            </p>
+        </div>
+
+        <footer>
+            <div class="brand">🐍 GUNSMOKE & DREAD 🐍</div>
+            <p>Volume I: Ombre nel Deserto • New Mexico, 1885<br><em>"I morti camminano. La notte è nera. L'avventura vera è appena iniziata."</em></p>
+        </footer>
+    </main>
+</body>
+</html>

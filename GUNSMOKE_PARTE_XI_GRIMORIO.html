@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUNSMOKE & DREAD — Parte XI: Grimorio Segreto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Special+Elite&family=IM+Fell+English:ital@0;1&family=Rye&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --parchment: #f4e4c1;
+            --parchment-dark: #e8d4a8;
+            --wood-dark: #3d2914;
+            --leather: #654321;
+            --blood-red: #8b0000;
+            --gold: #d4a017;
+            --ink-sepia: #3a2a1a;
+            --void-black: #0a0a0a;
+            --void-purple: #1a0a2a;
+            --eldritch-green: #0a2a1a;
+            --cosmic-blue: #0a1a3a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--ink-sepia);
+            background: var(--parchment);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 220px;
+            height: 100vh;
+            background: linear-gradient(180deg, var(--void-purple) 0%, var(--void-black) 100%);
+            padding: 0;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 5px 0 30px rgba(139,0,0,0.3);
+        }
+
+        .nav-header {
+            text-align: center;
+            padding: 20px 15px;
+            background: var(--blood-red);
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .nav-header h1 {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 1rem;
+            color: var(--gold);
+        }
+
+        .nav-header p {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.5rem;
+            color: var(--parchment);
+            opacity: 0.7;
+        }
+
+        .nav-section {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(139,0,0,0.3);
+        }
+
+        .nav-section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.55rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        nav a {
+            display: block;
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            padding: 5px 10px;
+            font-size: 0.7rem;
+            transition: all 0.3s ease;
+            border-left: 2px solid transparent;
+        }
+
+        nav a:hover {
+            background: rgba(139,0,0,0.3);
+            border-left-color: var(--blood-red);
+            color: var(--gold);
+        }
+
+        /* Main */
+        main {
+            margin-left: 220px;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: 
+                radial-gradient(ellipse at center, rgba(139,0,0,0.2) 0%, transparent 60%),
+                linear-gradient(180deg, var(--void-purple) 0%, var(--void-black) 100%);
+            color: var(--parchment);
+            padding: 60px 40px;
+            border-bottom: 5px solid var(--blood-red);
+        }
+
+        .hero-warning {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            color: var(--blood-red);
+            letter-spacing: 3px;
+            padding: 8px 20px;
+            border: 1px solid var(--blood-red);
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(139,0,0,0.5);
+        }
+
+        .hero .subtitle {
+            font-family: 'IM Fell English', serif;
+            font-size: 1rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            padding: 30px 40px;
+            margin: 50px -40px 30px;
+            background: var(--void-black);
+            color: var(--parchment);
+            border-top: 3px solid var(--blood-red);
+            border-bottom: 3px solid var(--blood-red);
+        }
+
+        .section-header.lore {
+            background: linear-gradient(135deg, var(--void-purple) 0%, var(--void-black) 100%);
+        }
+
+        .section-header h2 {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+
+        .section-header p {
+            font-family: 'IM Fell English', serif;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* Lore Cards */
+        .lore-card {
+            background: var(--parchment);
+            border: 3px solid var(--void-black);
+            margin: 30px 0;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .lore-card::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border: 1px solid var(--blood-red);
+            pointer-events: none;
+        }
+
+        .lore-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--void-purple) 0%, var(--void-black) 100%);
+            color: var(--parchment);
+            text-align: center;
+        }
+
+        .lore-header .icon { font-size: 2.5rem; margin-bottom: 10px; }
+
+        .lore-header h3 {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 1.3rem;
+            color: var(--gold);
+        }
+
+        .lore-header .true-name {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--blood-red);
+            margin-top: 5px;
+            padding: 5px 15px;
+            background: rgba(139,0,0,0.2);
+            display: inline-block;
+        }
+
+        .lore-header .warning {
+            font-family: 'IM Fell English', serif;
+            font-size: 0.75rem;
+            font-style: italic;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
+        .lore-body {
+            padding: 25px;
+        }
+
+        .lore-intro {
+            font-family: 'IM Fell English', serif;
+            font-size: 1rem;
+            font-style: italic;
+            text-align: center;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px dashed var(--blood-red);
+        }
+
+        .lore-section {
+            margin: 20px 0;
+        }
+
+        .lore-section h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--blood-red);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lore-section p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        /* Infection Stages */
+        .stages {
+            background: var(--parchment-dark);
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid var(--blood-red);
+        }
+
+        .stage {
+            padding: 8px 0;
+            border-bottom: 1px dotted var(--leather);
+            display: flex;
+            gap: 15px;
+        }
+
+        .stage:last-child { border-bottom: none; }
+
+        .stage .num {
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            color: var(--blood-red);
+            min-width: 80px;
+        }
+
+        /* Truths */
+        .truths {
+            display: grid;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .truth {
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(26,10,42,0.1) 0%, transparent 100%);
+            border: 1px solid var(--void-purple);
+            border-left: 4px solid var(--blood-red);
+        }
+
+        .truth .num {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 1.2rem;
+            color: var(--blood-red);
+            float: left;
+            margin-right: 10px;
+        }
+
+        /* Campaign Guide */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--gold) 0%, var(--blood-red) 100%);
+        }
+
+        .timeline-event {
+            position: relative;
+            padding: 15px;
+            margin: 15px 0;
+            background: var(--parchment);
+            border: 1px solid var(--wood-dark);
+        }
+
+        .timeline-event::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 20px;
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            border-radius: 50%;
+            border: 2px solid var(--blood-red);
+        }
+
+        .timeline-event.volume::before {
+            width: 14px;
+            height: 14px;
+            left: -26px;
+            background: var(--blood-red);
+        }
+
+        .timeline-event .date {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--blood-red);
+        }
+
+        .timeline-event .desc {
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* Secret Box */
+        .secret-box {
+            background: linear-gradient(135deg, var(--void-purple) 0%, var(--void-black) 100%);
+            color: var(--parchment);
+            padding: 30px;
+            margin: 30px 0;
+            border: 3px solid var(--blood-red);
+            position: relative;
+        }
+
+        .secret-box::before {
+            content: '⚠️ SOLO PER IL GM ⚠️';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--blood-red);
+            color: white;
+            padding: 5px 20px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+        }
+
+        .secret-box h4 {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 1.2rem;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .secret-box p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .secret-box .mechanic {
+            background: rgba(139,0,0,0.3);
+            padding: 15px;
+            margin-top: 15px;
+            border: 1px solid var(--blood-red);
+        }
+
+        .secret-box .mechanic strong {
+            color: var(--gold);
+        }
+
+        /* Progression Table */
+        .progression-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .progression-table th {
+            background: var(--void-black);
+            color: var(--gold);
+            padding: 12px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+        }
+
+        .progression-table td {
+            padding: 12px;
+            border: 1px solid var(--wood-dark);
+            text-align: center;
+            background: var(--parchment);
+        }
+
+        .progression-table .volume {
+            background: rgba(139,0,0,0.1);
+            font-weight: bold;
+        }
+
+        /* Creature Cards */
+        .creature-card {
+            background: var(--parchment);
+            border: 2px solid var(--wood-dark);
+            margin: 20px 0;
+        }
+
+        .creature-header {
+            padding: 15px;
+            background: var(--wood-dark);
+            color: var(--parchment);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .creature-header .icon { font-size: 1.8rem; }
+
+        .creature-header h4 {
+            font-family: 'Rye', cursive;
+            font-size: 1rem;
+            color: var(--gold);
+        }
+
+        .creature-header .tier {
+            margin-left: auto;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            padding: 3px 10px;
+            background: var(--blood-red);
+            border-radius: 3px;
+        }
+
+        .creature-body {
+            padding: 15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .creature-stats {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .creature-stat {
+            text-align: center;
+            padding: 8px 12px;
+            background: var(--parchment-dark);
+            border: 1px solid var(--wood-dark);
+        }
+
+        .creature-stat .val {
+            font-family: 'Rye', cursive;
+            font-size: 1.1rem;
+            color: var(--blood-red);
+        }
+
+        .creature-stat .lbl {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.5rem;
+            color: var(--leather);
+        }
+
+        .creature-attacks, .creature-abilities {
+            font-size: 0.85rem;
+        }
+
+        .creature-attacks h5, .creature-abilities h5 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            color: var(--blood-red);
+            margin-bottom: 8px;
+        }
+
+        .creature-tactics {
+            grid-column: 1 / -1;
+            padding: 10px;
+            background: rgba(139,0,0,0.08);
+            border: 1px solid var(--blood-red);
+            font-size: 0.8rem;
+            font-style: italic;
+        }
+
+        /* Connections */
+        .connection-box {
+            background: var(--parchment-dark);
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid var(--gold);
+        }
+
+        .connection-box h5 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--wood-dark);
+            margin-bottom: 10px;
+        }
+
+        .connection-box ul {
+            list-style: none;
+        }
+
+        .connection-box li {
+            padding: 5px 0;
+            font-size: 0.85rem;
+            display: flex;
+            gap: 8px;
+        }
+
+        .connection-box li::before {
+            content: '▸';
+            color: var(--gold);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--void-black);
+            color: var(--parchment);
+            padding: 50px 40px;
+            text-align: center;
+            border-top: 4px solid var(--blood-red);
+        }
+
+        footer .brand {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+
+        footer .quote {
+            font-family: 'IM Fell English', serif;
+            font-size: 1rem;
+            opacity: 0.7;
+            font-style: italic;
+            margin-top: 15px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        footer .final {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            margin-top: 30px;
+            opacity: 0.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            nav { display: none; }
+            main { margin-left: 0; }
+            .content-wrapper { padding: 25px; }
+            .creature-body { grid-template-columns: 1fr; }
+        }
+
+        @media print {
+            nav { display: none; }
+            main { margin-left: 0; }
+            .hero { min-height: auto; }
+            .secret-box { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-header">
+            <h1>📖 Grimorio</h1>
+            <p>Conoscenza Proibita</p>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Lore degli Antichi</div>
+            <a href="#serpent">🐍 Il Serpente</a>
+            <a href="#guardian">🐙 Il Guardiano</a>
+            <a href="#cthulhu">👁️ Cthulhu</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Guida Campagna</div>
+            <a href="#timeline">📅 Cronologia</a>
+            <a href="#connections">🔗 Collegamenti</a>
+            <a href="#secret">🌟 Verità Segreta</a>
+            <a href="#progression">📊 Progressione</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Creature Extra</div>
+            <a href="#bat">🦇 Pipistrello Vampiro</a>
+            <a href="#spider">🕷️ Ragno Miniere</a>
+            <a href="#ghost">👻 Fantasma Minatore</a>
+            <a href="#horse">🐎 Cavallo Spettrale</a>
+            <a href="#rider">💀 Cavaliere Spettrale</a>
+            <a href="#cactus">🌵 Cactus Animato</a>
+            <a href="#wisp">🔥 Fuoco Fatuo</a>
+            <a href="#scorpion">🦂 Madre Scorpione</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-warning">⚠ MATERIALE RISERVATO AL GM ⚠</div>
+            <h1>Il Grimorio Segreto</h1>
+            <p class="subtitle">Lore Completo • Verità Nascoste • Creature dell'Abisso</p>
+        </section>
+
+        <div class="content-wrapper">
+
+            <!-- ════════════════════════════════════════════════════════════════════
+                 LORE OF THE ANCIENTS
+            ════════════════════════════════════════════════════════════════════ -->
+            <div class="section-header lore">
+                <h2>🐍 Il Lore degli Antichi 🐙</h2>
+                <p>La vera storia dietro gli orrori di Gunsmoke & Dread</p>
+            </div>
+
+            <!-- THE SERPENT -->
+            <div class="lore-card" id="serpent">
+                <div class="lore-header">
+                    <div class="icon">🐍</div>
+                    <h3>Il Serpente delle Profondità</h3>
+                    <div class="true-name">NOME VERO: YIBB-SHUSTHUTH</div>
+                    <div class="warning">Non pronunciare questo nome ad alta voce. Le parole hanno potere.</div>
+                </div>
+                <div class="lore-body">
+                    <div class="lore-intro">
+                        Il Serpente delle Profondità non è un dio nel senso umano del termine. È un frammento — un'eco — di qualcosa di più vasto.
+                    </div>
+
+                    <div class="lore-section">
+                        <h4>📜 Origine</h4>
+                        <p>Il Serpente è ciò che resta di un'entità che esisteva <strong>prima dei dinosauri</strong>. Quando il suo corpo fisico morì, la sua essenza si infiltrò nelle rocce, nell'acqua, nella terra stessa del New Mexico.</p>
+                    </div>
+
+                    <div class="lore-section">
+                        <h4>🧬 Natura</h4>
+                        <p>Non è cosciente nel modo in cui lo intendiamo. È più simile a un'<em>infezione</em>, un pattern che si replica. Chi lo tocca viene... <strong>riscritto</strong>.</p>
+                    </div>
+
+                    <div class="lore-section">
+                        <h4>🎯 Obiettivo</h4>
+                        <p>Non ne ha uno. È come chiedere l'obiettivo di un virus. Si diffonde perché <em>è ciò che fa</em>.</p>
+                    </div>
+
+                    <div class="lore-section">
+                        <h4>⚔️ Debolezze</h4>
+                        <p>Il <strong>fuoco</strong> lo rallenta. I <strong>simboli antichi</strong> lo contengono temporaneamente. La <strong>luce solare</strong> lo indebolisce. Ma niente può distruggerlo veramente — solo <em>sopirlo</em>.</p>
+                    </div>
+
+                    <div class="lore-section">
+                        <h4>🐍 I Cultisti del Serpente</h4>
+                        <p>I cultisti non adorano il Serpente per scelta. Sono stati <strong>infettati</strong> — prima nei sogni, poi nel corpo.</p>
+                        <div class="stages">
+                            <div class="stage"><span class="num">Stadio 1</span> <span><strong>Sogni:</strong> Incubi ricorrenti, attrazione verso luoghi sotterranei</span></div>
+                            <div class="stage"><span class="num">Stadio 2</span> <span><strong>Ossessione:</strong> Bisogno di trovare altri 'eletti', disegno compulsivo di simboli</span></div>
+                            <div class="stage"><span class="num">Stadio 3</span> <span><strong>Trasformazione:</strong> Cambiamenti fisici — pelle squamosa, occhi che cambiano</span></div>
+                            <div class="stage"><span class="num">Stadio 4</span> <span><strong>Perdita:</strong> L'identità originale svanisce. Resta solo il Serpente.</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- THE GUARDIAN -->
+            <div class="lore-card" id="guardian">
+                <div class="lore-header">
+                    <div class="icon">🐙</div>
+                    <h3>Il Guardiano dell'Abisso</h3>
+                    <div class="true-name">NOME VERO: IMPRONUNCIABILE</div>
+                    <div class="warning">Non esiste in nessun linguaggio umano. Il suono più vicino causerebbe sanguinamento dalle orecchie.</div>
+                </div>
+                <div class="lore-body">
+                    <div class="lore-intro">
+                        Il Guardiano non è un servitore di Cthulhu — è un custode. Quando i Grandi Antichi si ritirarono negli abissi milioni di anni fa, lasciarono guardiani a proteggere i loro luoghi di riposo.
+                    </div>
+
+                    <div class="lore-section">
+                        <h4>📜 Origine</h4>
+                        <p><strong>Creato</strong> — non nato — come sentinella. Non ha mai avuto una vita propria. Esiste solo per proteggere il sonno del suo padrone.</p>
+                    </div>
+
+                    <div class="lore-section">
+                        <h4>🧬 Natura</h4>
+                        <p>È parzialmente cosciente, ma la sua intelligenza è <em>aliena</em>. Può comunicare attraverso sogni e visioni, ma i suoi pensieri non seguono logica umana.</p>
+                    </div>
+
+                    <div class="lore-section">
+                        <h4>🎯 Obiettivo</h4>
+                        <p>Proteggere <strong>R'lyeh</strong> — o almeno, questa sua estensione nel deserto. Chiunque si avvicini troppo viene... <em>gestito</em>.</p>
+                    </div>
+
+                    <div class="lore-section">
+                        <h4>⚔️ Debolezze</h4>
+                        <p>La <strong>luce solare</strong> lo ferisce ma non lo uccide. I simboli di <strong>Elder Sign</strong> lo tengono a bada temporaneamente. È più debole quando Cthulhu sogna profondamente.</p>
+                    </div>
+
+                    <div class="lore-section">
+                        <h4>🌊 Gli Ibridi</h4>
+                        <p>Gli Ibridi non sono 'creati' dal Guardiano — sono <strong>trasformati</strong>. Chiunque beva l'acqua dell'oceano sotterraneo inizia a cambiare.</p>
+                        <div class="stages">
+                            <div class="stage"><span class="num">Giorno 1-3</span> <span>Sete intensa, attrazione per l'acqua, sogni dell'oceano</span></div>
+                            <div class="stage"><span class="num">Giorno 4-7</span> <span>Pelle che cambia colore, branchie che si formano</span></div>
+                            <div class="stage"><span class="num">Giorno 8-14</span> <span>Trasformazione fisica completa, perdita graduale di memoria</span></div>
+                            <div class="stage"><span class="num">Giorno 15+</span> <span><strong>L'umano originale è morto.</strong> Resta solo l'Ibrido.</span></div>
+                        </div>
+                        <p style="font-style: italic; margin-top: 10px; color: var(--blood-red);">Il processo è irreversibile dopo il terzo giorno.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTHULHU -->
+            <div class="lore-card" id="cthulhu">
+                <div class="lore-header">
+                    <div class="icon">👁️</div>
+                    <h3>Cthulhu</h3>
+                    <div class="true-name">IL GRANDE SOGNATORE</div>
+                    <div class="warning">"Non è morto ciò che in eterno può attendere, e con strani eoni anche la morte può morire."</div>
+                </div>
+                <div class="lore-body">
+                    <div class="lore-intro">
+                        Cthulhu non è il più potente dei Grandi Antichi — ma è il più vicino alla Terra. Dorme in R'lyeh, una città sommersa che esiste in più dimensioni contemporaneamente.
+                    </div>
+
+                    <div class="truths">
+                        <div class="truth">
+                            <span class="num">I</span>
+                            <p>Cthulhu <strong>non sa che l'umanità esiste</strong>. Per lui, siamo meno che formiche. Meno che batteri. Siamo... <em>rumore statistico</em>.</p>
+                        </div>
+                        <div class="truth">
+                            <span class="num">II</span>
+                            <p>Quando si sveglierà (non 'se' — <strong>'quando'</strong>), la civiltà umana finirà. Non per malizia. Semplicemente perché la sua presenza è incompatibile con la vita come la conosciamo.</p>
+                        </div>
+                        <div class="truth">
+                            <span class="num">III</span>
+                            <p>I PG <strong>non possono fermarlo</strong>. Non possono nemmeno rallentarlo. Possono solo sperare che continui a dormire ancora per qualche millennio.</p>
+                        </div>
+                        <div class="truth">
+                            <span class="num">IV</span>
+                            <p>La Visione che i PG sperimentano non è Cthulhu che li guarda. È Cthulhu che <strong>sogna</strong> — e loro sono capitati nel suo sogno per un istante.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ════════════════════════════════════════════════════════════════════
+                 CAMPAIGN GUIDE
+            ════════════════════════════════════════════════════════════════════ -->
+            <div class="section-header">
+                <h2>📜 Guida alla Campagna</h2>
+                <p>Come collegare i due volumi in un'unica storia epica</p>
+            </div>
+
+            <h3 style="font-family: 'Cinzel', serif; color: var(--wood-dark); margin: 30px 0 20px;" id="timeline">📅 Cronologia</h3>
+
+            <div class="timeline">
+                <div class="timeline-event">
+                    <div class="date">Marzo 1885</div>
+                    <div class="desc">Jeremiah trova l'idolo nelle miniere di Silver Hollow</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="date">Aprile — Luglio 1885</div>
+                    <div class="desc">Il culto cresce. Persone scompaiono. Lo sceriffo è impotente.</div>
+                </div>
+                <div class="timeline-event volume">
+                    <div class="date">Agosto 1885</div>
+                    <div class="desc"><strong>VOLUME I:</strong> I PG arrivano. Eventi di "Sangue sui Binari".</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="date">Settembre — Dicembre 1885</div>
+                    <div class="desc">I PG si riprendono. Rumors di eventi strani in Arizona.</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="date">Gennaio 1886</div>
+                    <div class="desc">La Union Pacific inizia rilevamenti nel deserto dell'Arizona</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="date">Febbraio 1886</div>
+                    <div class="desc">Primi geometri scompaiono. Walsh ritorna... cambiato.</div>
+                </div>
+                <div class="timeline-event volume">
+                    <div class="date">Marzo 1886</div>
+                    <div class="desc"><strong>VOLUME II:</strong> I PG vengono contattati. Eventi di "Dove l'Oceano..."</div>
+                </div>
+            </div>
+
+            <h3 style="font-family: 'Cinzel', serif; color: var(--wood-dark); margin: 30px 0 20px;" id="connections">🔗 Elementi di Collegamento</h3>
+
+            <div class="connection-box">
+                <h5>Se i PG hanno completato il Volume I:</h5>
+                <ul>
+                    <li>Brandt li contatta PERCHÉ hanno esperienza con "eventi inspiegabili"</li>
+                    <li>Silas Crow li riconosce: <em>"Voi avete già visto... Ma questo è diverso."</em></li>
+                    <li>I sogni dei PG includono elementi del Serpente E dell'oceano — collegati</li>
+                    <li>Un cultista sopravvissuto menziona "i fratelli dell'acqua" prima di morire</li>
+                </ul>
+            </div>
+
+            <div class="connection-box">
+                <h5>Riferimenti da inserire nel Volume I (se giocato prima):</h5>
+                <ul>
+                    <li>Un libro nella biblioteca di Jeremiah menziona "R'lyeh" e "le città sommerse"</li>
+                    <li>Uno dei prigionieri viene dall'Arizona: <em>"Fuggivo da qualcosa di peggio..."</em></li>
+                    <li>Il Serpente nei sogni mostra brevemente un oceano sterminato</li>
+                </ul>
+            </div>
+
+            <div class="connection-box">
+                <h5>Riferimenti nel Volume II ai fatti del Volume I:</h5>
+                <ul>
+                    <li>Brandt: <em>"Ho sentito di Silver Hollow. Dicono che voi... avete visto cose."</em></li>
+                    <li>Walsh trasformato mormora: <em>"Il Serpente... il Guardiano... stesso sogno..."</em></li>
+                    <li>La Visione di Cthulhu include un flash del Serpente — sono COLLEGATI</li>
+                </ul>
+            </div>
+
+            <!-- SECRET TRUTH -->
+            <div class="secret-box" id="secret">
+                <h4>🌟 La Verità Segreta 🌟</h4>
+                <p>Il Serpente delle Profondità e il Guardiano dell'Abisso <strong>non sono alleati</strong> — sono <strong>PEZZI DELLO STESSO ESSERE</strong>.</p>
+                <p>Milioni di anni fa, i Grandi Antichi frammentarono questa entità e la imprigionarono in luoghi diversi. Silver Hollow contiene un frammento 'terrestre'. Il deserto dell'Arizona contiene un frammento 'acquatico'.</p>
+                <p style="font-size: 1.1rem; text-align: center; color: var(--gold); margin: 20px 0;"><em>Se entrambi i frammenti venissero liberati... si riunirebbero.<br>E ciò che ne risulterebbe sarebbe abbastanza potente da svegliare Cthulhu <strong>ADESSO</strong>.</em></p>
+                
+                <div class="mechanic">
+                    <strong>Implicazione:</strong> Se i PG hanno distrutto il Serpente nel Volume I, hanno INDEBOLITO anche il Guardiano nel Volume II (e viceversa).<br><br>
+                    <strong>Meccanica:</strong> Se Volume I completato con successo → Guardiano ha <strong>-30 HP</strong> e <strong>-2 Armor</strong>.
+                </div>
+            </div>
+
+            <h3 style="font-family: 'Cinzel', serif; color: var(--wood-dark); margin: 30px 0 20px;" id="progression">📊 Progressione Personaggi</h3>
+
+            <table class="progression-table">
+                <thead>
+                    <tr>
+                        <th>Evento</th>
+                        <th>XP</th>
+                        <th>Livello</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="volume"><td>Inizio Volume I</td><td>0</td><td>2</td></tr>
+                    <tr><td>Fine Atto II</td><td>+200</td><td>2</td></tr>
+                    <tr><td>Fine Volume I</td><td>+300 (500 tot)</td><td>3</td></tr>
+                    <tr class="volume"><td>Inizio Volume II</td><td>500</td><td>3</td></tr>
+                    <tr><td>Post-Visione</td><td>+400 (900 tot)</td><td>4</td></tr>
+                    <tr><td>Fine Volume II</td><td>+400 (1300 tot)</td><td>5</td></tr>
+                </tbody>
+            </table>
+
+            <!-- ════════════════════════════════════════════════════════════════════
+                 EXTRA CREATURES
+            ════════════════════════════════════════════════════════════════════ -->
+            <div class="section-header">
+                <h2>🦇 Creature Aggiuntive</h2>
+                <p>8 nuovi mostri per arricchire le sessioni</p>
+            </div>
+
+            <!-- BAT -->
+            <div class="creature-card" id="bat">
+                <div class="creature-header">
+                    <span class="icon">🦇</span>
+                    <h4>Pipistrello Vampiro Gigante</h4>
+                    <span class="tier">Tier 1</span>
+                </div>
+                <div class="creature-body">
+                    <div class="creature-stats">
+                        <div class="creature-stat"><div class="val">4</div><div class="lbl">HP</div></div>
+                        <div class="creature-stat"><div class="val">0</div><div class="lbl">Armor</div></div>
+                        <div class="creature-stat"><div class="val">10</div><div class="lbl">Diff</div></div>
+                    </div>
+                    <div class="creature-attacks">
+                        <h5>⚔️ Attacchi</h5>
+                        <p><strong>Morso +4</strong> (1d6 + Drain: cura 1d4 HP)</p>
+                    </div>
+                    <div class="creature-abilities">
+                        <h5>✨ Abilità</h5>
+                        <p>Volo, Ecolocalizzazione (vede nel buio), Sciame (5+ = area attack)</p>
+                    </div>
+                    <div class="creature-tactics">
+                        <strong>Tattica:</strong> Attaccano feriti. Fuggono se 2+ muoiono. <em>Tenuta: INS 10 → 0/1 seg</em>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SPIDER -->
+            <div class="creature-card" id="spider">
+                <div class="creature-header">
+                    <span class="icon">🕷️</span>
+                    <h4>Ragno delle Miniere</h4>
+                    <span class="tier">Tier 1</span>
+                </div>
+                <div class="creature-body">
+                    <div class="creature-stats">
+                        <div class="creature-stat"><div class="val">5</div><div class="lbl">HP</div></div>
+                        <div class="creature-stat"><div class="val">1</div><div class="lbl">Armor</div></div>
+                        <div class="creature-stat"><div class="val">11</div><div class="lbl">Diff</div></div>
+                    </div>
+                    <div class="creature-attacks">
+                        <h5>⚔️ Attacchi</h5>
+                        <p><strong>Morso Velenoso +5</strong> (1d4 + Veleno STR 14: Paralisi 1 round)</p>
+                        <p><strong>Ragnatela +4</strong> (Restrained, STR 13 per liberarsi)</p>
+                    </div>
+                    <div class="creature-abilities">
+                        <h5>✨ Abilità</h5>
+                        <p>Scalare Pareti, Visione nel Buio, Agguato (+1d6 da nascosto)</p>
+                    </div>
+                    <div class="creature-tactics">
+                        <strong>Tattica:</strong> Tendono trappole. Attaccano isolati. Ragnatele nei passaggi stretti.
+                    </div>
+                </div>
+            </div>
+
+            <!-- GHOST -->
+            <div class="creature-card" id="ghost">
+                <div class="creature-header">
+                    <span class="icon">👻</span>
+                    <h4>Fantasma del Minatore</h4>
+                    <span class="tier">Tier 2</span>
+                </div>
+                <div class="creature-body">
+                    <div class="creature-stats">
+                        <div class="creature-stat"><div class="val">8</div><div class="lbl">HP</div></div>
+                        <div class="creature-stat"><div class="val">—</div><div class="lbl">Armor</div></div>
+                        <div class="creature-stat"><div class="val">13</div><div class="lbl">Diff</div></div>
+                    </div>
+                    <div class="creature-attacks">
+                        <h5>⚔️ Attacchi</h5>
+                        <p><strong>Tocco Gelido +6</strong> (2d6 freddo, ignora Armor)</p>
+                        <p><strong>Lamento +5</strong> (PRE 14 o Frightened)</p>
+                    </div>
+                    <div class="creature-abilities">
+                        <h5>✨ Abilità</h5>
+                        <p>Incorporeo (immune fisico non magico), Passare Muri, Possessione (PRE 16)</p>
+                    </div>
+                    <div class="creature-tactics">
+                        <strong>Tattica:</strong> Appare, lamenta, scompare. Vuole vendetta o pace. <em>Tenuta: INS 14 → 1/2 seg</em>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SPECTRAL HORSE -->
+            <div class="creature-card" id="horse">
+                <div class="creature-header">
+                    <span class="icon">🐎</span>
+                    <h4>Cavallo Spettrale</h4>
+                    <span class="tier">Tier 1</span>
+                </div>
+                <div class="creature-body">
+                    <div class="creature-stats">
+                        <div class="creature-stat"><div class="val">10</div><div class="lbl">HP</div></div>
+                        <div class="creature-stat"><div class="val">0</div><div class="lbl">Armor</div></div>
+                        <div class="creature-stat"><div class="val">12</div><div class="lbl">Diff</div></div>
+                    </div>
+                    <div class="creature-attacks">
+                        <h5>⚔️ Attacchi</h5>
+                        <p><strong>Zoccoli +5</strong> (2d6+2)</p>
+                        <p><strong>Carica +6</strong> (3d6+4, linea retta)</p>
+                    </div>
+                    <div class="creature-abilities">
+                        <h5>✨ Abilità</h5>
+                        <p>Velocità Soprannaturale (3x movimento), Instancabile, Occhi di Fuoco (Intimidire +1d6)</p>
+                    </div>
+                    <div class="creature-tactics">
+                        <strong>Tattica:</strong> Cavalcatura del Cavaliere Spettrale. Da solo, fugge.
+                    </div>
+                </div>
+            </div>
+
+            <!-- SPECTRAL RIDER -->
+            <div class="creature-card" id="rider">
+                <div class="creature-header">
+                    <span class="icon">💀</span>
+                    <h4>Cavaliere Spettrale</h4>
+                    <span class="tier">Tier 2</span>
+                </div>
+                <div class="creature-body">
+                    <div class="creature-stats">
+                        <div class="creature-stat"><div class="val">12</div><div class="lbl">HP</div></div>
+                        <div class="creature-stat"><div class="val">3</div><div class="lbl">Armor</div></div>
+                        <div class="creature-stat"><div class="val">14</div><div class="lbl">Diff</div></div>
+                    </div>
+                    <div class="creature-attacks">
+                        <h5>⚔️ Attacchi</h5>
+                        <p><strong>Sciabola Spettrale +7</strong> (2d8+3 + 1d6 necro)</p>
+                        <p><strong>Revolver Maledetto +6</strong> (2d6+2 + Curse PRE 14)</p>
+                    </div>
+                    <div class="creature-abilities">
+                        <h5>✨ Abilità</h5>
+                        <p>Cavaliere (sempre montato su Cavallo Spettrale), Immortale Locale (risorge al tramonto), Aura di Morte (-1 HP/round entro 3m)</p>
+                    </div>
+                    <div class="creature-tactics">
+                        <strong>Tattica:</strong> Caccia chi attraversa il suo territorio. Può essere placato con sepoltura degna. <em>Tenuta: INS 15 → 2/3 seg</em>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CACTUS -->
+            <div class="creature-card" id="cactus">
+                <div class="creature-header">
+                    <span class="icon">🌵</span>
+                    <h4>Cactus Animato</h4>
+                    <span class="tier">Tier 1</span>
+                </div>
+                <div class="creature-body">
+                    <div class="creature-stats">
+                        <div class="creature-stat"><div class="val">8</div><div class="lbl">HP</div></div>
+                        <div class="creature-stat"><div class="val">2</div><div class="lbl">Armor</div></div>
+                        <div class="creature-stat"><div class="val">12</div><div class="lbl">Diff</div></div>
+                    </div>
+                    <div class="creature-attacks">
+                        <h5>⚔️ Attacchi</h5>
+                        <p><strong>Spine +5</strong> (2d6 + Bleeding 1d4/round)</p>
+                        <p><strong>Abbraccio +6</strong> (Grappled + 1d6 spine/round)</p>
+                    </div>
+                    <div class="creature-abilities">
+                        <h5>✨ Abilità</h5>
+                        <p>Mimetismo Vegetale (sorpresa automatica), Vulnerabile Fuoco (×2), Resistente Acqua</p>
+                    </div>
+                    <div class="creature-tactics">
+                        <strong>Tattica:</strong> Aspetta. Afferra. Non molla. Territorio definito — non insegue.
+                    </div>
+                </div>
+            </div>
+
+            <!-- WISP -->
+            <div class="creature-card" id="wisp">
+                <div class="creature-header">
+                    <span class="icon">🔥</span>
+                    <h4>Fuoco Fatuo del Deserto</h4>
+                    <span class="tier">Tier 1</span>
+                </div>
+                <div class="creature-body">
+                    <div class="creature-stats">
+                        <div class="creature-stat"><div class="val">6</div><div class="lbl">HP</div></div>
+                        <div class="creature-stat"><div class="val">—</div><div class="lbl">Armor</div></div>
+                        <div class="creature-stat"><div class="val">14</div><div class="lbl">Diff</div></div>
+                    </div>
+                    <div class="creature-attacks">
+                        <h5>⚔️ Attacchi</h5>
+                        <p><strong>Tocco Bruciante +6</strong> (2d6 fuoco)</p>
+                        <p><strong>Bagliore Accecante +5</strong> (INS 13 o Blinded 1 round)</p>
+                    </div>
+                    <div class="creature-abilities">
+                        <h5>✨ Abilità</h5>
+                        <p>Incorporeo, Volo, Luminescenza, Attira Viaggiatori</p>
+                    </div>
+                    <div class="creature-tactics">
+                        <strong>Tattica:</strong> Conduce verso pericoli naturali (dirupi, sabbie mobili). NON attacca direttamente. Alcuni possono essere comunicati (INS 16).
+                    </div>
+                </div>
+            </div>
+
+            <!-- MOTHER SCORPION -->
+            <div class="creature-card" id="scorpion">
+                <div class="creature-header">
+                    <span class="icon">🦂</span>
+                    <h4>Madre Scorpione</h4>
+                    <span class="tier">BOSS</span>
+                </div>
+                <div class="creature-body">
+                    <div class="creature-stats">
+                        <div class="creature-stat"><div class="val">15</div><div class="lbl">HP</div></div>
+                        <div class="creature-stat"><div class="val">4</div><div class="lbl">Armor</div></div>
+                        <div class="creature-stat"><div class="val">14</div><div class="lbl">Diff</div></div>
+                    </div>
+                    <div class="creature-attacks">
+                        <h5>⚔️ Attacchi</h5>
+                        <p><strong>Chele Giganti +7</strong> (2d8+4 + Grappled)</p>
+                        <p><strong>Pungiglione +8</strong> (2d6+3 + Veleno STR 16: 3d6 + Paralisi)</p>
+                        <p><strong>Coda Spazzata +6</strong> (2d6 area + Prone)</p>
+                    </div>
+                    <div class="creature-abilities">
+                        <h5>✨ Abilità</h5>
+                        <p>Evoca Sciame (3d6 piccoli), Esoscheletro Rinforzato (Resist 3 fisico), Scavare</p>
+                    </div>
+                    <div class="creature-tactics">
+                        <strong>Tattica:</strong> Protegge il nido. I piccoli distraggono mentre lei colpisce. Non insegue lontano dal nido. Creatura naturale ma terrificante — ottima per viaggi nel deserto.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="brand">🔫 GUNSMOKE & DREAD 🔫</div>
+            <div class="quote">"Non è morto ciò che in eterno può attendere,<br>e con strani eoni anche la morte può morire."</div>
+            <div class="final">— FINE DEL GRIMORIO —<br>Parte XI: Guida Campagna, Lore Completo & Creature Extra</div>
+        </footer>
+    </main>
+</body>
+</html>

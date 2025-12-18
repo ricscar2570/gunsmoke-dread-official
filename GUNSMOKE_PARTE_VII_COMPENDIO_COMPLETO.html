@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUNSMOKE & DREAD — Compendio Finale del Game Master</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Special+Elite&family=IM+Fell+English:ital@0;1&family=Rye&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Parchment palette */
+            --parchment: #f4e4c1;
+            --parchment-dark: #e8d4a8;
+            --parchment-aged: #d4c4a1;
+            
+            /* Western palette */
+            --wood-dark: #3d2914;
+            --wood-medium: #5c3d1e;
+            --leather: #654321;
+            --blood-red: #8b0000;
+            --gold: #d4a017;
+            --gold-dark: #a47a0a;
+            --ink-sepia: #3a2a1a;
+            
+            /* Corruption palette - gets stronger as you scroll */
+            --void-black: #0a0510;
+            --void-purple: #1a0a2a;
+            --eldritch-purple: #3a1a4a;
+            --corruption-glow: #6a3a8a;
+            --eye-yellow: #d4c417;
+            --deep-ocean: #0a1a2a;
+            --bioluminescent: #2affea;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 17px;
+            line-height: 1.75;
+            color: var(--ink-sepia);
+            background: var(--parchment);
+            background-attachment: fixed;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           NAVIGATION - GRIMOIRE TABS
+        ═══════════════════════════════════════════════════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100vh;
+            background: linear-gradient(180deg, var(--void-black) 0%, var(--void-purple) 100%);
+            padding: 0;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 5px 0 30px rgba(106,58,138,0.4);
+            border-right: 3px solid var(--corruption-glow);
+        }
+
+        .nav-header {
+            text-align: center;
+            padding: 25px 15px;
+            background: radial-gradient(ellipse at center, rgba(106,58,138,0.3) 0%, transparent 70%);
+            border-bottom: 2px solid var(--corruption-glow);
+        }
+
+        .nav-eye {
+            font-size: 2.5rem;
+            animation: eye-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes eye-pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); text-shadow: 0 0 10px var(--eye-yellow); }
+            50% { opacity: 1; transform: scale(1.1); text-shadow: 0 0 30px var(--eye-yellow), 0 0 60px var(--corruption-glow); }
+        }
+
+        .nav-header h1 {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-top: 10px;
+        }
+
+        .nav-section {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(106,58,138,0.3);
+        }
+
+        .nav-section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.55rem;
+            color: var(--corruption-glow);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 5px 0;
+        }
+
+        nav a {
+            display: block;
+            color: var(--parchment);
+            text-decoration: none;
+            padding: 6px 10px;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+            border-left: 2px solid transparent;
+            opacity: 0.8;
+        }
+
+        nav a:hover {
+            background: rgba(106,58,138,0.2);
+            border-left-color: var(--eye-yellow);
+            color: var(--eye-yellow);
+            opacity: 1;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           MAIN CONTENT
+        ═══════════════════════════════════════════════════════════════════════ */
+        main {
+            margin-left: 260px;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 50px 50px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           HERO - FORBIDDEN TOME
+        ═══════════════════════════════════════════════════════════════════════ */
+        .forbidden-hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: 
+                radial-gradient(ellipse at center, rgba(106,58,138,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 30% 70%, rgba(42,255,234,0.05) 0%, transparent 30%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><circle cx="250" cy="250" r="200" fill="none" stroke="%233a1a4a" stroke-width="1" opacity="0.1"/><circle cx="250" cy="250" r="150" fill="none" stroke="%233a1a4a" stroke-width="0.5" opacity="0.08"/><circle cx="250" cy="250" r="100" fill="none" stroke="%233a1a4a" stroke-width="0.3" opacity="0.05"/></svg>') no-repeat center center,
+                var(--parchment);
+            background-size: 100% 100%, 100% 100%, 600px 600px, 100% 100%;
+            padding: 60px 40px;
+            border-bottom: 5px solid var(--void-purple);
+            position: relative;
+        }
+
+        .hero-sigil {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: sigil-glow 4s ease-in-out infinite;
+        }
+
+        @keyframes sigil-glow {
+            0%, 100% { text-shadow: 0 0 20px var(--corruption-glow); opacity: 0.7; }
+            50% { text-shadow: 0 0 50px var(--corruption-glow), 0 0 100px var(--eldritch-purple); opacity: 1; }
+        }
+
+        .forbidden-hero h1 {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 3rem;
+            color: var(--wood-dark);
+            text-shadow: 2px 2px 0 var(--parchment-dark);
+            margin-bottom: 10px;
+        }
+
+        .forbidden-hero .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--blood-red);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .hero-warning {
+            margin-top: 40px;
+            padding: 25px 40px;
+            background: linear-gradient(135deg, rgba(139,0,0,0.1) 0%, rgba(106,58,138,0.1) 100%);
+            border: 2px solid var(--blood-red);
+            max-width: 600px;
+        }
+
+        .hero-warning p {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--blood-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-contents {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 50px;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .content-card {
+            padding: 20px;
+            background: var(--parchment);
+            border: 2px solid var(--wood-dark);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            border-color: var(--corruption-glow);
+            box-shadow: 0 0 20px rgba(106,58,138,0.3);
+        }
+
+        .content-card .icon { font-size: 2rem; margin-bottom: 10px; }
+        .content-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: var(--wood-dark);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           SECTION HEADERS - PROGRESSIVE CORRUPTION
+        ═══════════════════════════════════════════════════════════════════════ */
+        .section-header {
+            text-align: center;
+            padding: 50px 40px;
+            margin: 60px -50px 40px;
+            position: relative;
+            border-top: 3px double var(--wood-dark);
+            border-bottom: 3px double var(--wood-dark);
+        }
+
+        .section-header.level-1 {
+            background: var(--parchment);
+        }
+
+        .section-header.level-2 {
+            background: linear-gradient(180deg, var(--parchment) 0%, rgba(58,26,74,0.05) 100%);
+        }
+
+        .section-header.level-3 {
+            background: linear-gradient(180deg, rgba(58,26,74,0.1) 0%, rgba(26,10,42,0.15) 100%);
+            border-color: var(--eldritch-purple);
+        }
+
+        .section-header.level-4 {
+            background: linear-gradient(180deg, rgba(26,10,42,0.2) 0%, rgba(10,5,16,0.3) 100%);
+            border-color: var(--corruption-glow);
+        }
+
+        .section-header .section-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--wood-dark);
+            letter-spacing: 4px;
+        }
+
+        .section-header.level-3 h2,
+        .section-header.level-4 h2 {
+            color: var(--eldritch-purple);
+            text-shadow: 0 0 10px rgba(106,58,138,0.3);
+        }
+
+        .section-header .section-desc {
+            font-family: 'IM Fell English', serif;
+            font-size: 1rem;
+            color: var(--leather);
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           HORROR SCENE CARDS - THEATRICAL
+        ═══════════════════════════════════════════════════════════════════════ */
+        .scene-card {
+            background: var(--parchment);
+            border: 3px solid var(--wood-dark);
+            margin: 35px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scene-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+        }
+
+        .scene-card.body-horror::before { background: linear-gradient(180deg, #8b0000, #5a0000); }
+        .scene-card.cosmic::before { background: linear-gradient(180deg, var(--eldritch-purple), var(--void-purple)); }
+        .scene-card.chase::before { background: linear-gradient(180deg, #8b6914, #5a4a0a); }
+        .scene-card.control::before { background: linear-gradient(180deg, #2a5a8a, #1a3a5a); }
+
+        .scene-header {
+            padding: 20px 25px 15px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, transparent 100%);
+            border-bottom: 2px solid var(--wood-medium);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .scene-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--wood-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .scene-card.body-horror .scene-icon { background: var(--blood-red); }
+        .scene-card.cosmic .scene-icon { background: var(--eldritch-purple); box-shadow: 0 0 15px var(--corruption-glow); }
+        .scene-card.chase .scene-icon { background: var(--gold-dark); }
+        .scene-card.control .scene-icon { background: #2a5a8a; }
+
+        .scene-title h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--wood-dark);
+        }
+
+        .scene-title p {
+            font-family: 'IM Fell English', serif;
+            font-size: 0.9rem;
+            color: var(--leather);
+            font-style: italic;
+        }
+
+        .scene-body {
+            padding: 20px 25px;
+        }
+
+        .scene-body p {
+            margin-bottom: 12px;
+        }
+
+        .technique-list {
+            margin: 15px 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .technique-list li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            border-bottom: 1px dotted var(--wood-medium);
+        }
+
+        .technique-list li:last-child { border-bottom: none; }
+
+        .technique-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .scene-example {
+            background: linear-gradient(135deg, var(--void-purple) 0%, var(--void-black) 100%);
+            color: var(--parchment);
+            padding: 20px 25px;
+            margin-top: 15px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .scene-example::before {
+            content: '📖 ESEMPIO DI NARRAZIONE';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.55rem;
+            color: var(--eye-yellow);
+            background: var(--void-black);
+            padding: 3px 10px;
+            letter-spacing: 1px;
+        }
+
+        .scene-example p {
+            font-family: 'IM Fell English', serif;
+            font-style: italic;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           TENUTA MANAGEMENT - DEGRADATION VISUAL
+        ═══════════════════════════════════════════════════════════════════════ */
+        .tenuta-system {
+            margin: 40px 0;
+        }
+
+        .tenuta-level {
+            display: flex;
+            margin: 15px 0;
+            border: 2px solid var(--wood-medium);
+            overflow: hidden;
+        }
+
+        .tenuta-indicator {
+            width: 100px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Cinzel', serif;
+        }
+
+        .tenuta-level.stable .tenuta-indicator { background: #4a8a4a; }
+        .tenuta-level.fragile .tenuta-indicator { background: #8a8a4a; }
+        .tenuta-level.critical .tenuta-indicator { background: #8a5a2a; }
+        .tenuta-level.extreme .tenuta-indicator { background: #8a2a2a; }
+        .tenuta-level.broken .tenuta-indicator { 
+            background: linear-gradient(180deg, var(--eldritch-purple), var(--void-black));
+            box-shadow: inset 0 0 20px var(--corruption-glow);
+        }
+
+        .tenuta-indicator .range {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .tenuta-indicator .state {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 3px;
+        }
+
+        .tenuta-content {
+            flex: 1;
+            padding: 15px 20px;
+            background: var(--parchment);
+        }
+
+        .tenuta-content h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            color: var(--wood-dark);
+            margin-bottom: 5px;
+        }
+
+        .tenuta-content p {
+            font-size: 0.9rem;
+            margin: 0;
+            color: var(--leather);
+        }
+
+        .tenuta-narration {
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: rgba(0,0,0,0.03);
+            border-left: 3px solid var(--gold);
+            font-family: 'IM Fell English', serif;
+            font-style: italic;
+            font-size: 0.85rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           CULT PROFILES - DOSSIER STYLE
+        ═══════════════════════════════════════════════════════════════════════ */
+        .cult-card {
+            background: var(--parchment);
+            border: 3px solid var(--void-purple);
+            margin: 30px 0;
+            position: relative;
+            box-shadow: 0 5px 25px rgba(106,58,138,0.2);
+        }
+
+        .cult-header {
+            padding: 20px 25px;
+            background: linear-gradient(90deg, var(--void-purple) 0%, var(--eldritch-purple) 100%);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cult-sigil {
+            width: 60px;
+            height: 60px;
+            background: rgba(0,0,0,0.3);
+            border: 2px solid var(--corruption-glow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .cult-title h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+        }
+
+        .cult-title .location {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--parchment);
+            opacity: 0.8;
+        }
+
+        .cult-body {
+            padding: 20px 25px;
+        }
+
+        .cult-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .cult-stat {
+            padding: 12px 15px;
+            background: rgba(58,26,74,0.05);
+            border: 1px solid var(--eldritch-purple);
+        }
+
+        .cult-stat .label {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            color: var(--eldritch-purple);
+            text-transform: uppercase;
+        }
+
+        .cult-stat .value {
+            font-family: 'Crimson Text', serif;
+            font-size: 0.9rem;
+            color: var(--wood-dark);
+            margin-top: 3px;
+        }
+
+        .threat-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 3px;
+            margin-top: 15px;
+        }
+
+        .threat-badge.high { background: #8a3a3a; color: white; }
+        .threat-badge.very-high { background: #5a0000; color: white; box-shadow: 0 0 10px #8b0000; }
+        .threat-badge.medium { background: #8a6a3a; color: white; }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           COMPLETE VETERAN SHEETS
+        ═══════════════════════════════════════════════════════════════════════ */
+        .veteran-sheet {
+            background: var(--parchment);
+            border: 4px solid var(--wood-dark);
+            margin: 40px 0;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .veteran-badge-corner {
+            position: absolute;
+            top: -15px;
+            right: 30px;
+            padding: 8px 20px;
+            background: var(--gold);
+            color: var(--wood-dark);
+            font-family: 'Rye', cursive;
+            font-size: 0.7rem;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            transform: rotate(3deg);
+        }
+
+        .vet-header {
+            padding: 25px 30px;
+            text-align: center;
+            border-bottom: 3px double var(--wood-dark);
+            position: relative;
+        }
+
+        .vet-header.sarah { background: linear-gradient(180deg, rgba(74,85,104,0.15) 0%, transparent 100%); }
+        .vet-header.doc { background: linear-gradient(180deg, rgba(45,90,39,0.15) 0%, transparent 100%); }
+
+        .vet-icon { font-size: 3rem; margin-bottom: 10px; }
+
+        .vet-name {
+            font-family: 'Rye', cursive;
+            font-size: 1.6rem;
+            color: var(--wood-dark);
+        }
+
+        .vet-title {
+            font-family: 'IM Fell English', serif;
+            font-size: 1rem;
+            color: var(--leather);
+            font-style: italic;
+        }
+
+        .vet-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 20px 30px;
+            background: var(--parchment-dark);
+            border-bottom: 2px solid var(--wood-medium);
+        }
+
+        .vet-stat {
+            text-align: center;
+            padding: 12px;
+            background: var(--parchment);
+            border: 2px solid var(--wood-dark);
+        }
+
+        .vet-stat .val {
+            font-family: 'Rye', cursive;
+            font-size: 1.5rem;
+            color: var(--blood-red);
+        }
+
+        .vet-stat .lbl {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.55rem;
+            color: var(--wood-medium);
+            text-transform: uppercase;
+        }
+
+        .vet-attrs {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            padding: 15px 30px;
+            background: var(--parchment-dark);
+        }
+
+        .vet-attr {
+            text-align: center;
+            padding: 10px 5px;
+            background: var(--parchment);
+            border: 1px solid var(--wood-medium);
+        }
+
+        .vet-attr .mod {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--wood-dark);
+            font-weight: bold;
+        }
+
+        .vet-attr .name {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.45rem;
+            color: var(--leather);
+            text-transform: uppercase;
+        }
+
+        .vet-story {
+            padding: 20px 30px;
+            border-bottom: 1px dashed var(--wood-medium);
+        }
+
+        .vet-story h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--wood-dark);
+            margin-bottom: 10px;
+        }
+
+        .vet-abilities {
+            padding: 20px 30px;
+        }
+
+        .vet-abilities h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--wood-dark);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--wood-medium);
+        }
+
+        .vet-ability {
+            background: var(--parchment-dark);
+            border: 2px solid var(--wood-medium);
+            margin: 12px 0;
+            padding: 15px;
+            position: relative;
+        }
+
+        .vet-ability.new {
+            border-color: var(--eldritch-purple);
+            background: linear-gradient(135deg, var(--parchment-dark) 0%, rgba(58,26,74,0.1) 100%);
+        }
+
+        .vet-ability.new::before {
+            content: '★ NUOVA';
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.55rem;
+            color: white;
+            background: var(--eldritch-purple);
+            padding: 2px 10px;
+        }
+
+        .vet-ability .ab-name {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            color: var(--wood-dark);
+            font-weight: 600;
+        }
+
+        .vet-ability .ab-tags {
+            display: flex;
+            gap: 8px;
+            margin: 8px 0;
+        }
+
+        .vet-ability .ab-tag {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.5rem;
+            padding: 2px 8px;
+            background: var(--wood-dark);
+            color: var(--parchment);
+            text-transform: uppercase;
+        }
+
+        .vet-ability .ab-desc {
+            font-size: 0.85rem;
+            margin-top: 8px;
+        }
+
+        .vet-ability .ab-quote {
+            font-family: 'IM Fell English', serif;
+            font-style: italic;
+            color: var(--leather);
+            margin-top: 8px;
+            padding-left: 15px;
+            border-left: 2px solid var(--gold);
+        }
+
+        .vet-scars {
+            padding: 20px 30px;
+            background: linear-gradient(135deg, rgba(139,0,0,0.08) 0%, transparent 100%);
+            border-top: 2px solid var(--blood-red);
+        }
+
+        .vet-scars h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--blood-red);
+            margin-bottom: 15px;
+        }
+
+        .scar-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .scar {
+            padding: 10px 15px;
+            background: var(--parchment);
+            border: 1px solid var(--blood-red);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .scar::before { content: '💀'; }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           GOLDEN RULES & WARNINGS
+        ═══════════════════════════════════════════════════════════════════════ */
+        .golden-rule {
+            background: linear-gradient(135deg, rgba(212,160,23,0.15) 0%, rgba(212,160,23,0.05) 100%);
+            border: 2px solid var(--gold);
+            padding: 20px 25px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .golden-rule::before {
+            content: '💡 REGOLA D\'ORO';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            color: var(--gold-dark);
+            background: var(--parchment);
+            padding: 2px 10px;
+        }
+
+        .cosmic-warning {
+            background: linear-gradient(135deg, rgba(58,26,74,0.15) 0%, rgba(26,10,42,0.2) 100%);
+            border: 2px solid var(--eldritch-purple);
+            padding: 20px 25px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .cosmic-warning::before {
+            content: '👁 VERITÀ COSMICA';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            color: var(--corruption-glow);
+            background: var(--parchment);
+            padding: 2px 10px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           DIVIDERS
+        ═══════════════════════════════════════════════════════════════════════ */
+        .divider {
+            text-align: center;
+            margin: 50px 0;
+            color: var(--wood-medium);
+            font-size: 1rem;
+            letter-spacing: 8px;
+        }
+
+        .divider.corrupted {
+            color: var(--corruption-glow);
+            text-shadow: 0 0 10px var(--corruption-glow);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           TYPOGRAPHY
+        ═══════════════════════════════════════════════════════════════════════ */
+        h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--wood-dark);
+            margin: 35px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--wood-medium);
+        }
+
+        p { margin-bottom: 14px; text-align: justify; }
+
+        strong { color: var(--wood-dark); }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════════════════════════════════════ */
+        footer {
+            background: linear-gradient(180deg, var(--void-purple) 0%, var(--void-black) 100%);
+            color: var(--parchment);
+            padding: 60px;
+            text-align: center;
+            border-top: 4px solid var(--corruption-glow);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%236a3a8a" stroke-width="0.5" opacity="0.1"/></svg>') repeat;
+            background-size: 100px 100px;
+            pointer-events: none;
+        }
+
+        footer .brand {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 1.8rem;
+            color: var(--gold);
+            text-shadow: 0 0 20px var(--gold);
+            position: relative;
+        }
+
+        footer p {
+            font-family: 'IM Fell English', serif;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-align: center;
+            font-style: italic;
+            position: relative;
+        }
+
+        footer .final-sigil {
+            font-size: 2rem;
+            margin-top: 20px;
+            animation: sigil-glow 3s ease-in-out infinite;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════════════════════════════════════ */
+        @media (max-width: 900px) {
+            nav { display: none; }
+            main { margin-left: 0; }
+            .content-wrapper { padding: 30px 20px; }
+            .section-header { margin: 40px -20px 30px; padding: 40px 20px; }
+            .hero-contents { grid-template-columns: 1fr; }
+            .vet-stats { grid-template-columns: repeat(2, 1fr); }
+            .vet-attrs { grid-template-columns: repeat(3, 1fr); }
+            .cult-stats { grid-template-columns: 1fr; }
+            .scar-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-header">
+            <div class="nav-eye">👁</div>
+            <h1>Compendio Proibito</h1>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">🎭 Scene Horror</div>
+            <a href="#body-horror">Body Horror</a>
+            <a href="#rivelazioni">Rivelazioni Cosmiche</a>
+            <a href="#inseguimenti">Inseguimenti</a>
+            <a href="#perdita-controllo">Perdita di Controllo</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">💀 Sistema Tenuta</div>
+            <a href="#tenuta">Gestione Tenuta</a>
+            <a href="#stati-mentali">Stati Mentali</a>
+            <a href="#recupero">Recupero</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">⛧ I Culti</div>
+            <a href="#figli-serpente">Figli del Serpente</a>
+            <a href="#confraternita">Confraternita Abisso</a>
+            <a href="#cercatori">Cercatori Verità</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">⭐ Veterani Completi</div>
+            <a href="#sarah-vet">Sarah Lv.5</a>
+            <a href="#doc-vet">Doc Lv.5</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero -->
+        <section class="forbidden-hero">
+            <div class="hero-sigil">⛧</div>
+            <h1>Compendio Proibito</h1>
+            <p class="subtitle">Il Grimorio Completo del Game Master</p>
+
+            <div class="hero-warning">
+                <p>⚠️ QUESTO DOCUMENTO CONTIENE TUTTO ⚠️</p>
+                <p>Scene Horror Complete • Sistema Tenuta • I Culti • Veterani • Segreti</p>
+            </div>
+
+            <div class="hero-contents">
+                <div class="content-card">
+                    <div class="icon">🎭</div>
+                    <h3>Scene Horror</h3>
+                </div>
+                <div class="content-card">
+                    <div class="icon">💀</div>
+                    <h3>Sistema Tenuta</h3>
+                </div>
+                <div class="content-card">
+                    <div class="icon">⛧</div>
+                    <h3>I Culti</h3>
+                </div>
+            </div>
+        </section>
+
+        <div class="content-wrapper">
+            <!-- ═══════════════════════════════════════════════════════════════
+                 SCENE HORROR SPECIFICHE - COMPLETE
+            ═══════════════════════════════════════════════════════════════ -->
+            <div class="section-header level-1" id="scene-horror">
+                <div class="section-icon">🎭</div>
+                <h2>SCENE HORROR SPECIFICHE</h2>
+                <p class="section-desc">Tecniche Complete per Ogni Tipo di Scena</p>
+            </div>
+
+            <p>Ogni tipo di scena horror richiede tecniche diverse. Ecco come gestire i momenti chiave di Gunsmoke & Dread con il <strong>massimo impatto emotivo</strong>.</p>
+
+            <!-- BODY HORROR -->
+            <div class="scene-card body-horror" id="body-horror">
+                <div class="scene-header">
+                    <div class="scene-icon">🦠</div>
+                    <div class="scene-title">
+                        <h3>Body Horror — Trasformazioni</h3>
+                        <p>Viola l'integrità del corpo umano — il confine più personale</p>
+                    </div>
+                </div>
+                <div class="scene-body">
+                    <p>Il body horror funziona perché viola l'integrità del corpo umano — il confine più personale che abbiamo. <strong>Non descrivere solo l'aspetto</strong>: descrivi la <em>sensazione</em> di perdere il controllo del proprio corpo.</p>
+                    
+                    <ul class="technique-list">
+                        <li><strong>Punto di vista della vittima:</strong> Descrivi la trasformazione dal punto di vista di chi la subisce, non dell'osservatore esterno</li>
+                        <li><strong>Verbi di perdita di controllo:</strong> "senti le dita allungarsi", "la pelle prude, si spacca", "i muscoli si contraggono da soli"</li>
+                        <li><strong>Elementi riconoscibili:</strong> Un anello nuziale su una mano artigliata. Occhi ancora umani in un volto mostruoso. L'umanità residua è più terrificante</li>
+                        <li><strong>Irreversibilità graduale:</strong> Mostra il punto di non ritorno avvicinarsi lentamente</li>
+                    </ul>
+
+                    <div class="scene-example">
+                        <p>"Le sue dita si allungano. Le guarda, incredulo. Le unghie cadono, sostituite da artigli neri. Apre la bocca per urlare ma esce solo un gorgoglio bagnato. E nei suoi occhi — ancora umani — vedi terrore puro. Ti riconosce. Sa cosa sta diventando. E non può fare niente."</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIVELAZIONI COSMICHE -->
+            <div class="scene-card cosmic" id="rivelazioni">
+                <div class="scene-header">
+                    <div class="scene-icon">🌌</div>
+                    <div class="scene-title">
+                        <h3>Rivelazioni Cosmiche</h3>
+                        <p>Il momento in cui la verità diventa insopportabile</p>
+                    </div>
+                </div>
+                <div class="scene-body">
+                    <p>Il momento in cui i personaggi comprendono la verità — che l'umanità è insignificante, che esistono forze oltre la comprensione — deve essere <strong>devastante</strong>. Non è un nemico da combattere; è una verità da sopportare.</p>
+                    
+                    <ul class="technique-list">
+                        <li><strong>Rallenta il pacing:</strong> Questo momento merita tempo. Parla lentamente. Fai pause</li>
+                        <li><strong>Usa la scala:</strong> Numeri enormi, distanze impossibili, tempi geologici. "500 milioni di anni" colpisce più di "molto tempo fa"</li>
+                        <li><strong>Silenzio:</strong> Dopo la rivelazione, lascia che i giocatori elaborino. Non riempire il vuoto</li>
+                        <li><strong>Implicazioni personali:</strong> Collega la verità cosmica alle vite dei personaggi</li>
+                    </ul>
+
+                    <div class="scene-example">
+                        <p>"Capisci, finalmente. Questa città ha 500 milioni di anni. L'umanità non esisteva. I dinosauri non esistevano. E loro erano già qui. Stavano aspettando. Aspettano ancora. E un giorno — non tra mille anni, non tra un milione, ma geologicamente presto — gli oceani torneranno. E noi saremo solo un vago ricordo negli strati di roccia."</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INSEGUIMENTI -->
+            <div class="scene-card chase" id="inseguimenti">
+                <div class="scene-header">
+                    <div class="scene-icon">🏃</div>
+                    <div class="scene-title">
+                        <h3>Inseguimenti e Fuga</h3>
+                        <p>Non riguarda la velocità — riguarda l'inevitabilità</p>
+                    </div>
+                </div>
+                <div class="scene-body">
+                    <p>L'inseguimento horror non riguarda la velocità — riguarda l'<strong>inevitabilità</strong>. Il mostro non corre: cammina. Ma è sempre più vicino. La tensione viene dalla certezza che <em>non puoi scappare per sempre</em>.</p>
+                    
+                    <ul class="technique-list">
+                        <li><strong>Suono, non vista:</strong> Descrivi il suono del mostro che si avvicina, non il mostro stesso. I passi. Il respiro. Il silenzio improvviso</li>
+                        <li><strong>Scelte impossibili:</strong> "La porta a sinistra o quella a destra? Non hai tempo per pensare." Forza decisioni rapide</li>
+                        <li><strong>Ambiente ostile:</strong> Buio, terreno scivoloso, passaggi stretti. L'ambiente è complice del mostro</li>
+                        <li><strong>Ritmo crescente:</strong> Accelera il tuo modo di parlare mentre la tensione sale</li>
+                    </ul>
+
+                    <div class="scene-example">
+                        <p>"Corri. Dietro di te, passi bagnati. Non veloci. Regolari. Inevitabili. Svolti a destra. Scale che scendono. I passi continuano. Più vicini. Sempre più vicini. E poi... silenzio. Peggio. Molto peggio. Perché il silenzio significa che ha smesso di inseguirti. Significa che ti sta aspettando."</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PERDITA DI CONTROLLO -->
+            <div class="scene-card control" id="perdita-controllo">
+                <div class="scene-header">
+                    <div class="scene-icon">🧠</div>
+                    <div class="scene-title">
+                        <h3>Perdita di Controllo</h3>
+                        <p>Quando la Tenuta si esaurisce</p>
+                    </div>
+                </div>
+                <div class="scene-body">
+                    <p>Quando la Tenuta si esaurisce, i personaggi perdono il controllo delle proprie azioni. Questo deve essere giocato con cura: il giocatore deve sentire la perdita di agency <strong>senza sentirsi derubato</strong>.</p>
+                    
+                    <ul class="technique-list">
+                        <li><strong>Seconda persona:</strong> "Ti trovi a correre senza sapere dove." Non "Il tuo personaggio corre"</li>
+                        <li><strong>Scelte limitate:</strong> "Fuggi o ti rannicchi. Non puoi fare altro." Dai opzioni, ma poche</li>
+                        <li><strong>Conseguenze significative ma non permanenti:</strong> Il personaggio fa qualcosa di cui si pentirà, ma può rimediare</li>
+                        <li><strong>Rispetta il giocatore:</strong> Non usare la perdita di controllo per umiliare</li>
+                    </ul>
+
+                    <div class="scene-example">
+                        <p>"La Paura ti sommerge. Non decidi di correre — le tue gambe si muovono da sole. Butti la lanterna. Spingi via Sarah. Corri nel buio urlando. Quando torni in te, sei solo. Nell'oscurità. E qualcosa respira vicino. Molto vicino."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider">🌑 ═══ ◆ ═══ 🌑</div>
+
+            <!-- ═══════════════════════════════════════════════════════════════
+                 SISTEMA TENUTA COMPLETO
+            ═══════════════════════════════════════════════════════════════ -->
+            <div class="section-header level-2" id="tenuta">
+                <div class="section-icon">💀</div>
+                <h2>GESTIONE DELLA TENUTA MENTALE</h2>
+                <p class="section-desc">Il Sistema Completo — Meccanica e Narrativa</p>
+            </div>
+
+            <div class="golden-rule">
+                <p><strong>La Tenuta come Narrativa:</strong> Ogni segmento di Tenuta perso dovrebbe corrispondere a un momento narrativo. Non dire solo "Perdi 2 segmenti". Descrivi cosa vede/sente/capisce il personaggio che lo spezza un po'. La meccanica diventa storia.</p>
+            </div>
+
+            <h3 id="stati-mentali">Stati Mentali e Come Narrarli</h3>
+
+            <div class="tenuta-system">
+                <div class="tenuta-level stable">
+                    <div class="tenuta-indicator">
+                        <span class="range">10-8</span>
+                        <span class="state">Stabile</span>
+                    </div>
+                    <div class="tenuta-content">
+                        <h4>Scosso ma Funzionale</h4>
+                        <p>Il personaggio ha visto qualcosa di disturbante ma mantiene il controllo. È nervoso, ipervigilante, ma può pensare chiaramente.</p>
+                        <div class="tenuta-narration">"Controlli le ombre. Ogni rumore ti fa girare. Ma tieni duro. Per ora."</div>
+                    </div>
+                </div>
+
+                <div class="tenuta-level fragile">
+                    <div class="tenuta-indicator">
+                        <span class="range">7-5</span>
+                        <span class="state">Fragile</span>
+                    </div>
+                    <div class="tenuta-content">
+                        <h4>Stress Evidente</h4>
+                        <p>Mani che tremano, voce incerta. Incubi ogni notte. Il personaggio funziona ma chiunque può vedere che qualcosa non va.</p>
+                        <div class="tenuta-narration">"Non dormi bene. Quando chiudi gli occhi, vedi ancora quella cosa. E quando li apri... a volte la vedi lo stesso."</div>
+                    </div>
+                </div>
+
+                <div class="tenuta-level critical">
+                    <div class="tenuta-indicator">
+                        <span class="range">4-2</span>
+                        <span class="state">Critico</span>
+                    </div>
+                    <div class="tenuta-content">
+                        <h4>Sull'Orlo del Crollo</h4>
+                        <p>Paranoia, allucinazioni lievi. Il personaggio non si fida più dei propri sensi. Ogni ombra potrebbe nascondere qualcosa.</p>
+                        <div class="tenuta-narration">"Sei sicuro che l'ombra si sia mossa? ...Vero? Perché io l'ho vista muoversi. O forse no. Non lo so più."</div>
+                    </div>
+                </div>
+
+                <div class="tenuta-level extreme">
+                    <div class="tenuta-indicator">
+                        <span class="range">1</span>
+                        <span class="state">Estremo</span>
+                    </div>
+                    <div class="tenuta-content">
+                        <h4>Un Passo dalla Rottura</h4>
+                        <p>Ogni prova di Tenuta è cruciale. Il personaggio sente la follia che gratta ai bordi della mente, chiedendo di entrare.</p>
+                        <div class="tenuta-narration">"Senti la follia che gratta ai bordi della mente. Ti chiede di entrare. Promette che sarà più facile, dall'altra parte. Che non dovrai più avere paura."</div>
+                    </div>
+                </div>
+
+                <div class="tenuta-level broken">
+                    <div class="tenuta-indicator">
+                        <span class="range">0</span>
+                        <span class="state">Rottura</span>
+                    </div>
+                    <div class="tenuta-content">
+                        <h4>Conseguenza Maggiore</h4>
+                        <p>Il personaggio perde temporaneamente il controllo. Il GM descrive cosa fa. Fobia permanente, flashback, comportamento irrazionale.</p>
+                        <div class="tenuta-narration">"La mente si spezza. Per un momento — un'eternità — non sei più tu. Quando torni, non ricordi cosa hai fatto. Ma gli altri sì. E ti guardano in modo diverso."</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="recupero">Recupero della Tenuta</h3>
+
+            <div class="golden-rule">
+                <p><strong>Il recupero della Tenuta dovrebbe essere narrativo quanto la perdita.</strong> Un momento di connessione umana, un piccolo trionfo, una risata inaspettata. "Mentre guardate il tramonto, per un momento — solo un momento — tutto sembra normale. Recuperi 1 Tenuta."</p>
+            </div>
+
+            <div class="divider corrupted">👁 ═══ ⛧ ═══ 👁</div>
+
+            <!-- ═══════════════════════════════════════════════════════════════
+                 I CULTI - COMPLETI
+            ═══════════════════════════════════════════════════════════════ -->
+            <div class="section-header level-3" id="culti">
+                <div class="section-icon">⛧</div>
+                <h2>I CULTI DEGLI ANTICHI</h2>
+                <p class="section-desc">Le Organizzazioni Nemiche — Dettaglio Completo</p>
+            </div>
+
+            <p>Nel corso dei millenni, alcuni umani hanno scoperto gli Antichi e ne sono diventati adoratori. Questi culti esistono ancora oggi, nascosti nell'ombra del West.</p>
+
+            <div class="cult-card" id="figli-serpente">
+                <div class="cult-header">
+                    <div class="cult-sigil">🐍</div>
+                    <div class="cult-title">
+                        <h3>I Figli del Serpente</h3>
+                        <span class="location">📍 Silver Hollow, Nuovo Messico</span>
+                    </div>
+                </div>
+                <div class="cult-body">
+                    <div class="cult-stats">
+                        <div class="cult-stat">
+                            <div class="label">Origine</div>
+                            <div class="value">Fondato da Jeremiah Cole dopo la scoperta delle rovine nel 1882</div>
+                        </div>
+                        <div class="cult-stat">
+                            <div class="label">Credenze</div>
+                            <div class="value">Gli Antichi sono dei benevoli che "eleveranno" l'umanità. La trasformazione è una benedizione.</div>
+                        </div>
+                        <div class="cult-stat">
+                            <div class="label">Metodi</div>
+                            <div class="value">Sacrifici rituali, corruzione dei minatori, preparazione del risveglio del Serpente</div>
+                        </div>
+                        <div class="cult-stat">
+                            <div class="label">Membri Noti</div>
+                            <div class="value">Jeremiah Cole (leader), cultisti convertiti tra i minatori di Silver Hollow</div>
+                        </div>
+                    </div>
+                    <span class="threat-badge high">⚠️ MINACCIA ALTA</span>
+                    <p style="margin-top: 15px;">Hanno quasi risvegliato il Serpente nel Volume I. Se i PG falliscono, il culto avrà successo entro settimane.</p>
+                </div>
+            </div>
+
+            <div class="cult-card" id="confraternita">
+                <div class="cult-header">
+                    <div class="cult-sigil">🌊</div>
+                    <div class="cult-title">
+                        <h3>La Confraternita dell'Abisso</h3>
+                        <span class="location">📍 Sparsi nel Sud-Ovest</span>
+                    </div>
+                </div>
+                <div class="cult-body">
+                    <div class="cult-stats">
+                        <div class="cult-stat">
+                            <div class="label">Origine</div>
+                            <div class="value">Antico culto con radici pre-colombiane, rinvigorito nel XIX secolo</div>
+                        </div>
+                        <div class="cult-stat">
+                            <div class="label">Credenze</div>
+                            <div class="value">Gli oceani torneranno e solo i "trasformati" sopravviveranno. Meglio trasformarsi ora volontariamente.</div>
+                        </div>
+                        <div class="cult-stat">
+                            <div class="label">Metodi</div>
+                            <div class="value">Infiltrazione in posizioni di potere, rapimenti, esperimenti di trasformazione volontaria</div>
+                        </div>
+                        <div class="cult-stat">
+                            <div class="label">Risorse</div>
+                            <div class="value">Network esteso, risorse finanziarie significative, connessioni politiche</div>
+                        </div>
+                    </div>
+                    <span class="threat-badge very-high">🔴 MINACCIA MOLTO ALTA</span>
+                    <p style="margin-top: 15px;">Il culto più pericoloso. Operano nell'ombra da secoli. Potrebbero avere membri in ogni città del territorio.</p>
+                </div>
+            </div>
+
+            <div class="cult-card" id="cercatori">
+                <div class="cult-header">
+                    <div class="cult-sigil">📚</div>
+                    <div class="cult-title">
+                        <h3>I Cercatori della Verità</h3>
+                        <span class="location">📍 Università e Circoli Accademici</span>
+                    </div>
+                </div>
+                <div class="cult-body">
+                    <div class="cult-stats">
+                        <div class="cult-stat">
+                            <div class="label">Origine</div>
+                            <div class="value">Studiosi ossessionati dalla conoscenza proibita, non necessariamente adoratori</div>
+                        </div>
+                        <div class="cult-stat">
+                            <div class="label">Credenze</div>
+                            <div class="value">La verità è tutto. Gli Antichi detengono segreti che potrebbero rivoluzionare la scienza.</div>
+                        </div>
+                        <div class="cult-stat">
+                            <div class="label">Metodi</div>
+                            <div class="value">Ricerca archeologica, acquisizione di artefatti, esperimenti pericolosi senza comprenderne le conseguenze</div>
+                        </div>
+                        <div class="cult-stat">
+                            <div class="label">Pericolo</div>
+                            <div class="value">Meno fanatici ma altrettanto pericolosi per ignoranza e arroganza accademica</div>
+                        </div>
+                    </div>
+                    <span class="threat-badge medium">⚠️ MINACCIA MEDIA</span>
+                    <p style="margin-top: 15px;">Non vogliono il risveglio degli Antichi, ma potrebbero causarlo per errore. La curiosità può essere letale quanto la devozione.</p>
+                </div>
+            </div>
+
+            <div class="cosmic-warning">
+                <p><strong>Non rivelare tutto ai giocatori.</strong> La scoperta graduale È l'esperienza. Lascia indizi, frammenti, misteri. I giocatori dovrebbero finire la campagna con più domande che risposte. Questo è l'horror cosmico: non puoi mai sapere tutto. E forse è meglio così.</p>
+            </div>
+
+            <div class="divider corrupted">⛧ ═══ 👁 ═══ ⛧</div>
+
+            <!-- ═══════════════════════════════════════════════════════════════
+                 VETERANI COMPLETI
+            ═══════════════════════════════════════════════════════════════ -->
+            <div class="section-header level-4">
+                <div class="section-icon">⭐</div>
+                <h2>SCHEDE VETERANI COMPLETE</h2>
+                <p class="section-desc">Sarah Blackwood e Doc Wells — Livello 5</p>
+            </div>
+
+            <!-- SARAH VETERANA -->
+            <div class="veteran-sheet" id="sarah-vet">
+                <div class="veteran-badge-corner">★ VETERANA ★</div>
+                <div class="vet-header sarah">
+                    <div class="vet-icon">🙏</div>
+                    <h2 class="vet-name">SARAH BLACKWOOD — LIVELLO 5</h2>
+                    <p class="vet-title">La Predicatrice Testata — Fede Temprata dal Fuoco</p>
+                </div>
+
+                <div class="vet-stats">
+                    <div class="vet-stat"><div class="val">36</div><div class="lbl">HP (+12)</div></div>
+                    <div class="vet-stat"><div class="val">2</div><div class="lbl">Armor</div></div>
+                    <div class="vet-stat"><div class="val">8/10</div><div class="lbl">Tenuta</div></div>
+                    <div class="vet-stat"><div class="val">STD</div><div class="lbl">Velocità</div></div>
+                </div>
+
+                <div class="vet-attrs">
+                    <div class="vet-attr"><div class="mod">+1 ↑</div><div class="name">Forza</div></div>
+                    <div class="vet-attr"><div class="mod">+2 ↑</div><div class="name">Agilità</div></div>
+                    <div class="vet-attr"><div class="mod">+3 ↑</div><div class="name">Finezza</div></div>
+                    <div class="vet-attr"><div class="mod">+4 ↑</div><div class="name">Istinto</div></div>
+                    <div class="vet-attr"><div class="mod">+5 ↑</div><div class="name">Presenza</div></div>
+                    <div class="vet-attr"><div class="mod">+3 ↑</div><div class="name">Conoscenza</div></div>
+                </div>
+
+                <div class="vet-story">
+                    <h4>📜 La Fede Testata</h4>
+                    <p>Silver Hollow ha quasi spezzato Sarah. Per 2 settimane dopo, non riusciva a pregare. Poi la svolta: <em>"Se un male così profondo esiste, allora Dio DEVE esistere per bilanciarlo. Il Serpente conferma Dio, non lo nega."</em></p>
+                    <p>La fede è tornata, più personale, meno dogmatica. Ha imparato a sparare meglio. Porta il derringer senza vergogna: "Dio aiuta chi si aiuta."</p>
+                </div>
+
+                <div class="vet-abilities">
+                    <h4>✨ Abilità Potenziate e Nuove</h4>
+
+                    <div class="vet-ability">
+                        <div class="ab-name">✨ Tocco Curativo — POTENZIATA</div>
+                        <div class="ab-tags">
+                            <span class="ab-tag">Azione</span>
+                            <span class="ab-tag">4/Riposo ↑</span>
+                        </div>
+                        <div class="ab-desc"><strong>3d8+6 HP</strong> + rimuovi 2 Condizioni. <strong>NUOVO:</strong> Funziona a distanza Close (proietti luce curativa).</div>
+                        <div class="ab-quote">"La luce del Signore ti raggiunge ovunque."</div>
+                    </div>
+
+                    <div class="vet-ability">
+                        <div class="ab-name">⚡ Scacciare i Non-Morti — POTENZIATA</div>
+                        <div class="ab-tags">
+                            <span class="ab-tag">Azione</span>
+                            <span class="ab-tag">3/Riposo ↑</span>
+                        </div>
+                        <div class="ab-desc">Raggio <strong>Far</strong>. Difficoltà 16. <strong>4d8 danni magici</strong>. Funziona su demoni e possessioni. Non-morti HP ≤ 35 distrutti istantaneamente.</div>
+                        <div class="ab-quote">"VATTENE!"</div>
+                    </div>
+
+                    <div class="vet-ability">
+                        <div class="ab-name">🛡 Benedizione Protettiva — POTENZIATA</div>
+                        <div class="ab-tags">
+                            <span class="ab-tag">Azione Minore</span>
+                            <span class="ab-tag">2/Incontro ↑</span>
+                        </div>
+                        <div class="ab-desc">4 alleati, Molto Far: <strong>+3 Salvezza</strong>, <strong>+2 Armor</strong>. Immunità a possessione per la durata.</div>
+                        <div class="ab-quote">"Nessun demone vi toccherà."</div>
+                    </div>
+
+                    <div class="vet-ability new">
+                        <div class="ab-name">🕊 Resurrezione Minore</div>
+                        <div class="ab-tags">
+                            <span class="ab-tag">Azione (10 min)</span>
+                            <span class="ab-tag">1/Settimana</span>
+                        </div>
+                        <div class="ab-desc">Riporti in vita una creatura morta da ≤ 1 ora. Ritorna con <strong>1 HP + 2 Fatica</strong>. <strong>Costo:</strong> 2d8 danni a te + 3 segmenti Tenuta.</div>
+                        <div class="ab-quote">"Non oggi. Dio non ti prende oggi."</div>
+                    </div>
+
+                    <div class="vet-ability new">
+                        <div class="ab-name">⭐ Aura di Fede</div>
+                        <div class="ab-tags">
+                            <span class="ab-tag">Passivo</span>
+                            <span class="ab-tag">Attivabile</span>
+                        </div>
+                        <div class="ab-desc"><strong>Alleati:</strong> +1d6 cure, Advantage Salvezza, immuni Fear. <strong>Nemici non-morti:</strong> -1d6 attacchi, subiscono 1d6 magici/azione in Close.</div>
+                        <div class="ab-quote">"La mia fede è il mio scudo."</div>
+                    </div>
+
+                    <div class="vet-ability new">
+                        <div class="ab-name">📿 Esorcismo</div>
+                        <div class="ab-tags">
+                            <span class="ab-tag">Azione (1 min)</span>
+                            <span class="ab-tag">1/Riposo Lungo</span>
+                        </div>
+                        <div class="ab-desc">Esorcizzi possessione o maledizione. Prova di <strong>Presenza vs Presenza</strong> dell'entità. Successo: <strong>4d10 danni magici</strong> all'entità, bersaglio liberato.</div>
+                        <div class="ab-quote">"Nel nome del Padre, del Figlio e dello Spirito Santo — ESCI!"</div>
+                    </div>
+                </div>
+
+                <div class="vet-scars">
+                    <h4>💀 Cicatrici Permanenti</h4>
+                    <div class="scar-grid">
+                        <div class="scar">Fede più personale, meno dogmatica</div>
+                        <div class="scar">Incubi occasionali: Jeremiah che si trasforma</div>
+                        <div class="scar">Non cerca più di redimere tutti</div>
+                        <div class="scar">Beve whisky occasionalmente (cosa impensabile prima)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DOC VETERANO -->
+            <div class="veteran-sheet" id="doc-vet">
+                <div class="veteran-badge-corner">★ VETERANO ★</div>
+                <div class="vet-header doc">
+                    <div class="vet-icon">🔬</div>
+                    <h2 class="vet-name">DOC ARTEMIS WELLS — LIVELLO 5</h2>
+                    <p class="vet-title">Il Medico-Inventore — Razionalismo Scosso</p>
+                </div>
+
+                <div class="vet-stats">
+                    <div class="vet-stat"><div class="val">32</div><div class="lbl">HP (+12)</div></div>
+                    <div class="vet-stat"><div class="val">1</div><div class="lbl">Armor</div></div>
+                    <div class="vet-stat"><div class="val" style="color: var(--blood-red);">4/10 ⚠️</div><div class="lbl">Tenuta</div></div>
+                    <div class="vet-stat"><div class="val">STD</div><div class="lbl">Velocità</div></div>
+                </div>
+
+                <div class="vet-attrs">
+                    <div class="vet-attr"><div class="mod">+1 ↑</div><div class="name">Forza</div></div>
+                    <div class="vet-attr"><div class="mod">+3 ↑</div><div class="name">Agilità</div></div>
+                    <div class="vet-attr"><div class="mod">+4 ↑</div><div class="name">Finezza</div></div>
+                    <div class="vet-attr"><div class="mod">+2 ↑</div><div class="name">Istinto</div></div>
+                    <div class="vet-attr"><div class="mod">+2 ↑</div><div class="name">Presenza</div></div>
+                    <div class="vet-attr"><div class="mod">+5 ↑</div><div class="name">Conoscenza</div></div>
+                </div>
+
+                <div class="vet-story">
+                    <h4>📜 Il Razionalismo Messo alla Prova</h4>
+                    <p>Per tre settimane dopo Silver Hollow, Doc ha provato a spiegare scientificamente il Serpente. Ha scritto 47 pagine di note. Poi una notte ha bruciato tutto.</p>
+                    <p><em>"Non posso spiegare questo. E per la prima volta nella mia vita, va bene così."</em></p>
+                    <p>Meno rigido, più aperto all'"inspiegabile". Ha sviluppato tecniche che combinano scienza e... altro. Le chiama "fenomeni non ancora compresi".</p>
+                </div>
+
+                <div class="vet-abilities">
+                    <h4>✨ Abilità Potenziate e Nuove</h4>
+
+                    <div class="vet-ability">
+                        <div class="ab-name">💉 Chirurgia da Campo — POTENZIATA</div>
+                        <div class="ab-tags">
+                            <span class="ab-tag">Azione</span>
+                            <span class="ab-tag">4/Riposo ↑</span>
+                        </div>
+                        <div class="ab-desc">Difficoltà 10. <strong>3d8+6 HP</strong> + 2 condizioni. <strong>NUOVO:</strong> Puoi operare su 2 bersagli simultaneamente (una mano ciascuno).</div>
+                        <div class="ab-quote">"Due pazienti, due mani. Efficienza."</div>
+                    </div>
+
+                    <div class="vet-ability">
+                        <div class="ab-name">🔬 Analisi Anatomica — POTENZIATA</div>
+                        <div class="ab-tags">
+                            <span class="ab-tag">Passivo</span>
+                        </div>
+                        <div class="ab-desc">Funziona su <strong>creature soprannaturali</strong>. Apprendi se viva, non-morta, o "altro". <strong>+2 danni permanenti</strong> dopo analisi completa.</div>
+                        <div class="ab-quote">"Interessante struttura cellulare... non dovrebbe essere possibile."</div>
+                    </div>
+
+                    <div class="vet-ability">
+                        <div class="ab-name">⚗️ Congegno Improvvisato — POTENZIATA</div>
+                        <div class="ab-tags">
+                            <span class="ab-tag">Azione</span>
+                            <span class="ab-tag">4/Riposo ↑</span>
+                        </div>
+                        <div class="ab-desc">Nuove opzioni: Granata Sonora (stordisce), Siero Anti-Possessione (+4 vs possessione 1h). <strong>NUOVO:</strong> Puoi creare 2 congegni per azione.</div>
+                        <div class="ab-quote">"La scienza trova sempre una soluzione. Anche quando non dovrebbe funzionare."</div>
+                    </div>
+
+                    <div class="vet-ability new">
+                        <div class="ab-name">🧪 Siero Sperimentale</div>
+                        <div class="ab-tags">
+                            <span class="ab-tag">Azione</span>
+                            <span class="ab-tag">2/Riposo Lungo</span>
+                        </div>
+                        <div class="ab-desc">Inietta: <strong>FORTEZZA</strong> (+4 For/Cost, 10 min), <strong>RIFLESSI</strong> (+4 Agi/Ist, 10 min), o <strong>RIGENERAZIONE</strong> (2d8 HP × 3 azioni). Poi 1 Fatica.</div>
+                        <div class="ab-quote">"Non è magia. È biochimica. Probabilmente."</div>
+                    </div>
+
+                    <div class="vet-ability new">
+                        <div class="ab-name">📓 Catalogo dell'Impossibile</div>
+                        <div class="ab-tags">
+                            <span class="ab-tag">Passivo</span>
+                        </div>
+                        <div class="ab-desc">Prova di Conoscenza (12) per ricordare creature già catalogate nel tuo diario. <strong>2 informazioni automatiche</strong> + puoi condividere con alleati.</div>
+                        <div class="ab-quote">"Pagina 34: 'Creature serpentiformi'. Sì, l'ho già visto."</div>
+                    </div>
+
+                    <div class="vet-ability new">
+                        <div class="ab-name">⚡ Defibrillatore Improvvisato</div>
+                        <div class="ab-tags">
+                            <span class="ab-tag">Azione</span>
+                            <span class="ab-tag">1/Riposo Lungo</span>
+                        </div>
+                        <div class="ab-desc">Creatura a 0 HP o morta da ≤ 1 minuto: Prova di Finezza (14) → <strong>2d10 HP</strong>. Su non-morti: <strong>4d10 elettricità</strong> automatici.</div>
+                        <div class="ab-quote">"SCARICA!"</div>
+                    </div>
+                </div>
+
+                <div class="vet-scars">
+                    <h4>💀 Cicatrici Permanenti</h4>
+                    <div class="scar-grid">
+                        <div class="scar">Tenuta massima 8 invece di 10 (permanente)</div>
+                        <div class="scar">Crisi epistemologica: -1d6 prima azione vs soprannaturale</div>
+                        <div class="scar">Insonnia: Riposo Lungo richiede 10 ore</div>
+                        <div class="scar">Ossessione documentativa (compulsione a prendere note)</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="brand">☠ Compendio Proibito ☠</div>
+            <p>GUNSMOKE & DREAD — Parte VII<br><em>"Alcune verità non dovrebbero essere conosciute. Ma ora le conosci."</em></p>
+            <div class="final-sigil">👁</div>
+        </footer>
+    </main>
+</body>
+</html>

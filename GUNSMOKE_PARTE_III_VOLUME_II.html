@@ -1,0 +1,2076 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUNSMOKE & DREAD — Parte III: Volume II - Dove l'Oceano Incontra la Polvere</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Special+Elite&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --parchment: #f4e4c1;
+            --parchment-dark: #e8d4a8;
+            --brown-dark: #3d2914;
+            --brown-medium: #5c3d1e;
+            --brown-light: #8b6914;
+            --blood-red: #8b0000;
+            --gold: #d4a017;
+            --ink-black: #1a1a1a;
+            --shadow: rgba(0,0,0,0.3);
+            
+            /* Ocean Theme */
+            --abyss-dark: #0a1520;
+            --abyss-deep: #051015;
+            --ocean-blue: #1a3a5c;
+            --ocean-medium: #2a5a8c;
+            --ocean-light: #4a8abc;
+            --biolum-green: #00ff88;
+            --biolum-cyan: #00ffcc;
+            --coral-pink: #ff6b9d;
+            --tentacle-purple: #6b3a8c;
+            --salt-white: #e8f4f8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--brown-dark);
+            background: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="30" r="1" fill="%23d4c4a1" opacity="0.15"/><circle cx="70" cy="70" r="0.8" fill="%23c4b491" opacity="0.1"/></svg>') repeat,
+                linear-gradient(180deg, var(--parchment) 0%, var(--parchment-dark) 100%);
+            background-size: 60px 60px, 100% 100%;
+            background-attachment: fixed;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           NAVIGATION - OCEANIC THEME
+        ═══════════════════════════════════════════════════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, var(--abyss-dark) 0%, var(--abyss-deep) 100%);
+            padding: 0;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 4px 0 30px rgba(0,255,136,0.1);
+            border-right: 3px solid var(--ocean-medium);
+        }
+
+        .nav-header {
+            text-align: center;
+            padding: 25px 15px;
+            background: 
+                radial-gradient(ellipse at center, rgba(0,255,136,0.1) 0%, transparent 70%),
+                linear-gradient(180deg, rgba(42,90,140,0.3) 0%, transparent 100%);
+            border-bottom: 2px solid var(--ocean-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><circle cx="10" cy="10" r="1" fill="%2300ff88" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/></circle><circle cx="40" cy="30" r="0.5" fill="%2300ffcc" opacity="0.4"><animate attributeName="opacity" values="0.4;0.9;0.4" dur="2s" repeatCount="indefinite"/></circle></svg>');
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        .nav-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--biolum-cyan);
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0,255,204,0.5);
+        }
+
+        .nav-header .subtitle {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.65rem;
+            color: var(--salt-white);
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .nav-header .volume-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--ocean-blue), var(--ocean-medium));
+            color: var(--salt-white);
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            letter-spacing: 1px;
+            border: 1px solid var(--biolum-cyan);
+            box-shadow: 0 0 10px rgba(0,255,204,0.3);
+        }
+
+        .nav-section { padding: 12px 15px; }
+
+        .nav-section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            color: var(--biolum-green);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,255,136,0.3);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav a {
+            display: block;
+            color: var(--salt-white);
+            text-decoration: none;
+            padding: 6px 10px;
+            margin: 2px 0;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        nav a:hover {
+            background: rgba(0,255,136,0.1);
+            border-left-color: var(--biolum-green);
+            color: var(--biolum-cyan);
+            transform: translateX(5px);
+        }
+
+        nav a.sub { padding-left: 22px; font-size: 0.75rem; opacity: 0.9; }
+
+        /* Depth indicator */
+        .depth-indicator {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            background: rgba(10,21,32,0.9);
+            border-radius: 20px;
+            padding: 15px 8px;
+            z-index: 999;
+            border: 2px solid var(--ocean-medium);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .depth-marker {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--abyss-dark);
+            border: 2px solid var(--ocean-light);
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            color: var(--salt-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .depth-marker:hover, .depth-marker.active {
+            background: var(--biolum-green);
+            color: var(--abyss-dark);
+            border-color: var(--biolum-cyan);
+            box-shadow: 0 0 15px var(--biolum-green);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           MAIN CONTENT
+        ═══════════════════════════════════════════════════════════════════════ */
+        main {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 60px 50px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           VOLUME HERO - OCEANIC
+        ═══════════════════════════════════════════════════════════════════════ */
+        .volume-hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: 
+                radial-gradient(ellipse at center bottom, rgba(0,255,136,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 30%, rgba(42,90,140,0.3) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 70%, rgba(107,58,140,0.2) 0%, transparent 40%),
+                linear-gradient(180deg, var(--abyss-dark) 0%, var(--abyss-deep) 50%, #020508 100%);
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .volume-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="20" cy="50" r="2" fill="%2300ff88" opacity="0.4"><animate attributeName="opacity" values="0.2;0.8;0.2" dur="4s" repeatCount="indefinite"/></circle><circle cx="180" cy="30" r="1.5" fill="%2300ffcc" opacity="0.3"><animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" repeatCount="indefinite"/></circle><circle cx="100" cy="150" r="2.5" fill="%23ff6b9d" opacity="0.2"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="5s" repeatCount="indefinite"/></circle><circle cx="50" cy="180" r="1" fill="%2300ff88" opacity="0.5"><animate attributeName="opacity" values="0.3;0.9;0.3" dur="2s" repeatCount="indefinite"/></circle></svg>');
+            background-size: 200px 200px;
+            animation: float 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-200px); }
+        }
+
+        .volume-hero .volume-number {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.9rem;
+            color: var(--biolum-green);
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px var(--biolum-green);
+        }
+
+        .volume-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--biolum-cyan);
+            text-shadow: 0 0 40px rgba(0,255,204,0.6), 3px 3px 6px rgba(0,0,0,0.8);
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .volume-hero .tagline {
+            font-family: 'IM Fell English', serif;
+            font-size: 1.3rem;
+            color: var(--salt-white);
+            font-style: italic;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .volume-hero .location {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.85rem;
+            color: var(--ocean-light);
+            letter-spacing: 3px;
+        }
+
+        .volume-hero .ocean-icon {
+            font-size: 4rem;
+            margin: 40px 0;
+            opacity: 0.8;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .volume-hero-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-stat {
+            text-align: center;
+            padding: 18px 25px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 10px;
+            border: 1px solid rgba(0,255,136,0.3);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .hero-stat:hover {
+            border-color: var(--biolum-cyan);
+            box-shadow: 0 0 20px rgba(0,255,204,0.3);
+        }
+
+        .hero-stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--biolum-cyan);
+            text-shadow: 0 0 10px var(--biolum-cyan);
+        }
+
+        .hero-stat-label {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            color: var(--salt-white);
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* Telegram Box */
+        .telegram-box {
+            background: linear-gradient(135deg, #f8f4e8 0%, #e8e0c8 100%);
+            border: 3px double var(--brown-dark);
+            padding: 30px 40px;
+            margin: 40px 0;
+            position: relative;
+            max-width: 600px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .telegram-box::before {
+            content: '⚡ TELEGRAMMA WESTERN UNION ⚡';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Special Elite', monospace;
+            font-size: 0.75rem;
+            color: var(--brown-dark);
+            background: var(--gold);
+            padding: 5px 20px;
+            letter-spacing: 2px;
+        }
+
+        .telegram-box p {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--brown-dark);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .telegram-box .signature {
+            text-align: right;
+            font-style: italic;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--brown-medium);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           ACT HEADERS - OCEANIC GRADIENT
+        ═══════════════════════════════════════════════════════════════════════ */
+        .act-header {
+            text-align: center;
+            padding: 80px 50px;
+            position: relative;
+            margin: 0 -50px;
+            overflow: hidden;
+        }
+
+        .act-header.act1 {
+            background: linear-gradient(180deg, var(--brown-dark) 0%, #4a3a2a 30%, var(--ocean-blue) 70%, var(--brown-dark) 100%);
+        }
+
+        .act-header.act2 {
+            background: linear-gradient(180deg, var(--brown-dark) 0%, var(--ocean-blue) 30%, var(--abyss-dark) 70%, var(--brown-dark) 100%);
+        }
+
+        .act-header.act3 {
+            background: 
+                radial-gradient(ellipse at center, rgba(0,255,136,0.15) 0%, transparent 50%),
+                linear-gradient(180deg, var(--brown-dark) 0%, var(--abyss-deep) 30%, var(--tentacle-purple) 60%, var(--brown-dark) 100%);
+        }
+
+        .act-header .act-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .act-header .act-number {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.85rem;
+            color: var(--biolum-green);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px var(--biolum-green);
+        }
+
+        .act-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--biolum-cyan);
+            letter-spacing: 5px;
+            margin: 15px 0;
+            text-shadow: 0 0 30px rgba(0,255,204,0.5), 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .act-header .act-subtitle {
+            font-family: 'IM Fell English', serif;
+            font-style: italic;
+            color: var(--salt-white);
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           DEPTH DESCENT VISUALIZATION
+        ═══════════════════════════════════════════════════════════════════════ */
+        .descent-tracker {
+            background: linear-gradient(180deg, var(--abyss-dark) 0%, var(--abyss-deep) 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .descent-tracker::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="30" r="1" fill="%2300ff88" opacity="0.3"/><circle cx="80" cy="60" r="0.8" fill="%2300ffcc" opacity="0.2"/></svg>');
+            background-size: 100px 100px;
+            pointer-events: none;
+        }
+
+        .descent-tracker h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--biolum-cyan);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            text-shadow: 0 0 10px var(--biolum-cyan);
+        }
+
+        .descent-phases {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+        }
+
+        .descent-phases::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--ocean-light) 0%, var(--ocean-blue) 33%, var(--abyss-dark) 66%, var(--tentacle-purple) 100%);
+            border-radius: 2px;
+        }
+
+        .descent-phase {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .phase-marker {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: var(--salt-white);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .phase-marker.surface { background: linear-gradient(135deg, var(--ocean-light), var(--ocean-medium)); }
+        .phase-marker.transition { background: linear-gradient(135deg, var(--ocean-medium), var(--ocean-blue)); }
+        .phase-marker.water { background: linear-gradient(135deg, var(--ocean-blue), var(--abyss-dark)); }
+        .phase-marker.abyss { background: linear-gradient(135deg, var(--abyss-dark), var(--tentacle-purple)); border: 2px solid var(--biolum-green); box-shadow: 0 0 15px var(--biolum-green); }
+
+        .phase-marker .depth {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            opacity: 0.8;
+        }
+
+        .phase-content {
+            flex: 1;
+            background: rgba(0,0,0,0.3);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 3px solid var(--ocean-medium);
+        }
+
+        .phase-content h5 {
+            font-family: 'Cinzel', serif;
+            color: var(--biolum-cyan);
+            margin-bottom: 8px;
+        }
+
+        .phase-content p {
+            font-size: 0.9rem;
+            color: var(--salt-white);
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .phase-content .check {
+            margin-top: 10px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.8rem;
+            color: var(--biolum-green);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           READ ALOUD - OCEANIC
+        ═══════════════════════════════════════════════════════════════════════ */
+        .read-aloud {
+            background: linear-gradient(135deg, rgba(10,21,32,0.98) 0%, rgba(5,16,21,0.99) 100%);
+            color: var(--salt-white);
+            padding: 35px 45px;
+            margin: 35px 0;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 
+                0 8px 40px rgba(0,0,0,0.5),
+                inset 0 0 60px rgba(0,255,136,0.03);
+            border-left: 5px solid var(--biolum-green);
+            overflow: hidden;
+        }
+
+        .read-aloud::before {
+            content: '📖 LEGGI AD ALTA VOCE';
+            position: absolute;
+            top: -12px;
+            left: 30px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--biolum-green);
+            background: var(--parchment);
+            padding: 4px 12px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+
+        .read-aloud::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="80" cy="20" r="1" fill="%2300ff88" opacity="0.2"/><circle cx="20" cy="80" r="0.5" fill="%2300ffcc" opacity="0.15"/></svg>');
+            background-size: 100px 100px;
+            pointer-events: none;
+        }
+
+        .read-aloud p {
+            font-family: 'IM Fell English', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            line-height: 1.9;
+            margin-bottom: 15px;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .read-aloud p:last-child { margin-bottom: 0; }
+
+        .read-aloud .prompt {
+            font-family: 'Cinzel', serif;
+            font-style: normal;
+            color: var(--biolum-cyan);
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0,255,136,0.3);
+            text-shadow: 0 0 10px var(--biolum-cyan);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           TENUTA CHECK - COSMIC
+        ═══════════════════════════════════════════════════════════════════════ */
+        .tenuta-check {
+            background: linear-gradient(135deg, rgba(107,58,140,0.2) 0%, rgba(107,58,140,0.05) 100%);
+            border: 2px solid var(--tentacle-purple);
+            border-radius: 12px;
+            padding: 25px 30px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tenuta-check::before {
+            content: '💀 PROVA DI TENUTA';
+            position: absolute;
+            top: -12px;
+            left: 25px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--tentacle-purple);
+            background: var(--parchment);
+            padding: 4px 12px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+
+        .tenuta-check .check-title {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            color: var(--tentacle-purple);
+            margin-bottom: 10px;
+        }
+
+        .tenuta-results {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .tenuta-result {
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .tenuta-result.success {
+            background: rgba(0,255,136,0.1);
+            border-left: 3px solid var(--biolum-green);
+        }
+
+        .tenuta-result.fail {
+            background: rgba(139,0,0,0.1);
+            border-left: 3px solid var(--blood-red);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           CREATURE BLOCK - OCEANIC HORROR
+        ═══════════════════════════════════════════════════════════════════════ */
+        .creature-block {
+            background: linear-gradient(145deg, var(--parchment) 0%, var(--parchment-dark) 100%);
+            border: 3px solid var(--ocean-blue);
+            border-radius: 14px;
+            padding: 0;
+            margin: 35px 0;
+            overflow: hidden;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.2), 0 0 20px rgba(42,90,140,0.1);
+        }
+
+        .creature-block.cosmic {
+            border-color: var(--tentacle-purple);
+            box-shadow: 0 6px 30px rgba(0,0,0,0.3), 0 0 30px rgba(107,58,140,0.2);
+        }
+
+        .creature-header {
+            background: linear-gradient(90deg, var(--ocean-blue), var(--ocean-medium));
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .creature-block.cosmic .creature-header {
+            background: linear-gradient(90deg, var(--tentacle-purple), #8a4aac);
+        }
+
+        .creature-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .creature-type {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.8);
+            background: rgba(0,0,0,0.2);
+            padding: 4px 10px;
+            border-radius: 10px;
+        }
+
+        .creature-body { padding: 25px; }
+
+        .creature-stats {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(42,90,140,0.3);
+        }
+
+        .creature-stat {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.85rem;
+            background: rgba(42,90,140,0.1);
+            padding: 6px 12px;
+            border-radius: 5px;
+        }
+
+        .creature-stat strong { color: var(--ocean-blue); }
+
+        .creature-block.cosmic .creature-stat strong { color: var(--tentacle-purple); }
+
+        .creature-section { margin-top: 15px; }
+
+        .creature-section h5 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--ocean-blue);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .creature-block.cosmic .creature-section h5 { color: var(--tentacle-purple); }
+
+        .creature-section ul { margin: 0; padding-left: 20px; }
+        .creature-section li { margin: 6px 0; font-size: 0.95rem; }
+
+        .creature-note {
+            background: rgba(0,255,136,0.08);
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--biolum-green);
+        }
+
+        .creature-phases {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px dashed rgba(107,58,140,0.3);
+        }
+
+        .creature-phases h5 {
+            color: var(--tentacle-purple);
+            margin-bottom: 15px;
+        }
+
+        .phase-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .phase-badge {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.75rem;
+            padding: 5px 12px;
+            border-radius: 15px;
+            white-space: nowrap;
+        }
+
+        .phase-badge.phase1 { background: var(--ocean-light); color: white; }
+        .phase-badge.phase2 { background: var(--ocean-blue); color: white; }
+        .phase-badge.phase3 { background: var(--tentacle-purple); color: white; }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           LOCATION CARDS - UNDERWATER
+        ═══════════════════════════════════════════════════════════════════════ */
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 35px 0;
+        }
+
+        .location-card {
+            background: var(--parchment);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            border-top: 4px solid var(--ocean-medium);
+            transition: all 0.3s ease;
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(42,90,140,0.2);
+        }
+
+        .location-card.underwater {
+            border-top-color: var(--biolum-green);
+        }
+
+        .location-card.cosmic {
+            border-top-color: var(--tentacle-purple);
+        }
+
+        .location-card-header {
+            padding: 18px 20px;
+            background: rgba(42,90,140,0.1);
+            border-bottom: 1px solid rgba(42,90,140,0.15);
+        }
+
+        .location-card.underwater .location-card-header {
+            background: rgba(0,255,136,0.08);
+        }
+
+        .location-card.cosmic .location-card-header {
+            background: rgba(107,58,140,0.1);
+        }
+
+        .location-card-header h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--brown-dark);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .location-card-body { padding: 20px; }
+
+        .location-card-body p {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            font-style: italic;
+            color: var(--brown-medium);
+        }
+
+        .location-card-body ul { margin: 0; padding-left: 18px; }
+        .location-card-body li { font-size: 0.85rem; margin: 5px 0; }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           EPILOGUE CARDS - OCEANIC FATE
+        ═══════════════════════════════════════════════════════════════════════ */
+        .epilogue-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .epilogue-card {
+            background: var(--parchment);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+        }
+
+        .epilogue-card.sealed .epilogue-header { background: linear-gradient(90deg, var(--ocean-blue), var(--ocean-medium)); }
+        .epilogue-card.pyrrhic .epilogue-header { background: linear-gradient(90deg, var(--blood-red), #aa2020); }
+        .epilogue-card.escape .epilogue-header { background: linear-gradient(90deg, var(--gold), #e4b027); }
+        .epilogue-card.sacrifice .epilogue-header { background: linear-gradient(90deg, var(--tentacle-purple), #8a4aac); }
+        .epilogue-card.damnation .epilogue-header { background: linear-gradient(90deg, #1a1a1a, #3a3a3a); }
+
+        .epilogue-header {
+            padding: 20px 25px;
+            color: white;
+        }
+
+        .epilogue-header h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .epilogue-header small {
+            display: block;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .epilogue-body { padding: 25px; }
+        .epilogue-body p { font-size: 0.95rem; margin-bottom: 15px; }
+
+        .epilogue-reward {
+            background: rgba(212,160,23,0.1);
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            border-left: 3px solid var(--gold);
+        }
+
+        .epilogue-reward strong { color: var(--gold); }
+
+        /* Full width epilogue */
+        .epilogue-card.full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           NPC CARDS
+        ═══════════════════════════════════════════════════════════════════════ */
+        .npc-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 35px 0;
+        }
+
+        .npc-card {
+            background: var(--parchment);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 2px solid var(--brown-light);
+        }
+
+        .npc-header {
+            background: linear-gradient(90deg, var(--brown-dark), var(--brown-medium));
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .npc-icon { font-size: 2rem; }
+
+        .npc-name {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        .npc-role {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.65rem;
+            color: var(--parchment);
+            opacity: 0.8;
+        }
+
+        .npc-body { padding: 20px; }
+
+        .npc-description {
+            font-style: italic;
+            color: var(--brown-medium);
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+
+        .npc-stats {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.8rem;
+            color: var(--brown-dark);
+            background: rgba(0,0,0,0.05);
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           CHOICE GRID
+        ═══════════════════════════════════════════════════════════════════════ */
+        .choice-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .choice-card {
+            background: var(--parchment);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 2px solid var(--brown-light);
+            transition: all 0.3s ease;
+        }
+
+        .choice-card:hover {
+            transform: scale(1.02);
+            border-color: var(--gold);
+        }
+
+        .choice-card-header {
+            padding: 15px 20px;
+            background: linear-gradient(90deg, var(--brown-dark), var(--brown-medium));
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .choice-card-body { padding: 20px; }
+
+        .choice-requirements {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.8rem;
+            color: var(--brown-dark);
+            margin-bottom: 10px;
+        }
+
+        .choice-risks {
+            font-size: 0.85rem;
+            color: var(--blood-red);
+            margin-bottom: 10px;
+        }
+
+        .choice-outcome {
+            font-size: 0.85rem;
+            padding: 8px 12px;
+            background: rgba(212,160,23,0.1);
+            border-radius: 5px;
+            border-left: 3px solid var(--gold);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           TUNNEL MAP
+        ═══════════════════════════════════════════════════════════════════════ */
+        .tunnel-map {
+            background: linear-gradient(180deg, var(--abyss-dark) 0%, #020508 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tunnel-map::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="40" r="1" fill="%2300ff88" opacity="0.2"/><circle cx="70" cy="70" r="0.5" fill="%2300ffcc" opacity="0.15"/></svg>');
+            background-size: 100px 100px;
+        }
+
+        .tunnel-map h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--biolum-cyan);
+            text-align: center;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px var(--biolum-cyan);
+            position: relative;
+        }
+
+        .tunnel-sequence {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .tunnel-sequence::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 60px;
+            right: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--ocean-light), var(--ocean-blue), var(--tentacle-purple), var(--biolum-green));
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+
+        .tunnel-node {
+            width: 100px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tunnel-node-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--abyss-dark);
+            border: 3px solid var(--ocean-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 10px;
+            transition: all 0.3s ease;
+        }
+
+        .tunnel-node:hover .tunnel-node-icon {
+            border-color: var(--biolum-cyan);
+            box-shadow: 0 0 20px var(--biolum-cyan);
+        }
+
+        .tunnel-node-label {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.65rem;
+            color: var(--salt-white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           TYPOGRAPHY
+        ═══════════════════════════════════════════════════════════════════════ */
+        h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--ocean-blue);
+            margin: 45px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--ocean-medium);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            color: var(--brown-dark);
+            margin: 30px 0 15px;
+        }
+
+        p { margin-bottom: 16px; text-align: justify; }
+        strong { color: var(--brown-dark); }
+        em { font-style: italic; }
+
+        ul, ol { margin: 15px 0; padding-left: 25px; }
+        li { margin: 8px 0; }
+
+        .divider {
+            text-align: center;
+            margin: 60px 0;
+            color: var(--biolum-cyan);
+            font-size: 1.5rem;
+            letter-spacing: 15px;
+            opacity: 0.6;
+            text-shadow: 0 0 20px var(--biolum-cyan);
+        }
+
+        /* GM Tip */
+        .gm-tip {
+            background: linear-gradient(145deg, rgba(212,160,23,0.12) 0%, rgba(212,160,23,0.04) 100%);
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 25px 30px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .gm-tip::before {
+            content: '💡 CONSIGLIO GM';
+            position: absolute;
+            top: -12px;
+            left: 25px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--gold);
+            background: var(--parchment);
+            padding: 4px 12px;
+            border-radius: 4px;
+        }
+
+        .gm-tip p { margin: 0; }
+
+        /* Warning */
+        .warning-box {
+            background: linear-gradient(145deg, rgba(139,0,0,0.12) 0%, rgba(139,0,0,0.04) 100%);
+            border: 2px solid var(--blood-red);
+            border-radius: 10px;
+            padding: 25px 30px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .warning-box::before {
+            content: '⚠️ PERICOLO';
+            position: absolute;
+            top: -12px;
+            left: 25px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--blood-red);
+            background: var(--parchment);
+            padding: 4px 12px;
+            border-radius: 4px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           TABLES
+        ═══════════════════════════════════════════════════════════════════════ */
+        .table-container {
+            margin: 30px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--parchment);
+        }
+
+        thead {
+            background: linear-gradient(180deg, var(--ocean-blue) 0%, var(--ocean-medium) 100%);
+        }
+
+        th {
+            font-family: 'Cinzel', serif;
+            color: var(--salt-white);
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.75rem;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(42,90,140,0.12);
+            vertical-align: top;
+            font-size: 0.95rem;
+        }
+
+        tbody tr:nth-child(even) { background: var(--parchment-dark); }
+        tbody tr:hover { background: rgba(42,90,140,0.08); }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════════════════════════════════════ */
+        footer {
+            background: 
+                radial-gradient(ellipse at center top, rgba(0,255,136,0.1) 0%, transparent 50%),
+                linear-gradient(180deg, var(--abyss-dark) 0%, #020508 100%);
+            color: var(--salt-white);
+            padding: 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="50" cy="100" r="2" fill="%2300ff88" opacity="0.3"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="4s" repeatCount="indefinite"/></circle><circle cx="150" cy="50" r="1.5" fill="%2300ffcc" opacity="0.2"><animate attributeName="opacity" values="0.2;0.5;0.2" dur="3s" repeatCount="indefinite"/></circle></svg>');
+            background-size: 200px 200px;
+        }
+
+        footer .brand {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--biolum-cyan);
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px var(--biolum-cyan);
+            position: relative;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            text-align: center;
+            position: relative;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════════════════════════════════════ */
+        @media (max-width: 1100px) {
+            nav { width: 240px; }
+            main { margin-left: 240px; }
+            .depth-indicator { display: none; }
+        }
+
+        @media (max-width: 900px) {
+            .location-grid, .epilogue-grid, .npc-grid, .choice-grid { grid-template-columns: 1fr; }
+            .tenuta-results { grid-template-columns: 1fr; }
+            .tunnel-sequence { flex-direction: column; gap: 30px; }
+            .tunnel-sequence::before { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            nav { display: none; }
+            main { margin-left: 0; }
+            .content-wrapper { padding: 40px 25px; }
+            .act-header { margin: 0 -25px; padding: 60px 25px; }
+            .volume-hero h1 { font-size: 2rem; }
+            .volume-hero-stats { flex-direction: column; gap: 15px; }
+            .epilogue-card.full-width { grid-column: auto; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-header">
+            <h1>GUNSMOKE & DREAD</h1>
+            <div class="subtitle">Parte III</div>
+            <div class="volume-badge">🌊 Volume II</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">🏜️ Atto I</div>
+            <a href="#atto1">Occhio Asciutto</a>
+            <a href="#arrivo" class="sub">Arrivo in Città</a>
+            <a href="#luoghi" class="sub">Luoghi Principali</a>
+            <a href="#primo-orrore" class="sub">Primo Orrore</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">🕳️ Atto II</div>
+            <a href="#atto2">Il Pozzo</a>
+            <a href="#discesa" class="sub">La Discesa</a>
+            <a href="#tunnel" class="sub">I Tunnel Sommersi</a>
+            <a href="#nido" class="sub">Il Nido degli Ibridi</a>
+            <a href="#citta" class="sub">La Città Sommersa</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">🐙 Atto III</div>
+            <a href="#atto3">Confronto Finale</a>
+            <a href="#abisso" class="sub">L'Abisso Centrale</a>
+            <a href="#guardiano" class="sub">Il Guardiano</a>
+            <a href="#opzioni" class="sub">Le 4 Opzioni</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">📜 Finali</div>
+            <a href="#epiloghi">I 5 Epiloghi</a>
+            <a href="#png">PNG Principali</a>
+        </div>
+    </nav>
+
+    <!-- Depth Indicator (floating) -->
+    <div class="depth-indicator">
+        <a href="#atto1" class="depth-marker" title="Superficie">🏜️</a>
+        <a href="#discesa" class="depth-marker" title="50m">1</a>
+        <a href="#tunnel" class="depth-marker" title="150m">2</a>
+        <a href="#citta" class="depth-marker" title="Abisso">🌊</a>
+        <a href="#guardiano" class="depth-marker" title="Guardiano">🐙</a>
+    </div>
+
+    <main>
+        <!-- Volume Hero -->
+        <section class="volume-hero">
+            <div class="volume-number">Volume II</div>
+            <h1>DOVE L'OCEANO<br>INCONTRA LA POLVERE</h1>
+            <p class="tagline">Il Deserto Ricorda • L'Oceano Chiama • Il Serpente Attende</p>
+            <div class="location">Arizona, Marzo 1886 — Sei mesi dopo Silver Hollow</div>
+            <div class="ocean-icon">🌊</div>
+            <div class="volume-hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">3</div>
+                    <div class="hero-stat-label">Atti</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">12-18</div>
+                    <div class="hero-stat-label">Ore di Gioco</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">Liv. 3→5</div>
+                    <div class="hero-stat-label">Progressione</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">5</div>
+                    <div class="hero-stat-label">Epiloghi</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Introduction -->
+        <div class="content-wrapper">
+            <h3>🌊 Premessa</h3>
+            <p>Sei mesi dopo gli eventi di Silver Hollow (Volume I), i PG sono chiamati in Arizona per investigare la scomparsa di un team di geometri ferroviari nel deserto presso <strong>Occhio Asciutto</strong>.</p>
+
+            <p>Quello che trovano è un antico pozzo che scende nelle profondità della terra — e un segreto terrificante: <em>milioni di anni fa, questo deserto era il fondo di un oceano alieno</em>, e qualcosa giace ancora dormiente nelle sue rovine sommerse.</p>
+
+            <div class="warning-box">
+                <p><strong>Contenuto 18+:</strong> Orrore Corporeo Intenso (trasformazioni, mutazioni) • Claustrofobia (tunnel stretti, buio, acqua) • Violenza Grafica • Orrore Psicologico • Temi Nichilisti (insignificanza cosmica)</p>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tema</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>⏳ Tempo Profondo</strong></td><td>Scale temporali incomprensibili (milioni di anni)</td></tr>
+                        <tr><td><strong>🌊 Inversione Oceanica</strong></td><td>Oceano antico nel deserto moderno (straniamento)</td></tr>
+                        <tr><td><strong>🏛️ Archeologia Aliena</strong></td><td>Civiltà che precedevano l'umanità</td></tr>
+                        <tr><td><strong>🧬 Orrore Corporeo</strong></td><td>Trasformazione in creature marine ibride</td></tr>
+                        <tr><td><strong>🔬 Claustrofobia</strong></td><td>Tunnel sotterranei, pressione, buio totale</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>🎣 L'Aggancio</h4>
+            <div class="telegram-box">
+                <p>STOP NECESSITO ASSISTENZA IMMEDIATA STOP TEAM GEOMETRI SCOMPARSO OCCHIO ASCIUTTO ARIZONA STOP TROVATO POZZO ANTICO PROFONDITÀ SCONOSCIUTA STOP STRANI SUONI DAL SOTTOSUOLO STOP POPOLAZIONE AGITATA PARLA DI MALEDIZIONI STOP PAGO BENE ARRIVATE PRESTO STOP</p>
+                <p class="signature">— CORNELIUS BRANDT, Ingegnere Southern Pacific<br>Allegato: Assegno $200 anticipo. Altri $300 alla risoluzione.</p>
+            </div>
+
+            <div class="gm-tip">
+                <p><strong>Agganci Personalizzati:</strong><br>
+                🔫 <strong>Jack:</strong> Tommy Garrett, figlio del vecchio marshal, è tra gli scomparsi — quasi un fratello per te.<br>
+                ✝️ <strong>Sarah:</strong> Lettera da Padre Miguel: "Qualcosa di profano si sta svegliando. La mia fede vacilla."<br>
+                🔬 <strong>Doc:</strong> Campione geologico impossibile — roccia marina di 500+ milioni di anni con incisioni artificiali.</p>
+            </div>
+        </div>
+
+        <!-- ACT I -->
+        <div class="act-header act1" id="atto1">
+            <div class="act-icon">🏜️</div>
+            <div class="act-number">Atto I</div>
+            <h2>OCCHIO ASCIUTTO</h2>
+            <p class="act-subtitle">Investigazione, interazione con i PNG, primi segnali dell'orrore</p>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="read-aloud" id="arrivo">
+                <p>Il treno rallenta avvicinandosi a Occhio Asciutto. Non c'è una vera stazione — solo una piattaforma di legno marcio e un cartello sbiadito. La "città" è una fila di edifici in legno semidistrutti lungo una strada polverosa.</p>
+                <p>Ma quello che colpisce è il silenzio. Nessun cane abbaia. Nessun bambino gioca. Le poche persone visibili ti guardano con occhi vuoti, poi distolgono lo sguardo velocemente.</p>
+                <p>E c'è un odore. <strong>Salmastro. Di sale e decomposizione.</strong> Impossibile — l'oceano è a 500 chilometri da qui.</p>
+                <p class="prompt">Cosa volete fare?</p>
+            </div>
+
+            <h3 id="luoghi">🗺️ Luoghi Principali</h3>
+
+            <div class="location-grid">
+                <div class="location-card">
+                    <div class="location-card-header">
+                        <h4>🍺 Saloon del Pozzo Asciutto</h4>
+                    </div>
+                    <div class="location-card-body">
+                        <p>Proprietario: Silas Morrow (60, barista cinico)</p>
+                        <ul>
+                            <li>I geometri sono scomparsi 3 giorni fa</li>
+                            <li>Erano accampati vicino a "l'Occhio" (il pozzo)</li>
+                            <li>Tommy tornava ogni sera, beveva troppo</li>
+                            <li>Mormorava di "città sotto la sabbia"</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="location-card">
+                    <div class="location-card-header">
+                        <h4>⛪ Vecchia Missione Spagnola</h4>
+                    </div>
+                    <div class="location-card-body">
+                        <p>Proprietario: Padre Miguel Santos (45, esausto)</p>
+                        <ul>
+                            <li>Il crocifisso si gira da solo (capovolto)</li>
+                            <li>Incubi collettivi: "città di pietra nera sott'acqua"</li>
+                            <li>3 persone scomparse nell'ultimo mese</li>
+                            <li>Diario del 1780: "templo del serpiente bajo las dunas"</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="location-card">
+                    <div class="location-card-header">
+                        <h4>🏭 Accampamento Ferrovia</h4>
+                    </div>
+                    <div class="location-card-body">
+                        <p>Proprietario: Cornelius Brandt (52, nervoso)</p>
+                        <ul>
+                            <li>Mappe dettagliate con anomalia geologica massiva</li>
+                            <li>Ultimo telegramma da Tommy:</li>
+                            <li><em>"CITTÀ INTERA QUI SOTTO. STIAMO SCENDENDO. DIO È MORTO QUI."</em></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="location-card underwater">
+                    <div class="location-card-header">
+                        <h4>👁️ L'Occhio (Il Pozzo)</h4>
+                    </div>
+                    <div class="location-card-body">
+                        <p>A 2 ore di cammino nel deserto</p>
+                        <ul>
+                            <li>Pozzo perfettamente circolare, 10m di diametro</li>
+                            <li>Bordi di pietra nera levigata — chiaramente artificiale</li>
+                            <li>Buio totale. Acqua a centinaia di metri</li>
+                            <li>Si sente... il suono di onde. Nel deserto.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="primo-orrore">🌙 Primo Orrore — Attacco Notturno</h3>
+            <p>Prima notte a Occhio Asciutto. I PG dormono al saloon o all'accampamento. Verso le 3 del mattino...</p>
+
+            <div class="read-aloud">
+                <p>Ti svegli improvvisamente. Non per un rumore — per un <em>silenzio</em>. Il vento del deserto si è fermato. Completamente. L'aria è pesante, umida. Senti un odore di sale intenso.</p>
+                <p>Poi... un grido. Acuto, disperato. Viene dalla strada.</p>
+                <p class="prompt">Cosa volete fare?</p>
+            </div>
+
+            <p>Se i PG escono, vedono una figura nel buio. È <strong>Peter Walsh</strong>, uno dei geometri scomparsi. Ma è... <em>cambiato</em>.</p>
+
+            <div class="creature-block">
+                <div class="creature-header">
+                    <div class="creature-name">👹 Peter Walsh — Ibrido Iniziale</div>
+                    <div class="creature-type">Aberrazione</div>
+                </div>
+                <div class="creature-body">
+                    <div class="creature-stats">
+                        <div class="creature-stat"><strong>HP:</strong> 8</div>
+                        <div class="creature-stat"><strong>Armor:</strong> 2 (pelle coriacea)</div>
+                        <div class="creature-stat"><strong>Velocità:</strong> Veloce (acquatico)</div>
+                        <div class="creature-stat"><strong>Difficoltà:</strong> 14</div>
+                    </div>
+                    <div class="creature-section">
+                        <h5>⚔️ Attacchi</h5>
+                        <ul>
+                            <li><strong>Artigli:</strong> +6, 2d6+3 physical</li>
+                            <li><strong>Morso:</strong> +6, 1d10+3 physical + veleno marino (Strength 13 o Poisoned 1 min)</li>
+                        </ul>
+                    </div>
+                    <div class="creature-section">
+                        <h5>✨ Abilità</h5>
+                        <ul>
+                            <li><strong>Pelle Scivolosa:</strong> -1d6 per afferrarlo/lottare</li>
+                            <li><strong>Rigenerazione:</strong> Recupera 5 HP a inizio azione se in contatto con acqua</li>
+                            <li><strong>Grido Ultrasonico (1/comb):</strong> Tutti entro Close, Strength 14 o Stunned 1 azione</li>
+                        </ul>
+                    </div>
+                    <div class="creature-note">
+                        💡 <strong>Descrizione:</strong> Ancora vagamente umano. Pelle verde-grigia, dita palmate, branchie sul collo, occhi completamente neri. Non parla, emette suoni gorgoglianti. Cerca di trascinare un PG verso il Pozzo.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tenuta-check">
+                <div class="check-title">Vedere l'Ibrido — Istinto difficoltà 14</div>
+                <div class="tenuta-results">
+                    <div class="tenuta-result success">
+                        <strong>Successo:</strong> 1 segmento (inquietante ma gestibile)
+                    </div>
+                    <div class="tenuta-result fail">
+                        <strong>Fallimento:</strong> 2 segmenti (questo era un uomo 3 giorni fa!)<br>
+                        🔗 Se un PG conosce Peter/Tommy: +1 segmento extra
+                    </div>
+                </div>
+            </div>
+
+            <div class="read-aloud">
+                <p>Silas commenta, esausto: <em>"Quinto questa settimana. Vengono tutti dal Pozzo. Dovevate sigillarlo quando ve l'ho detto."</em></p>
+                <p>Brandt è terrorizzato — offre di raddoppiare la paga (<strong>$600 totali</strong>) se i PG "risolvono questo SUBITO".</p>
+            </div>
+
+            <div class="divider">🌊 ═══ FINE ATTO I ═══ 🌊</div>
+        </div>
+
+        <!-- ACT II -->
+        <div class="act-header act2" id="atto2">
+            <div class="act-icon">🕳️</div>
+            <div class="act-number">Atto II</div>
+            <h2>IL POZZO</h2>
+            <p class="act-subtitle">Discesa, esplorazione dei tunnel, scoperta della città sommersa</p>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="read-aloud" id="discesa">
+                <p>Camminate 2 ore nel deserto seguendo le mappe di Brandt. Il sole sta sorgendo quando finalmente lo vedete: <strong>L'OCCHIO</strong>.</p>
+                <p>È un pozzo perfettamente circolare, 10 metri di diametro. I bordi sono fatti di pietra nera levigata — chiaramente artificiale, ma lo stile è... <em>alieno</em>. Nessuna cultura umana conosciuta costruisce così.</p>
+                <p>Guardi dentro. Buio totale. Lasci cadere una pietra. Conti... 1... 2... 3... 4... 5... e finalmente, distante, senti uno <strong>splash</strong>. C'è acqua là sotto. A centinaia di metri di profondità.</p>
+                <p>E senti... un suono. Basso. Ritmico. Come... respirazione? No. <strong>Onde. Il suono di onde che si infrangono.</strong> Ma siamo in mezzo al deserto.</p>
+                <p class="prompt">Cosa volete fare?</p>
+            </div>
+
+            <h4>🎒 Equipaggiamento da Brandt</h4>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Oggetto</th>
+                            <th>Quantità</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Corde robuste</td><td>300 metri</td><td>Sistema di discesa completo</td></tr>
+                        <tr><td>Lanterne a olio</td><td>6</td><td>4 ore ciascuna</td></tr>
+                        <tr><td>Dinamite</td><td>6 candelotti</td><td>Per emergenze</td></tr>
+                        <tr><td>Mappa parziale</td><td>1</td><td>Tunnel superiori mappati dai geometri</td></tr>
+                        <tr><td>Segnali</td><td>Fischietto + 2 razzi</td><td>Comunicazione</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>⬇️ La Discesa — Fasi</h3>
+
+            <div class="descent-tracker">
+                <h4>📍 Profondità del Pozzo</h4>
+                <div class="descent-phases">
+                    <div class="descent-phase">
+                        <div class="phase-marker surface">
+                            <span>🏜️</span>
+                            <span class="depth">0m</span>
+                        </div>
+                        <div class="phase-content">
+                            <h5>Fase 1: Pozzo Verticale (0-50m)</h5>
+                            <p>Pareti lisce di pietra nera. Ogni 10 metri, incisioni — simboli spiraliformi che sembrano muoversi alla luce della lanterna. L'aria diventa più fredda, umida.</p>
+                            <div class="check">📋 Prova di Agility (10) • 💀 Tenuta: 0</div>
+                        </div>
+                    </div>
+                    <div class="descent-phase">
+                        <div class="phase-marker transition">
+                            <span>💧</span>
+                            <span class="depth">50m</span>
+                        </div>
+                        <div class="phase-content">
+                            <h5>Fase 2: Zone di Transizione (50-150m)</h5>
+                            <p>Le pareti sono bagnate. L'acqua gocciola costantemente. A 100 metri: alcova con equipaggiamento dei geometri (zaini, corde) e <strong>sangue secco sulle pareti</strong>. Segni di lotta.</p>
+                            <div class="check">📋 Prova di Agility (12) • 💀 Tenuta: 1 segmento</div>
+                        </div>
+                    </div>
+                    <div class="descent-phase">
+                        <div class="phase-marker water">
+                            <span>🌊</span>
+                            <span class="depth">150m</span>
+                        </div>
+                        <div class="phase-content">
+                            <h5>Fase 3: Acqua (150m+)</h5>
+                            <p>Il pozzo si allarga. E poi... acqua. Fredda come ghiaccio. <strong>Salata. Molto salata. Come... oceano.</strong> Sott'acqua, a 3 metri di profondità, un'apertura orizzontale — l'unica via.</p>
+                            <div class="check">📋 Prova di Strength (13) • 💀 Tenuta: 2 segmenti (claustrofobia)</div>
+                        </div>
+                    </div>
+                    <div class="descent-phase">
+                        <div class="phase-marker abyss">
+                            <span>🐙</span>
+                            <span class="depth">???</span>
+                        </div>
+                        <div class="phase-content">
+                            <h5>Fase 4: La Città Sommersa</h5>
+                            <p>Oltre i tunnel... l'impossibile. Una città di pietra nera, edifici alti 50+ metri, geometria non-euclidea. L'acqua pulsa come se fosse viva. E nell'oscurità, <strong>cose enormi si muovono</strong>.</p>
+                            <div class="check">📋 Vedi sotto • 💀 Tenuta: 3-5 segmenti</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>Pericolo: Annegamento</strong><br>
+                Se i PG falliscono le prove di nuoto o respiro:<br>
+                • 1° Fallimento: Panico, perdi 1 lanterna<br>
+                • 2° Fallimento: Inizio annegamento — 1d6 danni/azione<br>
+                • 3° Fallimento: Incosciente, morente (0 HP)</p>
+            </div>
+
+            <h3 id="tunnel">🗺️ I Tunnel Sommersi</h3>
+
+            <div class="tunnel-map">
+                <h4>📍 Mappa dei Tunnel — Sequenza</h4>
+                <div class="tunnel-sequence">
+                    <div class="tunnel-node">
+                        <div class="tunnel-node-icon">🚪</div>
+                        <div class="tunnel-node-label">A<br>Galleria<br>Ingresso</div>
+                    </div>
+                    <div class="tunnel-node">
+                        <div class="tunnel-node-icon">🔊</div>
+                        <div class="tunnel-node-label">B<br>Sala<br>degli Echi</div>
+                    </div>
+                    <div class="tunnel-node">
+                        <div class="tunnel-node-icon">⚠️</div>
+                        <div class="tunnel-node-label">C<br>Corridoi<br>Crollati</div>
+                    </div>
+                    <div class="tunnel-node">
+                        <div class="tunnel-node-icon">🥚</div>
+                        <div class="tunnel-node-label">D<br>Nido<br>Ibridi</div>
+                    </div>
+                    <div class="tunnel-node">
+                        <div class="tunnel-node-icon">🏛️</div>
+                        <div class="tunnel-node-label">E<br>Porta<br>della Città</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="read-aloud">
+                <p>Emergi dall'immersione in un tunnel orizzontale largo 4 metri, alto 3. Acqua salata fino alla vita. Una leggera corrente ti spinge verso l'interno — come se il tunnel stesse <em>"respirando"</em> verso dentro.</p>
+                <p>Le pareti sono della stessa pietra nera del pozzo — levigata, con incisioni spiraliformi. Ogni 10 metri, pilastri decorativi scolpiti con forme che ricordano vita marina: tentacoli, conchiglie, creature ibride.</p>
+                <p><strong>Silenzio totale</strong> tranne il gocciolio costante e il tuo respiro che echeggia.</p>
+            </div>
+
+            <h4>📍 Area B: Sala degli Echi</h4>
+            <p>Camera naturale 30m diametro, soffitto 50+ metri. <strong>Quando parli, la voce echeggia 7 volte. Sempre 7. Gli echi dicono cose diverse...</strong></p>
+            <ul>
+                <li>Obelisco nero al centro (5m), coperto di incisioni</li>
+                <li>Scheletri umani alla base (pre-colombiani?)</li>
+                <li><strong>Knowledge 15:</strong> Le incisioni sono una mappa stellare di 500 milioni di anni fa</li>
+                <li><strong>Knowledge 18:</strong> Una "stella" è un pianeta in rotta verso la Terra. Predizione? Avvertimento? <em>Chiamata?</em></li>
+            </ul>
+
+            <h4 id="nido">📍 Area D: Nido degli Ibridi</h4>
+            <p>Camera circolare 15m, acqua alla vita, pareti coperte di muco bioluminescente.</p>
+
+            <div class="read-aloud">
+                <p><strong>UOVA:</strong> Sacche traslucide grandi come angurie, attaccate alle pareti. Forme che si muovono dentro.</p>
+                <p>Al centro: 3 figure completamente trasformate — i geometri.</p>
+            </div>
+
+            <div class="creature-block">
+                <div class="creature-header">
+                    <div class="creature-name">👹 Ibridi Avanzati (3×)</div>
+                    <div class="creature-type">Aberrazione</div>
+                </div>
+                <div class="creature-body">
+                    <div class="creature-stats">
+                        <div class="creature-stat"><strong>HP:</strong> 10</div>
+                        <div class="creature-stat"><strong>Armor:</strong> 3 (scaglie)</div>
+                        <div class="creature-stat"><strong>Velocità:</strong> Molto Veloce (acqua)</div>
+                        <div class="creature-stat"><strong>Difficoltà:</strong> 15</div>
+                    </div>
+                    <div class="creature-section">
+                        <h5>⚔️ Attacchi</h5>
+                        <ul>
+                            <li><strong>Artigli:</strong> +7, 2d6+4 physical</li>
+                            <li><strong>Morso:</strong> +7, 2d8+4 physical + Veleno Paralizzante (Strength 14 o Restrained 1d4 azioni)</li>
+                        </ul>
+                    </div>
+                    <div class="creature-section">
+                        <h5>✨ Abilità</h5>
+                        <ul>
+                            <li><strong>Anfibi Perfetti:</strong> Respirano aria e acqua. +1d6 a tutte le prove in acqua</li>
+                            <li><strong>Rigenerazione Marina:</strong> A inizio azione, se in acqua, recupera 8 HP</li>
+                            <li><strong>Invisibilità Acquatica:</strong> Se sommersi, -1d6 per vederli</li>
+                            <li><strong>Tattiche di Branco:</strong> +1d6 se 2+ ibridi adiacenti allo stesso bersaglio</li>
+                            <li><strong>Grido Ultrasonico Potenziato (1/comb):</strong> Tutti entro Close, Strength 15 o Stunned 2 azioni + 2d6 sonici</li>
+                        </ul>
+                    </div>
+                    <div class="creature-note">
+                        💡 <strong>Tattica:</strong> 1-2 emergono per attacco diretto, 1 rimane sommerso per attacchi a sorpresa alle gambe.
+                    </div>
+                </div>
+            </div>
+
+            <div class="gm-tip">
+                <p><strong>🔫 Tommy Garrett — Se Jack è nel gruppo:</strong><br>
+                "L'ibrido ti guarda. Per un secondo — solo un secondo — vedi riconoscimento negli occhi neri. La bocca si apre, tenta di parlare... ma esce solo un gorgoglio. Poi l'intelligenza svanisce. Torna pura predazione. Si lancia."<br>
+                <em>Jack: Instinct 16 o +2 segmenti. Se Jack uccide Tommy personalmente, +1 segmento extra dopo.</em></p>
+            </div>
+
+            <h3 id="citta">🏛️ La Città Sommersa</h3>
+
+            <div class="read-aloud">
+                <p>Il tunnel si apre improvvisamente. Emergi in... <strong>spazio aperto</strong>. Impossibile. Sei a centinaia di metri sottoterra, ma...</p>
+                <p>...c'è una <strong>CITTÀ</strong> qui. Pietra nera, edifici impossibilmente alti (50+ metri), con geometria che fa male agli occhi guardare. Angoli che sembrano avere più di 90 gradi. Superfici che riflettono la luce in modi che contraddicono la fisica.</p>
+                <p>E l'acqua. Metà della città è sommersa — ma l'acqua non si muove come dovrebbe. Sta... <strong>pulsando</strong>. Come se fosse viva.</p>
+                <p>E puoi vedere, illuminato da fosforescenza aliena, che ci sono... <em>cose</em> nell'acqua. Grandi. Antiche. Dormienti.</p>
+                <p><strong>Questo è il fondo di un oceano preumano. E questa città era qui quando l'umanità non esisteva ancora.</strong></p>
+                <p class="prompt">Cosa volete fare?</p>
+            </div>
+
+            <div class="tenuta-check">
+                <div class="check-title">Vedere la Città Sommersa — Istinto difficoltà 16</div>
+                <div class="tenuta-results">
+                    <div class="tenuta-result success">
+                        <strong>Successo:</strong> 3 segmenti (incomprensibilità della scala)
+                    </div>
+                    <div class="tenuta-result fail">
+                        <strong>Fallimento:</strong> 5 segmenti (collasso concettuale — capisci l'insignificanza dell'umanità)<br>
+                        <strong>Fallimento Grave:</strong> Tenuta piena automaticamente + Conseguenza immediata
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider">🐙 ═══ FINE ATTO II ═══ 🐙</div>
+        </div>
+
+        <!-- ACT III -->
+        <div class="act-header act3" id="atto3">
+            <div class="act-icon">🐙</div>
+            <div class="act-number">Atto III</div>
+            <h2>CONFRONTO FINALE</h2>
+            <p class="act-subtitle">L'Abisso Centrale e ciò che dorme là</p>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="read-aloud" id="abisso">
+                <p>Al centro della città, nascosto dietro il Tempio: un secondo pozzo. Ma questo è... <em>diverso</em>. Più antico. Più profondo.</p>
+                <p>Il bordo del pozzo è circondato da pilastri monumentali (12, ciascuno alto 15m) con catene metalliche che scendono nell'abisso. <strong>Le catene vibrano. Leggermente.</strong> Come se qualcosa, molto sotto, stesse... respirando.</p>
+                <p>Guardi giù. La bioluminescenza mostra... movimento. Forme enormi. Tentacoli? Serpenti? È impossibile dire — sono troppo grandi per comprenderne la scala.</p>
+                <p><strong>Questo è dove dorme il GUARDIANO.</strong></p>
+                <p class="prompt">Cosa volete fare?</p>
+            </div>
+
+            <h3 id="opzioni">🎭 Le Quattro Opzioni</h3>
+
+            <div class="choice-grid">
+                <div class="choice-card">
+                    <div class="choice-card-header">💣 Opzione 1: Sigillare l'Abisso</div>
+                    <div class="choice-card-body">
+                        <div class="choice-requirements">📋 6 candelotti dinamite + Knowledge 15 + Agility 14 per uscire</div>
+                        <div class="choice-risks">⚠️ Il Guardiano sente i preparativi — può attaccare PRIMA</div>
+                        <div class="choice-outcome">📜 Esito: Epilogo A — Sigillato</div>
+                    </div>
+                </div>
+                <div class="choice-card">
+                    <div class="choice-card-header">⚔️ Opzione 2: Risvegliare e Combattere</div>
+                    <div class="choice-card-body">
+                        <div class="choice-requirements">📋 Presence 16 per non fuggire + Scontro col boss</div>
+                        <div class="choice-risks">⚠️ Opzione quasi suicida. Il Guardiano NON può essere ucciso — solo ferito</div>
+                        <div class="choice-outcome">📜 Esito: Epilogo B — Vittoria Pirrica</div>
+                    </div>
+                </div>
+                <div class="choice-card">
+                    <div class="choice-card-header">🏃 Opzione 3: Fuga Immediata</div>
+                    <div class="choice-card-body">
+                        <div class="choice-requirements">📋 Sprint tunnel (Strength 12) + 2 incontri ibridi + risalita (Agility 13)</div>
+                        <div class="choice-risks">⚠️ Il Guardiano rimane dormiente... per ora. Tra 1d6 mesi, si sveglierà</div>
+                        <div class="choice-outcome">📜 Esito: Epilogo C — Fuga</div>
+                    </div>
+                </div>
+                <div class="choice-card">
+                    <div class="choice-card-header">✨ Opzione 4: Sacrificio Rituale</div>
+                    <div class="choice-card-body">
+                        <div class="choice-requirements">📋 1 PG accetta volontariamente + Rituale sull'altare (10 min)</div>
+                        <div class="choice-risks">⚠️ Morte permanente, nessuna resurrezione. Il sacrificato viene assorbito</div>
+                        <div class="choice-outcome">📜 Esito: Epilogo D — Sacrificio</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="guardiano">🐙 Il Guardiano — Grande Antico Minore</h3>
+
+            <div class="warning-box">
+                <p><strong>Questo NON è un combattimento "normale".</strong> Il Guardiano è un'entità semi-divina. Non può essere "ucciso", solo ferito abbastanza da costringerlo a ritornare in letargo. Obiettivo: ridurlo a 0 HP = ritorna dormiente per secoli.</p>
+            </div>
+
+            <div class="creature-block cosmic">
+                <div class="creature-header">
+                    <div class="creature-name">🐙 IL GUARDIANO</div>
+                    <div class="creature-type">Grande Antico Minore</div>
+                </div>
+                <div class="creature-body">
+                    <div class="creature-stats">
+                        <div class="creature-stat"><strong>HP:</strong> 25 (boss massivo)</div>
+                        <div class="creature-stat"><strong>Armor:</strong> 6</div>
+                        <div class="creature-stat"><strong>Velocità:</strong> Molto Veloce (acqua)</div>
+                        <div class="creature-stat"><strong>Azioni:</strong> 3/spotlight</div>
+                    </div>
+                    <div class="creature-section">
+                        <h5>⚔️ Attacchi</h5>
+                        <ul>
+                            <li><strong>Morso Colossale:</strong> +10, 4d10+8 physical, portata Close</li>
+                            <li><strong>Colpo di Tentacolo:</strong> +9, 3d8+6 physical, può afferrare (Strength 18)</li>
+                            <li><strong>Stritolamento:</strong> Se afferra, automaticamente 3d10 physical/azione + Soffocato</li>
+                            <li><strong>Spazzata di Coda:</strong> +10, tutti in linea Far: 3d12+8 physical + push + Prono</li>
+                        </ul>
+                    </div>
+                    <div class="creature-section">
+                        <h5>✨ Abilità Speciali</h5>
+                        <ul>
+                            <li><strong>Presenza Cosmica:</strong> Aura Molto Far — tutti -1d6 attacchi, -1d6 Tenuta, Presence 17 o Spaventati</li>
+                            <li><strong>Rigenerazione Divina:</strong> Recupera 25 HP/azione se in acqua</li>
+                            <li><strong>Pelle Aliena:</strong> Resistenza a danni physical normali. Vulnerable a fuoco/esplosivo (+50%)</li>
+                            <li><strong>Sguardo Folle (1 azione):</strong> Instinct 19 o +5 segmenti Tenuta + Confuso 1d4 azioni</li>
+                            <li><strong>Urlo Devastante (2 azioni):</strong> Strength 18 o 6d8 sonici + Stunned 3 azioni</li>
+                            <li><strong>Evoca Servitori (3 azioni, 1/comb):</strong> 2d4 Ibridi Avanzati emergono dall'acqua</li>
+                            <li><strong>Immortalità:</strong> A 0 HP, il corpo si dissolve. Essenza in letargo per 100-500 anni</li>
+                        </ul>
+                    </div>
+                    <div class="creature-phases">
+                        <h5>⚔️ Fasi di Combattimento</h5>
+                        <div class="phase-row">
+                            <span class="phase-badge phase1">HP 25-15</span>
+                            <span>Emerge lentamente, usa Sguardo Folle, attacca con tentacoli da distanza</span>
+                        </div>
+                        <div class="phase-row">
+                            <span class="phase-badge phase2">HP 15-8</span>
+                            <span>Arrabbiato, usa Urlo, Stritola più PG, Evoca Servitori</span>
+                        </div>
+                        <div class="phase-row">
+                            <span class="phase-badge phase3">HP &lt;8</span>
+                            <span>Ferito, si ritira verso l'acqua, attacchi disperati. A HP 2: tenta fuga nell'Abisso</span>
+                        </div>
+                    </div>
+                    <div class="creature-note">
+                        💡 <strong>Come renderlo vincibile:</strong><br>
+                        • <strong>Tomo Luminoso:</strong> Punto debole al centro massa — ignora Armor (Agility 16)<br>
+                        • <strong>Dinamite (6 candelotti):</strong> 18d6 fuoco × 1.5 = ~135 danni medi!<br>
+                        • <strong>Pilastri:</strong> Abbatterli (Strength 18) = 4d10 danni + Prono<br>
+                        • <strong>Fuori dall'acqua:</strong> Niente rigenerazione, movimento lento
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider">🐙 ═══════ 🐙 ═══════ 🐙</div>
+
+            <h3 id="epiloghi">📜 I Cinque Epiloghi Possibili</h3>
+
+            <div class="epilogue-grid">
+                <div class="epilogue-card sealed">
+                    <div class="epilogue-header">
+                        <h4>🌊 Epilogo A: Sigillato</h4>
+                        <small>Innesco: I PG sigillano l'Abisso con la dinamite</small>
+                    </div>
+                    <div class="epilogue-body">
+                        <p>L'esplosione echeggia. Correte mentre tutto crolla. Emergete nel deserto all'alba. Il pozzo è sparito — solo una depressione nella sabbia. Settimane dopo, Occhio Asciutto torna normale. Brandt paga per intero.</p>
+                        <p><em>Ma tu sai: là sotto, intrappolato ma non morto, il Guardiano dorme. E un giorno — forse tra 1000 anni — qualcuno scaverà abbastanza in profondità.</em></p>
+                        <div class="epilogue-reward">
+                            <strong>🎁 Ricompensa:</strong> Level Up completo. Reputazione come "Cacciatori di Mostri".
+                        </div>
+                    </div>
+                </div>
+
+                <div class="epilogue-card pyrrhic">
+                    <div class="epilogue-header">
+                        <h4>⚔️ Epilogo B: Vittoria Pirrica</h4>
+                        <small>Innesco: I PG sconfiggono il Guardiano in combattimento (0 HP)</small>
+                    </div>
+                    <div class="epilogue-body">
+                        <p>Con l'ultimo colpo, il Guardiano urla. Poi... si dissolve. Il corpo diventa acqua. Solo gli occhi — pietre preziose nere — affondano nell'abisso. Silenzio. La città è morta.</p>
+                        <p><em>Ma il costo... [Conta i PG morti]. E quelli sopravvissuti... Tenuta permanentemente ridotta di -2. Sognerete ancora. Sempre.</em></p>
+                        <div class="epilogue-reward">
+                            <strong>🎁 Ricompensa:</strong> Doppio Level Up. Leggenda: "Quelli che uccisero un dio". Ma la fama attira attenzione...
+                        </div>
+                    </div>
+                </div>
+
+                <div class="epilogue-card escape">
+                    <div class="epilogue-header">
+                        <h4>🏃 Epilogo C: Fuga</h4>
+                        <small>Innesco: I PG fuggono senza sigillare o combattere</small>
+                    </div>
+                    <div class="epilogue-body">
+                        <p>Corri. Non guardi indietro. Settimane dopo, Occhio Asciutto continua ad avere "problemi". 1-2 ibridi al mese.</p>
+                        <p><em>6 mesi dopo: leggi nei giornali di "Strani Eventi a Yuma", "Creature Marine a Tucson". Si sta espandendo. Hai comprato tempo. Ma non hai fermato niente.</em></p>
+                        <div class="epilogue-reward">
+                            <strong>🎁 Ricompensa:</strong> Milestone parziale. Aggancio per sequel. Il West sta cambiando...
+                        </div>
+                    </div>
+                </div>
+
+                <div class="epilogue-card sacrifice">
+                    <div class="epilogue-header">
+                        <h4>✨ Epilogo D: Sacrificio</h4>
+                        <small>Innesco: Un PG accetta il sacrificio rituale volontario</small>
+                    </div>
+                    <div class="epilogue-body">
+                        <p>[Nome] sale sull'altare. Guarda gli alleati. Sorride. <em>"Portatemi a casa. Un giorno."</em> Il Sacerdote canta. [Nome] si trasforma — non in mostro, ma in parte del Guardiano. La coscienza umana diventa sigillo vivente.</p>
+                        <p><em>100 anni dopo: Occhio Asciutto prospera. Nessuno ricorda. Ma sotto, una parte di [Nome] ancora vive. Dormiente. Guardiano. Eroe che nessuno ricorderà.</em></p>
+                        <div class="epilogue-reward">
+                            <strong>🎁 Ricompensa:</strong> Level Up + Eredità permanente. Il giocatore può creare un "discendente" con memoria ancestrale.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="epilogue-card damnation full-width">
+                    <div class="epilogue-header">
+                        <h4>💀 Epilogo E: Dannazione (Finale Negativo)</h4>
+                        <small>Innesco: I PG perdono lo scontro finale completamente</small>
+                    </div>
+                    <div class="epilogue-body">
+                        <p>Il Guardiano ti afferra. I tentacoli ti trascinano sott'acqua. E poi... il cambiamento. Non è doloroso. È <em>liberatorio</em>. Senti te stesso dissolversi. Riformarsi. Diventare perfetto.</p>
+                        <p><strong>Mesi dopo:</strong> Occhio Asciutto è una città fantasma. Il Guardiano controlla un network di ibridi. L'Arizona sta cadendo. E tu... sei uno di loro ora. <em>Felicemente.</em></p>
+                        <div class="epilogue-reward">
+                            <strong>🎁 Ricompensa:</strong> Nessun avanzamento — Campagna finita. Opzione: nuovi eroi devono fermare i vecchi PG (ora boss ibridi).
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider">🐙 ═══════ 🐙 ═══════ 🐙</div>
+
+            <h3 id="png">👥 PNG Principali — Riferimento Rapido</h3>
+
+            <div class="npc-grid">
+                <div class="npc-card">
+                    <div class="npc-header">
+                        <div class="npc-icon">👤</div>
+                        <div>
+                            <div class="npc-name">Cornelius Brandt</div>
+                            <div class="npc-role">Ingegnere Southern Pacific • Datore di lavoro</div>
+                        </div>
+                    </div>
+                    <div class="npc-body">
+                        <p class="npc-description">52 anni, calvo, baffi grigi, occhiaie profonde. Pragmatico, nervoso (ha visto troppo), generoso con la paga.</p>
+                        <div class="npc-stats">⚔️ HP 18, Armor 0, Revolver +3 (2d6)</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-header">
+                        <div class="npc-icon">⛪</div>
+                        <div>
+                            <div class="npc-name">Padre Miguel Santos</div>
+                            <div class="npc-role">Prete locale • Guida spirituale</div>
+                        </div>
+                    </div>
+                    <div class="npc-body">
+                        <p class="npc-description">45 anni, tonaca nera usurata, croce argentata. Fede testata ma resistente. 🔗 Conosce Sarah.</p>
+                        <div class="npc-stats">⚔️ HP 24, Armor 1, Benedizione</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-header">
+                        <div class="npc-icon">🍺</div>
+                        <div>
+                            <div class="npc-name">Silas Morrow</div>
+                            <div class="npc-role">Barista • Saloon del Pozzo Asciutto</div>
+                        </div>
+                    </div>
+                    <div class="npc-body">
+                        <p class="npc-description">60 anni, cicatrice sul viso. Cinico, ha visto di tutto. <em>"Quinto ibrido questa settimana."</em></p>
+                        <div class="npc-stats">⚔️ HP 22, Armor 0, Fucile a Canne Mozze +5 (3d8)</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-header">
+                        <div class="npc-icon">🧬</div>
+                        <div>
+                            <div class="npc-name">Tommy Garrett</div>
+                            <div class="npc-role">Geometra scomparso • "Fratello" di Jack</div>
+                        </div>
+                    </div>
+                    <div class="npc-body">
+                        <p class="npc-description">28 anni, biondo, energico. <strong>Ora:</strong> Ibrido Avanzato nel Nido. Riconoscimento momentaneo con Jack.</p>
+                        <div class="npc-stats">⚔️ Vedi statblock Ibrido Avanzato</div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--ocean-blue); margin-top: 60px;">
+                <em>Fine del Volume II — Il Weird West attende nuove storie...</em><br>
+                <span style="font-size: 0.9rem; opacity: 0.7; color: var(--biolum-green);">🐙 L'oceano ricorda. Il deserto custodisce. Il serpente attende. 🐙</span>
+            </p>
+        </div>
+
+        <footer>
+            <div class="brand">🌊 GUNSMOKE & DREAD 🌊</div>
+            <p>Volume II: Dove l'Oceano Incontra la Polvere • Arizona, 1886<br><em>"Questo è il fondo di un oceano preumano. E questa città era qui quando l'umanità non esisteva ancora."</em></p>
+        </footer>
+    </main>
+</body>
+</html>

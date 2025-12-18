@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUNSMOKE & DREAD — Parte X: Mappe & Handout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Special+Elite&family=IM+Fell+English:ital@0;1&family=Rye&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --parchment: #f4e4c1;
+            --parchment-dark: #e8d4a8;
+            --wood-dark: #3d2914;
+            --wood-medium: #5c3d1e;
+            --leather: #654321;
+            --blood-red: #8b0000;
+            --gold: #d4a017;
+            --ink-sepia: #3a2a1a;
+            --map-blue: #1a4a6c;
+            --map-green: #2d5a27;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--ink-sepia);
+            background: var(--parchment);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 220px;
+            height: 100vh;
+            background: linear-gradient(180deg, var(--wood-dark) 0%, #1a0a00 100%);
+            padding: 0;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 5px 0 20px rgba(0,0,0,0.4);
+        }
+
+        .nav-header {
+            text-align: center;
+            padding: 20px 15px;
+            background: var(--leather);
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .nav-header h1 {
+            font-family: 'Rye', cursive;
+            font-size: 1rem;
+            color: var(--gold);
+        }
+
+        .nav-section {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(212,160,23,0.2);
+        }
+
+        .nav-section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        nav a {
+            display: block;
+            color: var(--parchment);
+            text-decoration: none;
+            padding: 5px 10px;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+            border-left: 2px solid transparent;
+        }
+
+        nav a:hover {
+            background: rgba(212,160,23,0.15);
+            border-left-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Main */
+        main {
+            margin-left: 220px;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: 
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233d2914' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+                var(--parchment-dark);
+            padding: 60px 40px;
+            border-bottom: 5px solid var(--wood-dark);
+        }
+
+        .hero-badge {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.65rem;
+            color: var(--blood-red);
+            letter-spacing: 5px;
+            padding: 8px 25px;
+            border: 2px solid var(--blood-red);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Rye', cursive;
+            font-size: 2.5rem;
+            color: var(--wood-dark);
+            margin-bottom: 10px;
+        }
+
+        .hero .subtitle {
+            font-family: 'IM Fell English', serif;
+            font-size: 1.1rem;
+            color: var(--leather);
+            font-style: italic;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            padding: 30px 40px;
+            margin: 40px -40px 30px;
+            background: var(--wood-dark);
+            color: var(--parchment);
+            border-top: 3px solid var(--gold);
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .section-header h2 {
+            font-family: 'Rye', cursive;
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+
+        .section-header p {
+            font-family: 'IM Fell English', serif;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* Map Cards */
+        .map-card {
+            background: white;
+            border: 3px solid var(--wood-dark);
+            margin: 30px 0;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .map-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--wood-dark) 0%, var(--leather) 100%);
+            color: var(--parchment);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .map-header .icon {
+            font-size: 2rem;
+        }
+
+        .map-header h3 {
+            font-family: 'Rye', cursive;
+            font-size: 1.2rem;
+            color: var(--gold);
+        }
+
+        .map-header .volume {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            opacity: 0.7;
+        }
+
+        .map-body {
+            padding: 20px;
+        }
+
+        .map-ascii {
+            background: #1a1a1a;
+            color: #00ff00;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.65rem;
+            line-height: 1.3;
+            padding: 20px;
+            overflow-x: auto;
+            white-space: pre;
+            margin: 15px 0;
+            border: 2px solid var(--wood-dark);
+        }
+
+        .location-list {
+            display: grid;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .location-item {
+            display: flex;
+            gap: 12px;
+            padding: 10px 15px;
+            background: var(--parchment);
+            border-left: 4px solid var(--gold);
+        }
+
+        .location-item .loc-icon { font-size: 1.2rem; }
+        .location-item .loc-name {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            color: var(--wood-dark);
+            font-size: 0.9rem;
+        }
+
+        .location-item .loc-desc {
+            font-size: 0.85rem;
+            color: var(--leather);
+        }
+
+        .tactics-box {
+            background: rgba(139,0,0,0.08);
+            border: 1px solid var(--blood-red);
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .tactics-box h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--blood-red);
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .tactics-box ul {
+            list-style: none;
+        }
+
+        .tactics-box li {
+            padding: 5px 0;
+            font-size: 0.85rem;
+            display: flex;
+            gap: 8px;
+        }
+
+        .tactics-box li::before {
+            content: '⚔';
+            color: var(--blood-red);
+        }
+
+        /* Handouts */
+        .handout {
+            background: var(--parchment);
+            border: 3px double var(--wood-dark);
+            margin: 30px 0;
+            padding: 0;
+            box-shadow: 
+                0 0 0 1px var(--wood-medium),
+                5px 5px 15px rgba(0,0,0,0.2);
+            page-break-inside: avoid;
+        }
+
+        .handout-header {
+            padding: 15px 20px;
+            background: var(--wood-dark);
+            color: var(--gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .handout-header h4 {
+            font-family: 'Rye', cursive;
+            font-size: 0.9rem;
+        }
+
+        .handout-header .num {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border: 1px solid var(--gold);
+        }
+
+        .handout-body {
+            padding: 25px;
+        }
+
+        /* Wanted Poster */
+        .wanted-poster {
+            text-align: center;
+            background: 
+                radial-gradient(ellipse at center, var(--parchment) 0%, var(--parchment-dark) 100%);
+        }
+
+        .wanted-poster .wanted-title {
+            font-family: 'Rye', cursive;
+            font-size: 1.8rem;
+            color: var(--blood-red);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+        }
+
+        .wanted-poster .wanted-subtitle {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .wanted-poster .name-box {
+            background: var(--wood-dark);
+            color: var(--gold);
+            padding: 15px;
+            font-family: 'Rye', cursive;
+            font-size: 1.3rem;
+            margin: 15px 0;
+        }
+
+        .wanted-poster .reward {
+            font-family: 'Rye', cursive;
+            font-size: 1.5rem;
+            color: var(--blood-red);
+            margin: 15px 0;
+        }
+
+        .wanted-poster .charges {
+            font-size: 0.85rem;
+            margin: 15px 0;
+        }
+
+        .wanted-poster .warning {
+            background: var(--blood-red);
+            color: white;
+            padding: 8px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+        }
+
+        /* Diary Entry */
+        .diary-entry {
+            font-family: 'IM Fell English', serif;
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+
+        .diary-entry .date {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.8rem;
+            color: var(--leather);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--parchment-dark);
+        }
+
+        .diary-entry em {
+            color: var(--blood-red);
+        }
+
+        /* Official Letter */
+        .official-letter {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.8rem;
+            line-height: 1.8;
+        }
+
+        .official-letter .letterhead {
+            text-align: center;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--wood-dark);
+        }
+
+        .official-letter .letterhead h5 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--wood-dark);
+        }
+
+        .official-letter .meta {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: var(--parchment-dark);
+        }
+
+        /* Prophecy */
+        .prophecy {
+            text-align: center;
+            font-family: 'IM Fell English', serif;
+            font-size: 1.1rem;
+            line-height: 2;
+            font-style: italic;
+        }
+
+        .prophecy .speaker {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--leather);
+            margin-bottom: 20px;
+            font-style: normal;
+        }
+
+        .prophecy .verse {
+            margin: 15px 0;
+            padding: 10px;
+        }
+
+        .prophecy .emphasis {
+            color: var(--blood-red);
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        /* Symbol */
+        .symbol-card {
+            text-align: center;
+        }
+
+        .symbol-card .ouroboros {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border: 3px solid var(--wood-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, var(--parchment) 0%, var(--parchment-dark) 100%);
+            font-size: 4rem;
+        }
+
+        .symbol-card .desc {
+            font-size: 0.85rem;
+            color: var(--leather);
+            margin-top: 15px;
+        }
+
+        .symbol-card .runes {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.2rem;
+            letter-spacing: 8px;
+            color: var(--blood-red);
+            margin-top: 15px;
+        }
+
+        /* Map Handout */
+        .map-handout {
+            position: relative;
+        }
+
+        .map-handout .annotations {
+            list-style: none;
+        }
+
+        .map-handout .annotations li {
+            padding: 8px 0 8px 25px;
+            border-bottom: 1px dotted var(--wood-medium);
+            font-family: 'Special Elite', monospace;
+            font-size: 0.8rem;
+            position: relative;
+        }
+
+        .map-handout .annotations li::before {
+            content: '▸';
+            position: absolute;
+            left: 5px;
+            color: var(--blood-red);
+        }
+
+        .map-handout .blood-stain {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;
+            height: 60px;
+            background: radial-gradient(ellipse at center, rgba(139,0,0,0.4) 0%, transparent 70%);
+            border-radius: 50% 40% 60% 30%;
+        }
+
+        .map-handout .trembling {
+            font-style: italic;
+            color: var(--blood-red);
+        }
+
+        /* Print */
+        .print-section {
+            text-align: center;
+            padding: 30px;
+            background: var(--parchment-dark);
+            border: 2px dashed var(--wood-medium);
+            margin-top: 40px;
+        }
+
+        .print-section h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--wood-dark);
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--wood-dark);
+            color: var(--parchment);
+            padding: 40px;
+            text-align: center;
+            border-top: 4px solid var(--gold);
+        }
+
+        footer .brand {
+            font-family: 'Rye', cursive;
+            font-size: 1.3rem;
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            nav { display: none; }
+            main { margin-left: 0; }
+            .content-wrapper { padding: 25px; }
+            .map-ascii { font-size: 0.5rem; }
+        }
+
+        @media print {
+            nav { display: none; }
+            main { margin-left: 0; }
+            .hero { min-height: auto; padding: 30px; }
+            .section-header { break-before: page; }
+            .handout { break-inside: avoid; margin: 20px 0; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-header">
+            <h1>🗺️ MAPPE</h1>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Volume I</div>
+            <a href="#train">🚂 Il Treno</a>
+            <a href="#silver-hollow">🏚️ Silver Hollow</a>
+            <a href="#mines">⛏️ Le Miniere</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Volume II</div>
+            <a href="#dry-eye">🏜️ Occhio Asciutto</a>
+            <a href="#tunnels">🌊 Tunnel Sommersi</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Handout</div>
+            <a href="#h1">📜 #1 Wanted</a>
+            <a href="#h2">📜 #2 Diario Jeremiah</a>
+            <a href="#h3">📜 #3 Diario (pag.2)</a>
+            <a href="#h4">📜 #4 Lettera Brandt</a>
+            <a href="#h5">📜 #5 Profezia</a>
+            <a href="#h6">📜 #6 Simbolo</a>
+            <a href="#h7">📜 #7 Mappa Geometra</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-badge">MATERIALE PER IL GM</div>
+            <h1>MAPPE & HANDOUT</h1>
+            <p class="subtitle">5 Mappe Dettagliate • 7 Documenti Stampabili</p>
+        </section>
+
+        <div class="content-wrapper">
+
+            <!-- ════════════════════════════════════════════════════════════════════
+                 MAPS SECTION
+            ════════════════════════════════════════════════════════════════════ -->
+            <div class="section-header">
+                <h2>🗺️ MAPPE DI GIOCO</h2>
+                <p>Indicazioni per descrivere e gestire le location</p>
+            </div>
+
+            <!-- TRAIN -->
+            <div class="map-card" id="train">
+                <div class="map-header">
+                    <span class="icon">🚂</span>
+                    <div>
+                        <h3>IL TRENO DELLA UNION PACIFIC</h3>
+                        <div class="volume">Volume I — Atto I: Sangue sui Binari</div>
+                    </div>
+                </div>
+                <div class="map-body">
+                    <div class="map-ascii">╔═══════════════════════════════════════════════════════════════════════════════════╗
+║  LOCOMOTIVA    CARBONE     PASSEGGERI 1    PASSEGGERI 2    RISTORANTE    BAGAGLI   ║
+║  ┌───────┐    ┌───────┐    ┌──────────┐    ┌──────────┐    ┌─────────┐   ┌──────┐  ║
+║  │▓▓ M F │~~~~│███████│~~~~│ □□□□□□□□ │~~~~│ □□□□□ P  │~~~~│ ▒▒▒▒▒ C │~~~│ ▤▤$▤ │  ║
+║  │▓▓▓▓▓▓▓│    │███████│    │ □□□□□□□□ │    │ □□□□□□□□ │    │ ▒▒▒▒▒▒▒ │   │ ▤▤▤▤ │  ║
+║  └───────┘    └───────┘    └──────────┘    └──────────┘    └─────────┘   └──────┘  ║
+║       │            │             │              │               │            │     ║
+║  ═════╧════════════╧═════════════╧══════════════╧═══════════════╧════════════╧═══  ║
+║                            T E T T O   P E R C O R R I B I L E                     ║
+╠═══════════════════════════════════════════════════════════════════════════════════╣
+║  LEGENDA:  M=Macchinista  F=Fuochista  P=Privé  C=Cucina  $=Cassaforte            ║
+║            □=Posto  ▤=Bagaglio  ███=Carbone  ▓=Macchinari  ▒=Tavoli  ~~~=Aggancio ║
+╚═══════════════════════════════════════════════════════════════════════════════════╝</div>
+
+                    <div class="location-list">
+                        <div class="location-item">
+                            <span class="loc-icon">🚂</span>
+                            <div>
+                                <div class="loc-name">Locomotiva</div>
+                                <div class="loc-desc">Macchinista e fuochista. Caldaia, carbone, leve. Accesso difficile dal tetto.</div>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <span class="loc-icon">⬛</span>
+                            <div>
+                                <div class="loc-name">Vagone Carbone</div>
+                                <div class="loc-desc">Montagna di carbone. Copertura eccellente. Rischio di seppellimento.</div>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <span class="loc-icon">👥</span>
+                            <div>
+                                <div class="loc-name">Vagoni Passeggeri (×2)</div>
+                                <div class="loc-desc">20 posti ciascuno. Civili terrorizzati. Il secondo include scompartimento privato.</div>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <span class="loc-icon">🍽️</span>
+                            <div>
+                                <div class="loc-name">Vagone Ristorante</div>
+                                <div class="loc-desc">Tavoli, cucina. Coltelli, acqua bollente come armi improvvisate.</div>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <span class="loc-icon">💰</span>
+                            <div>
+                                <div class="loc-name">Vagone Bagagli</div>
+                                <div class="loc-desc">Bauli, casse. La cassaforte con l'oro è QUI. Porta rinforzata.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tactics-box">
+                        <h4>⚔️ DETTAGLI TATTICI</h4>
+                        <ul>
+                            <li><strong>Tetto:</strong> Passare tra vagoni richiede AGI 10 (AGI 13 con vento forte). Caduta = 2d6 danni.</li>
+                            <li><strong>Aggancio:</strong> Sganciare un vagone richiede STR 14 o attrezzi.</li>
+                            <li><strong>Finestre:</strong> Rompere costa 1 azione. Passare attraverso = AGI 12 o 1d4 danni taglio.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SILVER HOLLOW -->
+            <div class="map-card" id="silver-hollow">
+                <div class="map-header">
+                    <span class="icon">🏚️</span>
+                    <div>
+                        <h3>SILVER HOLLOW</h3>
+                        <div class="volume">Volume I — Atto III: Città Mineraria Abbandonata</div>
+                    </div>
+                </div>
+                <div class="map-body">
+                    <div class="map-ascii">                    VERSO LE MINIERE (500m) ↑
+╔══════════════════════════════════════════════════════════════════════╗
+║   ┌────────┐    ┌────────┐    ┌──────────┐    ┌────────┐             ║
+║   │ CASA 1 │    │ CASA 2 │    │ EMPORIO  │    │ CASA 3 │             ║
+║   │  (A)   │    │  (A)   │    │ MILLER(A)│    │        │             ║
+║   └────────┘    └────────┘    └──────────┘    └────────┘             ║
+║        P            P             P               P                   ║
+║  ═══════════════════════ VIA PRINCIPALE ════════════════════════════ ║
+║        P            P             P               P                   ║
+║   ┌────────┐    ┌────────────┐    ┌──────────┐    ┌──────────┐       ║
+║   │SCERIFFO│    │SILVER LADY │    │  CHIESA  │    │  STALLA  │       ║
+║   │ ⚔⚔⚔  │    │  SALOON    │    │    S.    │    │ CAVALLI  │       ║
+║   │ HANK   │    │  [1][2][3] │    │ MICHELE  │    │          │       ║
+║   └────────┘    └────────────┘    │   (PRO)  │    └──────────┘       ║
+║                                   └──────────┘                        ║
+╚══════════════════════════════════════════════════════════════════════╝
+                    ↓ STRADA PER SANTA FE (40 km)
+
+LEGENDA: (A)=Abbandonato  P=Pozzo (CONTAMINATO!)  ⚔=Armeria  (PRO)=Profanato  [1][2][3]=Stanze</div>
+
+                    <div class="location-list">
+                        <div class="location-item">
+                            <span class="loc-icon">🛣️</span>
+                            <div>
+                                <div class="loc-name">Via Principale</div>
+                                <div class="loc-desc">200m di terra battuta. Pozzi d'acqua ogni 50m (CONTAMINATI — non bere!).</div>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <span class="loc-icon">🍺</span>
+                            <div>
+                                <div class="loc-name">Silver Lady Saloon</div>
+                                <div class="loc-desc">2 piani. Piano terra: bar, tavoli. Piano superiore: 6 stanze.</div>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <span class="loc-icon">⛪</span>
+                            <div>
+                                <div class="loc-name">Chiesa di San Michele</div>
+                                <div class="loc-desc">Profanata. Banchi rovesciati. Simboli serpentini sull'altare.</div>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <span class="loc-icon">⭐</span>
+                            <div>
+                                <div class="loc-name">Ufficio dello Sceriffo</div>
+                                <div class="loc-desc">2 celle. Armeria con 4 fucili, munizioni. <strong>HANK vive qui</strong> — unico abitante sano.</div>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <span class="loc-icon">⛏️</span>
+                            <div>
+                                <div class="loc-name">Ingresso Miniera</div>
+                                <div class="loc-desc">500m fuori città. Rotaie per carrelli. Odore di decomposizione.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MINES -->
+            <div class="map-card" id="mines">
+                <div class="map-header">
+                    <span class="icon">⛏️</span>
+                    <div>
+                        <h3>LE MINIERE DI SILVER HOLLOW</h3>
+                        <div class="volume">Volume I — Atto IV: 3 Livelli di Profondità</div>
+                    </div>
+                </div>
+                <div class="map-body">
+                    <div class="map-ascii">SEZIONE VERTICALE
+═══════════════════
+    INGRESSO (Superficie)
+        │
+        ▼
+╔═══════════════════════════════════════╗
+║ LIVELLO 1 — TUNNEL COMMERCIALI        ║  0-50m profondità
+║ Rotaie, torce, 3 diramazioni          ║
+╚═══════════════╤═══════════════════════╝
+                │
+                ▼
+╔═══════════════════════════════════════╗
+║ LIVELLO 2 — TUNNEL PROFONDI           ║  50-100m profondità
+║ Simboli serpentini, fossa comune      ║
+╚═══════════════╤═══════════════════════╝
+                │
+                ▼
+╔═══════════════════════════════════════╗
+║ LIVELLO 3 — IL TEMPIO                 ║  100-120m profondità
+║ Caverna 30×40m, altare, JEREMIAH      ║
+╚═══════════════════════════════════════╝</div>
+
+                    <div class="location-list">
+                        <div class="location-item">
+                            <span class="loc-icon">1️⃣</span>
+                            <div>
+                                <div class="loc-name">Livello 1 — Tunnel Commerciali (0-50m)</div>
+                                <div class="loc-desc">Galleria 3m×2.5m con rotaie. Diramazioni: magazzino, ufficio (documenti!), ascensore rotto. Torce ogni 20m. Pattuglie cultisti (2-3).</div>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <span class="loc-icon">2️⃣</span>
+                            <div>
+                                <div class="loc-name">Livello 2 — Tunnel Profondi (50-100m)</div>
+                                <div class="loc-desc">Gallerie strette (2m), scavate a mano. Simboli serpentini sempre più frequenti. Fossa comune (8-10 corpi). Trappole: fosse (AGI 13), lame (INS 14).</div>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <span class="loc-icon">3️⃣</span>
+                            <div>
+                                <div class="loc-name">Livello 3 — Il Tempio (100-120m)</div>
+                                <div class="loc-desc">Caverna naturale 30m×40m, soffitto 15m. 6 pilastri di pietra aliena. Altare nero con 12 prigionieri. 3 idoli (distruggerli indebolisce Jeremiah). Uscita secondaria.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tactics-box">
+                        <h4>⚠️ PERICOLI</h4>
+                        <ul>
+                            <li><strong>Illuminazione:</strong> Torce spente, lanterne necessarie dal Livello 2.</li>
+                            <li><strong>Gas:</strong> Sacche occasionali — fiamme = esplosione 3d6!</li>
+                            <li><strong>Stalattiti:</strong> Nel tempio, possono cadere (2d6 danni).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DRY EYE -->
+            <div class="map-card" id="dry-eye">
+                <div class="map-header">
+                    <span class="icon">🏜️</span>
+                    <div>
+                        <h3>OCCHIO ASCIUTTO</h3>
+                        <div class="volume">Volume II — Atto I: Avamposto Minerario</div>
+                    </div>
+                </div>
+                <div class="map-body">
+                    <div class="location-list">
+                        <div class="location-item">
+                            <span class="loc-icon">🛣️</span>
+                            <div>
+                                <div class="loc-name">Strada Principale</div>
+                                <div class="loc-desc">100m. Polvere ovunque. Nessun pozzo funzionante.</div>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <span class="loc-icon">📐</span>
+                            <div>
+                                <div class="loc-name">Ufficio Topografico</div>
+                                <div class="loc-desc">Quartier generale di <strong>BRANDT</strong>. Mappe, strumenti, documenti importanti.</div>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <span class="loc-icon">🌵</span>
+                            <div>
+                                <div class="loc-name">Saloon del Cactus</div>
+                                <div class="loc-desc">Unico locale. Barista muto (trauma). 4 stanze sopra.</div>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <span class="loc-icon">🏚️</span>
+                            <div>
+                                <div class="loc-name">Baracche Operai</div>
+                                <div class="loc-desc">8 strutture. 3 abbandonate. Le altre ospitano 15 lavoratori terrorizzati.</div>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <span class="loc-icon">🕳️</span>
+                            <div>
+                                <div class="loc-name">Pozzo di Drowned Man</div>
+                                <div class="loc-desc">1km fuori città. Vecchia miniera abbandonata. <strong>L'INGRESSO</strong> verso i tunnel sommersi.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUBMERGED TUNNELS -->
+            <div class="map-card" id="tunnels">
+                <div class="map-header">
+                    <span class="icon">🌊</span>
+                    <div>
+                        <h3>I TUNNEL SOMMERSI</h3>
+                        <div class="volume">Volume II — Atto II: Verso la Città Sommersa</div>
+                    </div>
+                </div>
+                <div class="map-body">
+                    <div class="map-ascii">ZONA 1: IL POZZO          ZONA 2: I TUNNEL           ZONA 3: LA CITTÀ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+     INGRESSO                                              ╔═══════════════╗
+        │                                                  ║   OCEANO      ║
+        ▼                    ┌───?───┐                     ║ SOTTERRANEO   ║
+   ┌─────────┐               │       │                     ║               ║
+   │ Discesa │    ∿∿∿∿∿∿∿∿∿∿─┼───────┼─∿∿∿∿∿∿∿∿∿∿∿∿∿∿     ║   ☠ CITTÀ ☠  ║
+   │  30m    │═══▶caviglie═══│ginocch│═══vita═══▶         ║   SOMMERSA    ║
+   │ verticale│   ∿∿∿∿∿∿∿∿∿∿─┼───────┼─∿∿∿∿∿∿∿∿∿∿∿∿∿∿     ║               ║
+   └─────────┘               │       │                     ║  PIATTAFORMA  ║
+                             └───?───┘                     ║   CENTRALE    ║
+   Scale marce             3 biforcazioni                  ╚═══════════════╝
+   Corda necessaria        Solo 1 giusta!                  LA VISIONE
+                           (seguire luce)                  avviene qui</div>
+
+                    <div class="location-list">
+                        <div class="location-item">
+                            <span class="loc-icon">1️⃣</span>
+                            <div>
+                                <div class="loc-name">Zona 1 — Il Pozzo</div>
+                                <div class="loc-desc">Discesa verticale 30m. Scale di legno marce. Corda necessaria. Fondo: acqua stagnante 30cm.</div>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <span class="loc-icon">2️⃣</span>
+                            <div>
+                                <div class="loc-name">Zona 2 — I Tunnel</div>
+                                <div class="loc-desc">Corridoi naturali. Acqua sale: caviglie → ginocchia → vita. Bioluminescenza blu-verde pulsante. 3 biforcazioni (solo 1 corretta — seguire luce intensa).</div>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <span class="loc-icon">3️⃣</span>
+                            <div>
+                                <div class="loc-name">Zona 3 — La Città Sommersa</div>
+                                <div class="loc-desc">Caverna enorme, soffitto non visibile. Oceano sotterraneo. Spiaggia di ossa triturate. Strutture sommerse con geometria impossibile. <strong>Piattaforma centrale: LA VISIONE.</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ════════════════════════════════════════════════════════════════════
+                 HANDOUTS SECTION
+            ════════════════════════════════════════════════════════════════════ -->
+            <div class="section-header">
+                <h2>📜 HANDOUT PER I GIOCATORI</h2>
+                <p>7 documenti stampabili da consegnare durante le sessioni</p>
+            </div>
+
+            <!-- HANDOUT 1: WANTED -->
+            <div class="handout" id="h1">
+                <div class="handout-header">
+                    <h4>MANIFESTO WANTED</h4>
+                    <span class="num">#1</span>
+                </div>
+                <div class="handout-body wanted-poster">
+                    <div class="wanted-title">WANTED</div>
+                    <div class="wanted-subtitle">CERCASI VIVI O MORTI</div>
+                    
+                    <div class="name-box">CLAY MORRISON<br>e la sua banda</div>
+                    
+                    <div class="reward">RICOMPENSA: $500</div>
+                    
+                    <div class="charges">
+                        <strong>Ricercati per:</strong><br>
+                        Rapina a mano armata • Omicidio • Furto di bestiame
+                    </div>
+                    
+                    <p><strong>Ultimo avvistamento:</strong> Territorio del New Mexico</p>
+                    
+                    <div class="warning">⚠ ARMATI E PERICOLOSI ⚠</div>
+                    
+                    <p style="margin-top: 15px; font-size: 0.8rem;">Contattare: Ufficio del Marshal, Santa Fe</p>
+                </div>
+            </div>
+
+            <!-- HANDOUT 2: DIARY PAGE 1 -->
+            <div class="handout" id="h2">
+                <div class="handout-header">
+                    <h4>DIARIO DI PADRE JEREMIAH</h4>
+                    <span class="num">#2 — Pag. 1</span>
+                </div>
+                <div class="handout-body diary-entry">
+                    <div class="date">12 Marzo 1885</div>
+                    <p>Ho trovato qualcosa nelle gallerie profonde. Una camera che i minatori non avevano mai visto.</p>
+                    <p>C'era un idolo — una statua di serpente che si morde la coda. Quando l'ho toccato, ho sentito una <em>VOCE</em>.</p>
+                    <p>Non nelle orecchie. Nella testa.</p>
+                    <p>Diceva parole che non capivo, ma in qualche modo... le <em>CAPIVO</em>.</p>
+                </div>
+            </div>
+
+            <!-- HANDOUT 3: DIARY PAGE 2 -->
+            <div class="handout" id="h3">
+                <div class="handout-header">
+                    <h4>DIARIO DI PADRE JEREMIAH</h4>
+                    <span class="num">#3 — Pag. 2</span>
+                </div>
+                <div class="handout-body diary-entry">
+                    <div class="date">28 Marzo 1885</div>
+                    <p>I sogni non si fermano.</p>
+                    <p>Ogni notte vedo il Serpente — non la statua, ma la <em>COSA VERA</em>.</p>
+                    <p>È enorme. Più grande della miniera. Più grande della montagna.</p>
+                    <p>Dorme sotto di noi da prima che esistessero gli uomini.</p>
+                    <p>E sta per svegliarsi.</p>
+                    <p style="margin-top: 20px; font-weight: bold;"><em>Devo preparare la strada.</em></p>
+                </div>
+            </div>
+
+            <!-- HANDOUT 4: LETTER -->
+            <div class="handout" id="h4">
+                <div class="handout-header">
+                    <h4>LETTERA DI CORNELIUS BRANDT</h4>
+                    <span class="num">#4</span>
+                </div>
+                <div class="handout-body official-letter">
+                    <div class="letterhead">
+                        <h5>UNION PACIFIC RAILROAD</h5>
+                        <p>— MEMORANDUM INTERNO —</p>
+                    </div>
+                    <div class="meta">
+                        <strong>Data:</strong> 15 Febbraio 1886<br>
+                        <strong>Da:</strong> C. Brandt, Capo Geometra<br>
+                        <strong>A:</strong> Direzione, Denver<br>
+                        <strong>Oggetto:</strong> Ritardo Progetto Linea 47
+                    </div>
+                    <p>Signori,</p>
+                    <p>devo riferire un'anomalia.</p>
+                    <p>Tre dei miei uomini sono scomparsi durante i rilevamenti nel settore del Pozzo di Drowned Man. Non abbiamo trovato corpi né tracce.</p>
+                    <p>Un quarto uomo, Peter Walsh, è tornato ma... <em>non è più lo stesso</em>.</p>
+                    <p>Richiedo rinforzi immediati e autorizzazione a sospendere i lavori.</p>
+                    <p style="margin-top: 20px;">In attesa di risposta,<br><strong>Cornelius Brandt</strong></p>
+                </div>
+            </div>
+
+            <!-- HANDOUT 5: PROPHECY -->
+            <div class="handout" id="h5">
+                <div class="handout-header">
+                    <h4>PROFEZIA DI SILAS CROW</h4>
+                    <span class="num">#5</span>
+                </div>
+                <div class="handout-body prophecy">
+                    <div class="speaker">Le parole del vecchio cieco</div>
+                    
+                    <div class="verse">"L'acqua che non dovrebbe esistere...</div>
+                    <div class="verse">Sotto la terra dove nulla cresce...</div>
+                    <div class="verse">Dorme quello che sognando aspetta...</div>
+                    <div class="verse">E nel suo sogno, noi siamo meno di ombre..."</div>
+                    
+                    <div class="verse" style="margin-top: 30px;">
+                        "<span class="emphasis">Non svegliatelo.</span><br>
+                        <span class="emphasis">Non guardatelo.</span>"
+                    </div>
+                    
+                    <div class="verse">"E quando lo vedrete comunque..."</div>
+                    
+                    <div class="verse" style="font-size: 1.3rem; margin-top: 20px;">
+                        "<span class="emphasis">Non. Perdete. La. Speranza.</span><br>
+                        Perché la speranza è tutto ciò che avete."
+                    </div>
+                </div>
+            </div>
+
+            <!-- HANDOUT 6: SYMBOL -->
+            <div class="handout" id="h6">
+                <div class="handout-header">
+                    <h4>SIMBOLO DEL SERPENTE</h4>
+                    <span class="num">#6</span>
+                </div>
+                <div class="handout-body symbol-card">
+                    <div class="ouroboros">🐍👁️</div>
+                    <p class="desc">Un cerchio contenente un serpente che si morde la coda (Ouroboros),<br>con all'interno un occhio stilizzato.</p>
+                    <p class="desc">Sotto il simbolo, caratteri in una lingua sconosciuta:</p>
+                    <div class="runes">IA IA YIBB-SHUSTHUTH</div>
+                </div>
+            </div>
+
+            <!-- HANDOUT 7: SURVEYOR'S MAP -->
+            <div class="handout" id="h7">
+                <div class="handout-header">
+                    <h4>MAPPA DEL GEOMETRA (Incompleta)</h4>
+                    <span class="num">#7</span>
+                </div>
+                <div class="handout-body map-handout">
+                    <p style="font-style: italic; margin-bottom: 15px;">Una mappa topografica del deserto con annotazioni a margine:</p>
+                    
+                    <ul class="annotations">
+                        <li>"Formazione rocciosa anomala — <em>angoli impossibili</em>"</li>
+                        <li>"Eco strano in questo punto — come onde?"</li>
+                        <li class="trembling">"NON ANDARE OLTRE" (scritto con grafia tremante)</li>
+                        <li>"Walsh ha detto di aver visto <em>luce sott'acqua</em>"</li>
+                    </ul>
+                    
+                    <p style="margin-top: 20px; font-style: italic; color: var(--blood-red);">Il resto della mappa è macchiato di qualcosa di scuro.</p>
+                    
+                    <div class="blood-stain"></div>
+                </div>
+            </div>
+
+            <div class="print-section">
+                <h4>🖨️ STAMPA GLI HANDOUT</h4>
+                <p>Usa Ctrl+P o Cmd+P per stampare. Ogni handout è ottimizzato per essere ritagliato e consegnato ai giocatori.</p>
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="brand">🔫 GUNSMOKE & DREAD 🔫</div>
+            <p>Parte X — Mappe & Handout<br><em>"Il West nasconde segreti nelle sue ossa."</em></p>
+        </footer>
+    </main>
+</body>
+</html>

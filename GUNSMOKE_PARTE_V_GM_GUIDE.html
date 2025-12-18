@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUNSMOKE & DREAD — Parte V: Guida del Game Master</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Special+Elite&family=IM+Fell+English:ital@0;1&family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --parchment: #f4e4c1;
+            --parchment-dark: #e8d4a8;
+            --parchment-aged: #d4c4a1;
+            --brown-dark: #3d2914;
+            --brown-medium: #5c3d1e;
+            --brown-light: #8b6914;
+            --blood-red: #8b0000;
+            --blood-dark: #5a0000;
+            --gold: #d4a017;
+            --gold-dark: #a47a0a;
+            --ink-black: #1a1a1a;
+            --ink-sepia: #3a2a1a;
+            
+            /* Cosmic Corruption */
+            --void-purple: #2a1a3a;
+            --cosmic-blue: #1a2a4a;
+            --eldritch-green: #1a3a2a;
+            --corruption-glow: #6a4a8a;
+            --eye-yellow: #d4c417;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--ink-sepia);
+            background: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="30" cy="60" r="0.5" fill="%23a09080" opacity="0.15"/><circle cx="170" cy="140" r="0.4" fill="%238a7a6a" opacity="0.1"/></svg>') repeat,
+                linear-gradient(180deg, var(--parchment) 0%, var(--parchment-dark) 100%);
+            background-size: 200px 200px, 100% 100%;
+            background-attachment: fixed;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           NAVIGATION - GRIMOIRE STYLE
+        ═══════════════════════════════════════════════════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: 
+                radial-gradient(ellipse at bottom, rgba(106,74,138,0.1) 0%, transparent 70%),
+                linear-gradient(180deg, #1a0a00 0%, #0a0005 100%);
+            padding: 0;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 6px 0 40px rgba(106,74,138,0.3);
+            border-right: 3px solid var(--gold-dark);
+        }
+
+        .nav-header {
+            text-align: center;
+            padding: 30px 15px;
+            background: 
+                radial-gradient(ellipse at center, rgba(212,160,23,0.1) 0%, transparent 60%);
+            border-bottom: 2px solid var(--gold);
+            position: relative;
+        }
+
+        .nav-sigil {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            opacity: 0.8;
+            animation: pulse-sigil 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-sigil {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        .nav-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--gold);
+            letter-spacing: 3px;
+        }
+
+        .nav-header .subtitle {
+            font-family: 'IM Fell English', serif;
+            font-size: 0.9rem;
+            color: var(--parchment);
+            font-style: italic;
+            margin-top: 5px;
+            opacity: 0.9;
+        }
+
+        .nav-section {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(212,160,23,0.15);
+        }
+
+        .nav-section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav a {
+            display: block;
+            color: var(--parchment);
+            text-decoration: none;
+            padding: 6px 12px;
+            margin: 2px 0;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            border-left: 2px solid transparent;
+            opacity: 0.85;
+        }
+
+        nav a:hover {
+            background: rgba(212,160,23,0.1);
+            border-left-color: var(--gold);
+            color: var(--gold);
+            opacity: 1;
+            padding-left: 18px;
+        }
+
+        nav a.chapter { font-weight: 600; color: var(--gold); opacity: 1; }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           MAIN CONTENT
+        ═══════════════════════════════════════════════════════════════════════ */
+        main {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 50px 60px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           HERO - GRIMOIRE COVER
+        ═══════════════════════════════════════════════════════════════════════ */
+        .grimoire-hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: 
+                radial-gradient(ellipse at center, rgba(42,26,58,0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 80%, rgba(106,74,138,0.2) 0%, transparent 40%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><circle cx="200" cy="200" r="180" fill="none" stroke="%233d2914" stroke-width="1" opacity="0.08"/><circle cx="200" cy="200" r="140" fill="none" stroke="%233d2914" stroke-width="0.5" opacity="0.05"/><polygon points="200,50 350,200 200,350 50,200" fill="none" stroke="%23d4a017" stroke-width="0.5" opacity="0.1"/></svg>') no-repeat center center,
+                linear-gradient(180deg, var(--parchment) 0%, var(--parchment-dark) 100%);
+            background-size: 100% 100%, 100% 100%, 500px 500px, 100% 100%;
+            padding: 60px 40px;
+            border-bottom: 4px double var(--brown-dark);
+            position: relative;
+        }
+
+        .hero-pentagram {
+            font-size: 5rem;
+            color: var(--brown-dark);
+            opacity: 0.15;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+
+        .hero-content { position: relative; z-index: 1; }
+
+        .hero-ornament {
+            font-size: 1.5rem;
+            color: var(--gold);
+            letter-spacing: 15px;
+            margin-bottom: 30px;
+        }
+
+        .grimoire-hero .part-label {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.8rem;
+            color: var(--brown-medium);
+            letter-spacing: 6px;
+        }
+
+        .grimoire-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--brown-dark);
+            letter-spacing: 6px;
+            margin: 15px 0;
+            text-shadow: 2px 2px 0 var(--parchment-dark);
+        }
+
+        .grimoire-hero .tagline {
+            font-family: 'IM Fell English', serif;
+            font-size: 1.3rem;
+            color: var(--brown-medium);
+            font-style: italic;
+            max-width: 500px;
+        }
+
+        .hero-warning {
+            margin-top: 50px;
+            padding: 25px 40px;
+            background: rgba(139,0,0,0.08);
+            border: 2px solid var(--blood-red);
+            max-width: 600px;
+        }
+
+        .hero-warning p {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.75rem;
+            color: var(--blood-red);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            margin: 0;
+        }
+
+        .hero-chapters {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 50px;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .hero-chapter {
+            text-align: center;
+            padding: 20px 15px;
+            border: 1px solid var(--brown-light);
+            background: rgba(255,255,255,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .hero-chapter:hover {
+            background: rgba(212,160,23,0.1);
+            border-color: var(--gold);
+        }
+
+        .hero-chapter .chapter-num {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--blood-red);
+        }
+
+        .hero-chapter .chapter-name {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.55rem;
+            color: var(--brown-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           CHAPTER HEADERS
+        ═══════════════════════════════════════════════════════════════════════ */
+        .chapter-header {
+            text-align: center;
+            padding: 60px 40px;
+            margin: 50px -60px 40px;
+            position: relative;
+            border-top: 3px double var(--brown-dark);
+            border-bottom: 3px double var(--brown-dark);
+        }
+
+        .chapter-header.horror {
+            background: 
+                radial-gradient(ellipse at center, rgba(26,26,26,0.05) 0%, transparent 60%),
+                var(--parchment);
+        }
+
+        .chapter-header.lore {
+            background: 
+                radial-gradient(ellipse at center, rgba(42,26,58,0.08) 0%, transparent 60%),
+                var(--parchment);
+        }
+
+        .chapter-header.reference {
+            background: 
+                radial-gradient(ellipse at center, rgba(212,160,23,0.08) 0%, transparent 60%),
+                var(--parchment);
+        }
+
+        .chapter-header .chapter-sigil {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.7;
+        }
+
+        .chapter-header .chapter-number {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--brown-medium);
+            letter-spacing: 5px;
+        }
+
+        .chapter-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--brown-dark);
+            letter-spacing: 5px;
+            margin: 10px 0;
+        }
+
+        .chapter-header .chapter-desc {
+            font-family: 'IM Fell English', serif;
+            font-size: 1rem;
+            color: var(--brown-medium);
+            font-style: italic;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           SAFETY TOOLS - SHIELD CARDS
+        ═══════════════════════════════════════════════════════════════════════ */
+        .safety-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .safety-card {
+            background: var(--parchment);
+            border: 2px solid var(--brown-dark);
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .safety-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+        }
+
+        .safety-card-header {
+            padding: 20px 25px;
+            background: linear-gradient(180deg, rgba(212,160,23,0.15) 0%, transparent 100%);
+            border-bottom: 1px solid var(--brown-light);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .safety-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--brown-dark);
+        }
+
+        .safety-card-header h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--brown-dark);
+            margin: 0;
+        }
+
+        .safety-card-body {
+            padding: 20px 25px;
+        }
+
+        .safety-card-body p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .safety-howto {
+            background: rgba(0,0,0,0.03);
+            padding: 12px 15px;
+            border-left: 3px solid var(--gold);
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           TECHNIQUE CARDS
+        ═══════════════════════════════════════════════════════════════════════ */
+        .technique-card {
+            background: var(--parchment);
+            border: 2px solid var(--brown-dark);
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .technique-card::before {
+            content: attr(data-number);
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            width: 30px;
+            height: 30px;
+            background: var(--blood-red);
+            color: white;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .technique-header {
+            padding: 25px 30px 15px;
+            border-bottom: 1px dashed var(--brown-light);
+        }
+
+        .technique-header h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--brown-dark);
+        }
+
+        .technique-header p {
+            font-size: 0.9rem;
+            color: var(--brown-medium);
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .technique-body { padding: 20px 30px; }
+
+        .technique-example {
+            background: linear-gradient(135deg, rgba(26,26,26,0.95) 0%, rgba(42,26,58,0.95) 100%);
+            color: var(--parchment);
+            padding: 20px 25px;
+            margin-top: 15px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .technique-example::before {
+            content: '📖 ESEMPIO';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            color: var(--gold);
+            background: var(--ink-black);
+            padding: 2px 10px;
+            letter-spacing: 1px;
+        }
+
+        .technique-example p {
+            font-family: 'IM Fell English', serif;
+            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           ESCALATION PYRAMID
+        ═══════════════════════════════════════════════════════════════════════ */
+        .escalation-pyramid {
+            margin: 50px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .escalation-level {
+            display: flex;
+            align-items: stretch;
+            margin: 5px 0;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .escalation-level .level-badge {
+            width: 120px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Cinzel', serif;
+            flex-shrink: 0;
+        }
+
+        .escalation-level .level-badge .num {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .escalation-level .level-badge .name {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 3px;
+        }
+
+        .escalation-level.l1 .level-badge { background: linear-gradient(135deg, #4a5a4a, #3a4a3a); }
+        .escalation-level.l2 .level-badge { background: linear-gradient(135deg, #5a5a3a, #4a4a2a); }
+        .escalation-level.l3 .level-badge { background: linear-gradient(135deg, #6a4a2a, #5a3a1a); }
+        .escalation-level.l4 .level-badge { background: linear-gradient(135deg, #7a2a2a, #6a1a1a); }
+        .escalation-level.l5 .level-badge { background: linear-gradient(135deg, #4a1a5a, #3a0a4a); box-shadow: 0 0 15px rgba(106,74,138,0.5); }
+
+        .escalation-level .level-content {
+            flex: 1;
+            padding: 15px 20px;
+            background: var(--parchment);
+            border: 1px solid var(--brown-light);
+            border-left: none;
+        }
+
+        .escalation-level .level-content h5 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--brown-dark);
+            margin-bottom: 5px;
+        }
+
+        .escalation-level .level-content p {
+            font-size: 0.85rem;
+            margin: 0;
+            color: var(--brown-medium);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           LORE - COSMIC TIMELINE
+        ═══════════════════════════════════════════════════════════════════════ */
+        .cosmic-timeline {
+            position: relative;
+            padding: 40px 0;
+            margin: 40px 0;
+        }
+
+        .cosmic-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--gold) 0%, var(--corruption-glow) 50%, var(--void-purple) 100%);
+            border-radius: 2px;
+        }
+
+        .timeline-event {
+            display: flex;
+            gap: 30px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .timeline-marker {
+            width: 100px;
+            flex-shrink: 0;
+            text-align: right;
+            padding-right: 25px;
+            position: relative;
+        }
+
+        .timeline-marker::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--parchment);
+            border: 3px solid var(--gold);
+            border-radius: 50%;
+        }
+
+        .timeline-marker .era {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--brown-medium);
+            display: block;
+        }
+
+        .timeline-marker .years {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--brown-dark);
+            font-weight: bold;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: var(--parchment);
+            border: 2px solid var(--brown-dark);
+            padding: 20px 25px;
+            position: relative;
+        }
+
+        .timeline-content h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--brown-dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timeline-content p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Corruption effect on later events */
+        .timeline-event.corrupted .timeline-marker::after {
+            border-color: var(--corruption-glow);
+            box-shadow: 0 0 10px var(--corruption-glow);
+        }
+
+        .timeline-event.corrupted .timeline-content {
+            border-color: var(--void-purple);
+            background: linear-gradient(135deg, var(--parchment) 0%, rgba(42,26,58,0.1) 100%);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           ANCIENT ENTITY CARDS
+        ═══════════════════════════════════════════════════════════════════════ */
+        .entity-card {
+            background: linear-gradient(145deg, var(--parchment) 0%, rgba(42,26,58,0.1) 100%);
+            border: 3px solid var(--void-purple);
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(106,74,138,0.2);
+        }
+
+        .entity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%236a4a8a" stroke-width="0.5" opacity="0.1"/><circle cx="50" cy="50" r="30" fill="none" stroke="%236a4a8a" stroke-width="0.3" opacity="0.08"/></svg>');
+            background-size: 200px 200px;
+            pointer-events: none;
+        }
+
+        .entity-header {
+            padding: 25px 30px;
+            background: linear-gradient(90deg, var(--void-purple), rgba(42,26,58,0.8));
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        .entity-sigil {
+            width: 70px;
+            height: 70px;
+            background: rgba(0,0,0,0.3);
+            border: 2px solid var(--corruption-glow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 0 20px var(--corruption-glow);
+        }
+
+        .entity-title h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin: 0;
+            text-shadow: 0 0 10px var(--gold);
+        }
+
+        .entity-title .subtitle {
+            font-family: 'IM Fell English', serif;
+            font-size: 0.9rem;
+            color: var(--parchment);
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .entity-body { padding: 25px 30px; position: relative; }
+
+        .entity-body p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .entity-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .entity-stat {
+            text-align: center;
+            padding: 12px;
+            background: rgba(42,26,58,0.1);
+            border: 1px solid var(--corruption-glow);
+        }
+
+        .entity-stat .label {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            color: var(--corruption-glow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .entity-stat .value {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--brown-dark);
+            margin-top: 5px;
+        }
+
+        .entity-abilities {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--corruption-glow);
+        }
+
+        .entity-abilities h5 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: var(--void-purple);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .entity-abilities ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .entity-abilities li {
+            font-size: 0.9rem;
+            margin: 6px 0;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           TRANSFORMATION STAGES
+        ═══════════════════════════════════════════════════════════════════════ */
+        .transformation-stages {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin: 40px 0;
+        }
+
+        .transform-stage {
+            display: flex;
+            align-items: stretch;
+        }
+
+        .stage-indicator {
+            width: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Cinzel', serif;
+            position: relative;
+        }
+
+        .stage-indicator .num { font-size: 1.5rem; }
+        .stage-indicator .days {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            margin-top: 3px;
+        }
+
+        .transform-stage:nth-child(1) .stage-indicator { background: #4a8a4a; }
+        .transform-stage:nth-child(2) .stage-indicator { background: #8a8a4a; }
+        .transform-stage:nth-child(3) .stage-indicator { background: #8a6a2a; }
+        .transform-stage:nth-child(4) .stage-indicator { background: #8a3a3a; }
+        .transform-stage:nth-child(5) .stage-indicator { background: var(--void-purple); box-shadow: 0 0 15px var(--corruption-glow); }
+
+        .stage-content {
+            flex: 1;
+            padding: 15px 20px;
+            background: var(--parchment);
+            border: 1px solid var(--brown-light);
+            border-left: none;
+        }
+
+        .stage-content h5 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--brown-dark);
+        }
+
+        .stage-content p {
+            font-size: 0.85rem;
+            margin: 5px 0 0;
+            color: var(--brown-medium);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           REFERENCE TABLES
+        ═══════════════════════════════════════════════════════════════════════ */
+        .ref-table-container {
+            margin: 30px 0;
+            border: 2px solid var(--brown-dark);
+            overflow: hidden;
+        }
+
+        .ref-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .ref-table thead {
+            background: linear-gradient(180deg, var(--brown-dark) 0%, var(--brown-medium) 100%);
+        }
+
+        .ref-table th {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ref-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--brown-light);
+            font-size: 0.9rem;
+            background: var(--parchment);
+        }
+
+        .ref-table tbody tr:nth-child(even) td {
+            background: var(--parchment-dark);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           TRACKER BOXES (PRINTABLE)
+        ═══════════════════════════════════════════════════════════════════════ */
+        .tracker-section {
+            background: white;
+            border: 3px solid var(--brown-dark);
+            padding: 30px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .tracker-section::before {
+            content: '✂ RITAGLIARE';
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            color: var(--brown-medium);
+            background: white;
+            padding: 2px 10px;
+            border: 1px dashed var(--brown-medium);
+        }
+
+        .tracker-section h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--brown-dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--brown-dark);
+        }
+
+        .tracker-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .tracker-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--brown-dark);
+            min-width: 120px;
+        }
+
+        .tracker-boxes {
+            display: flex;
+            gap: 8px;
+        }
+
+        .tracker-box {
+            width: 25px;
+            height: 25px;
+            border: 2px solid var(--brown-dark);
+            background: white;
+        }
+
+        .tracker-box.hope { border-color: #4a8a4a; }
+        .tracker-box.fear { border-color: var(--blood-red); }
+        .tracker-box.tenuta { border-color: var(--void-purple); }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           CHECKLIST
+        ═══════════════════════════════════════════════════════════════════════ */
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .checklist-card {
+            background: var(--parchment);
+            border: 2px solid var(--brown-dark);
+            padding: 25px;
+        }
+
+        .checklist-card h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            color: var(--brown-dark);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--brown-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checklist-card ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .checklist-card li {
+            padding: 8px 0 8px 30px;
+            position: relative;
+            font-size: 0.9rem;
+            border-bottom: 1px dotted var(--brown-light);
+        }
+
+        .checklist-card li:last-child { border-bottom: none; }
+
+        .checklist-card li::before {
+            content: '☐';
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+            color: var(--brown-dark);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           TYPOGRAPHY
+        ═══════════════════════════════════════════════════════════════════════ */
+        h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--brown-dark);
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--brown-light);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        p { margin-bottom: 16px; text-align: justify; }
+
+        .divider {
+            text-align: center;
+            margin: 50px 0;
+            color: var(--brown-light);
+            font-size: 1.2rem;
+            letter-spacing: 10px;
+        }
+
+        .golden-rule {
+            background: linear-gradient(135deg, rgba(212,160,23,0.15) 0%, rgba(212,160,23,0.05) 100%);
+            border: 2px solid var(--gold);
+            padding: 25px 30px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .golden-rule::before {
+            content: '💡 REGOLA D\'ORO';
+            position: absolute;
+            top: -12px;
+            left: 25px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.65rem;
+            color: var(--gold-dark);
+            background: var(--parchment);
+            padding: 3px 12px;
+            letter-spacing: 1px;
+        }
+
+        .golden-rule p { margin: 0; }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(139,0,0,0.1) 0%, rgba(139,0,0,0.03) 100%);
+            border: 2px solid var(--blood-red);
+            padding: 25px 30px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .warning-box::before {
+            content: '⚠️ ATTENZIONE';
+            position: absolute;
+            top: -12px;
+            left: 25px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.65rem;
+            color: var(--blood-red);
+            background: var(--parchment);
+            padding: 3px 12px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════════════════════════════════════ */
+        footer {
+            background: 
+                radial-gradient(ellipse at center top, rgba(106,74,138,0.2) 0%, transparent 50%),
+                linear-gradient(180deg, var(--brown-dark) 0%, #0a0005 100%);
+            color: var(--parchment);
+            padding: 60px;
+            text-align: center;
+            border-top: 4px double var(--gold);
+        }
+
+        footer .brand {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            font-family: 'IM Fell English', serif;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-align: center;
+            font-style: italic;
+        }
+
+        footer .final-warning {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212,160,23,0.3);
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            opacity: 0.6;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════════════════════════════════════ */
+        @media (max-width: 1000px) {
+            .safety-grid, .checklist-grid { grid-template-columns: 1fr; }
+            .hero-chapters { grid-template-columns: repeat(2, 1fr); }
+            .entity-stats-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 800px) {
+            nav { display: none; }
+            main { margin-left: 0; }
+            .content-wrapper { padding: 40px 25px; }
+            .chapter-header { margin: 40px -25px 30px; padding: 40px 25px; }
+            .grimoire-hero h1 { font-size: 2rem; }
+            .escalation-level { flex-direction: column; }
+            .escalation-level .level-badge { width: 100%; }
+            .escalation-level .level-content { border-left: 1px solid var(--brown-light); }
+            .timeline-event { flex-direction: column; }
+            .timeline-marker { width: 100%; text-align: left; padding: 10px 0; }
+            .timeline-marker::after { display: none; }
+            .cosmic-timeline::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-header">
+            <div class="nav-sigil">👁</div>
+            <h1>Guida del GM</h1>
+            <div class="subtitle">Parte V — Arcana</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">🌑 Cap. 7</div>
+            <a href="#horror" class="chapter">Narrazione Horror</a>
+            <a href="#sicurezza">Strumenti di Sicurezza</a>
+            <a href="#tecniche">Tecniche Atmosfera</a>
+            <a href="#escalation">Escalation dell'Orrore</a>
+            <a href="#scene">Scene Specifiche</a>
+            <a href="#errori">Errori da Evitare</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">👁 Cap. 8</div>
+            <a href="#lore" class="chapter">Il Lore Espanso</a>
+            <a href="#antichi">Gli Antichi</a>
+            <a href="#cronologia">Cronologia Cosmica</a>
+            <a href="#trasformazione">La Trasformazione</a>
+            <a href="#culti">I Culti</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">📋 Cap. 9</div>
+            <a href="#riferimento" class="chapter">Riferimento Rapido</a>
+            <a href="#tabelle">Tabelle di Gioco</a>
+            <a href="#tracker">Tracker Stampabili</a>
+            <a href="#checklist">Checklist</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">📜 Appendice</div>
+            <a href="#crediti">Note Legali</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero -->
+        <section class="grimoire-hero">
+            <div class="hero-pentagram">⛧</div>
+            <div class="hero-content">
+                <div class="hero-ornament">❧ ◆ 👁 ◆ ❧</div>
+                <div class="part-label">PARTE V — ARCANA</div>
+                <h1>GUIDA DEL<br>GAME MASTER</h1>
+                <p class="tagline">Tecniche Narrative • Segreti Cosmici • Strumenti Essenziali</p>
+
+                <div class="hero-warning">
+                    <p>⚠ DOCUMENTO RISERVATO AL GAME MASTER ⚠</p>
+                    <p>Contiene rivelazioni sulla trama e segreti della campagna</p>
+                </div>
+
+                <div class="hero-chapters">
+                    <div class="hero-chapter">
+                        <div class="chapter-num">7</div>
+                        <div class="chapter-name">Narrazione Horror</div>
+                    </div>
+                    <div class="hero-chapter">
+                        <div class="chapter-num">8</div>
+                        <div class="chapter-name">Il Lore Espanso</div>
+                    </div>
+                    <div class="hero-chapter">
+                        <div class="chapter-num">9</div>
+                        <div class="chapter-name">Riferimento Rapido</div>
+                    </div>
+                    <div class="hero-chapter">
+                        <div class="chapter-num">A</div>
+                        <div class="chapter-name">Appendici</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="content-wrapper">
+            <!-- ═══════════════════════════════════════════════════════════════
+                 CHAPTER 7: HORROR NARRATION
+            ═══════════════════════════════════════════════════════════════ -->
+            <div class="chapter-header horror" id="horror">
+                <div class="chapter-sigil">🌑</div>
+                <div class="chapter-number">CAPITOLO VII</div>
+                <h2>GUIDA ALLA NARRAZIONE HORROR</h2>
+                <p class="chapter-desc">Tecniche • Atmosfera • Sicurezza • Pacing</p>
+            </div>
+
+            <p>L'horror nei giochi di ruolo non è gore gratuito o jump scare economici. È l'arte di creare <strong>disagio crescente</strong>, di far sentire i giocatori vulnerabili, di rivelare verità che preferiremmo non conoscere.</p>
+
+            <p>In Gunsmoke & Dread, l'horror è <em>cosmico</em>: non si tratta di mostri da uccidere, ma di verità impossibili da accettare. Il tuo obiettivo come GM non è terrorizzare i giocatori, ma creare un'esperienza emotiva memorabile dove la Paura è uno strumento narrativo, non il fine.</p>
+
+            <div class="golden-rule">
+                <p><strong>L'horror funziona solo con il consenso.</strong> Prima di ogni sessione, ricorda ai giocatori che possono sempre dire "stop" o usare gli strumenti di sicurezza. Un giocatore che si sente davvero a disagio non sta giocando — sta soffrendo. E quello non è mai l'obiettivo.</p>
+            </div>
+
+            <h3 id="sicurezza">🛡️ Strumenti di Sicurezza</h3>
+
+            <div class="safety-grid">
+                <div class="safety-card">
+                    <div class="safety-card-header">
+                        <div class="safety-icon">✖</div>
+                        <h4>X-Card</h4>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Una carta fisica (o gesto concordato) che qualsiasi giocatore può usare per fermare <strong>immediatamente</strong> una scena. Nessuna spiegazione richiesta, nessuna discussione.</p>
+                        <div class="safety-howto"><strong>Come usarlo:</strong> Posiziona una carta con una X al centro del tavolo. Quando qualcuno la tocca, la scena si interrompe. Il GM dice "OK, saltiamo avanti" e riprende da un punto sicuro. Non chiedere mai perché è stata usata.</div>
+                    </div>
+                </div>
+
+                <div class="safety-card">
+                    <div class="safety-card-header">
+                        <div class="safety-icon">📏</div>
+                        <h4>Lines & Veils</h4>
+                    </div>
+                    <div class="safety-card-body">
+                        <p><strong>Lines:</strong> Contenuti completamente esclusi dal gioco.<br><strong>Veils:</strong> Contenuti che possono esistere ma vengono gestiti "dietro le quinte".</p>
+                        <div class="safety-howto"><strong>Come usarlo:</strong> Durante la Sessione Zero, chiedi: "Cosa non volete MAI vedere?" (Lines) e "Cosa può esistere ma preferite non descrivere?" (Veils). Esempi: violenza su minori (Line), tortura esplicita (Veil).</div>
+                    </div>
+                </div>
+
+                <div class="safety-card">
+                    <div class="safety-card-header">
+                        <div class="safety-icon">🚪</div>
+                        <h4>Open Door Policy</h4>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>I giocatori possono lasciare il tavolo in qualsiasi momento, senza spiegazioni, senza conseguenze. Torneranno quando si sentiranno pronti.</p>
+                        <div class="safety-howto"><strong>Come usarlo:</strong> All'inizio della campagna, dì: "Se avete bisogno di una pausa, alzatevi e uscite. Nessuna domanda, nessun giudizio. Vi aspettiamo."</div>
+                    </div>
+                </div>
+
+                <div class="safety-card">
+                    <div class="safety-card-header">
+                        <div class="safety-icon">💬</div>
+                        <h4>Check-In Post-Sessione</h4>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Dopo sessioni particolarmente intense, verifica come stanno i giocatori. L'horror può lasciare un residuo emotivo.</p>
+                        <div class="safety-howto"><strong>Come usarlo:</strong> "Come state? C'è qualcosa che vi ha colpito? Qualcosa che vorreste gestire diversamente?" Ascolta senza metterti sulla difensiva.</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="tecniche">🌑 Tecniche di Atmosfera</h3>
+
+            <div class="technique-card" data-number="1">
+                <div class="technique-header">
+                    <h4>Descrizioni Sensoriali Stratificate</h4>
+                    <p>Non limitarti alla vista. L'horror più efficace coinvolge tutti i sensi.</p>
+                </div>
+                <div class="technique-body">
+                    <p>L'odore di decomposizione, il suono di qualcosa che striscia, la sensazione di umidità innaturale sulla pelle — questi dettagli rendono l'orrore <em>tangibile</em>.</p>
+                    <div class="technique-example">
+                        <p>"Non vedi niente nel buio, ma lo senti. Odore di sale marino — impossibile, siete a 500 km dall'oceano. Un suono bagnato, come carne che si muove. E sulla pelle... gocce. Fredde. Salate."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="technique-card" data-number="2">
+                <div class="technique-header">
+                    <h4>Il Potere del Silenzio</h4>
+                    <p>Fai pause deliberate. Lascia che il silenzio pesi.</p>
+                </div>
+                <div class="technique-body">
+                    <p>Dopo una rivelazione horror, smetti di parlare. I giocatori riempiranno quel vuoto con la loro immaginazione — sempre più spaventosa di qualsiasi descrizione.</p>
+                    <div class="technique-example">
+                        <p>Dopo aver descritto l'ibrido, fermati. Conta mentalmente fino a cinque. Guarda i giocatori negli occhi. Solo allora chiedi: "Cosa fate?"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="technique-card" data-number="3">
+                <div class="technique-header">
+                    <h4>Il Non-Detto</h4>
+                    <p>Non descrivere tutto. Lascia spazi vuoti.</p>
+                </div>
+                <div class="technique-body">
+                    <p>"Vedi qualcosa muoversi nell'ombra" è più efficace di una descrizione dettagliata. L'immaginazione del giocatore creerà qualcosa di personalmente terrificante.</p>
+                    <div class="technique-example">
+                        <p>"Nella stanza c'è... qualcosa. Non riesci a guardarlo direttamente. Ogni volta che provi, i tuoi occhi scivolano via. Sai solo che è grande. E che ti sta guardando."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="technique-card" data-number="4">
+                <div class="technique-header">
+                    <h4>Dettagli Sbagliati</h4>
+                    <p>Descrivi cose quasi normali ma con un dettaglio inquietante.</p>
+                </div>
+                <div class="technique-body">
+                    <p>Un sorriso con troppi denti. Ombre che cadono nella direzione sbagliata. Questa tecnica crea disagio subliminale <em>prima</em> dell'orrore esplicito.</p>
+                    <div class="technique-example">
+                        <p>"Il barista ti versa un whiskey. Sorriso cordiale, occhi gentili. Ma mentre si gira... noti che la sua ombra non si muove con lui. Rimane ferma. Ti fissa."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="technique-card" data-number="5">
+                <div class="technique-header">
+                    <h4>Normalità Corrotta</h4>
+                    <p>Prendi elementi familiari e rendili sbagliati.</p>
+                </div>
+                <div class="technique-body">
+                    <p>Una chiesa con simboli capovolti. Una ninna nanna cantata da voci adulte. La corruzione del familiare è più disturbante dell'ignoto.</p>
+                    <div class="technique-example">
+                        <p>"La missione sembra normale. Banchi di legno, altare, crocifisso. Ma guardi meglio il crocifisso... la figura non ha braccia aperte. Le ha avvolte attorno a sé stessa. Come se si stesse proteggendo da qualcosa."</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="escalation">📈 L'Escalation dell'Orrore</h3>
+
+            <p>L'horror efficace non inizia al massimo. Segue una curva di escalation che costruisce tensione gradualmente, con picchi e valli che permettono ai giocatori di respirare.</p>
+
+            <div class="escalation-pyramid">
+                <div class="escalation-level l1">
+                    <div class="level-badge">
+                        <span class="num">1</span>
+                        <span class="name">Disagio</span>
+                    </div>
+                    <div class="level-content">
+                        <h5>Qualcosa Non Va</h5>
+                        <p>Dettagli sbagliati, atmosfera opprimente. I giocatori sentono che qualcosa è strano ma non sanno cosa. Descrizioni sensoriali sottili, comportamenti NPC leggermente alterati.</p>
+                    </div>
+                </div>
+
+                <div class="escalation-level l2">
+                    <div class="level-badge">
+                        <span class="num">2</span>
+                        <span class="name">Tensione</span>
+                    </div>
+                    <div class="level-content">
+                        <h5>Prove Concrete</h5>
+                        <p>Tracce di sangue, simboli inquietanti, testimoni spaventati. I giocatori iniziano a temere cosa troveranno. La minaccia diventa reale.</p>
+                    </div>
+                </div>
+
+                <div class="escalation-level l3">
+                    <div class="level-badge">
+                        <span class="num">3</span>
+                        <span class="name">Rivelazione</span>
+                    </div>
+                    <div class="level-content">
+                        <h5>Primo Contatto</h5>
+                        <p>Vedere un mostro, scoprire una verità terribile. Questo è il momento per le prove di Tenuta e le descrizioni più intense. Il punto di non ritorno.</p>
+                    </div>
+                </div>
+
+                <div class="escalation-level l4">
+                    <div class="level-badge">
+                        <span class="num">4</span>
+                        <span class="name">Terrore</span>
+                    </div>
+                    <div class="level-content">
+                        <h5>Orrore Attivo</h5>
+                        <p>L'orrore è presente e aggressivo. Inseguimenti, combattimenti disperati, perdita di controllo. Pacing veloce, decisioni urgenti, sopravvivenza.</p>
+                    </div>
+                </div>
+
+                <div class="escalation-level l5">
+                    <div class="level-badge">
+                        <span class="num">5</span>
+                        <span class="name">Cosmico</span>
+                    </div>
+                    <div class="level-content">
+                        <h5>La Verità</h5>
+                        <p>Rivelazioni che cambiano la comprensione del mondo. L'umanità è insignificante. Gli dei sono reali e indifferenti. <strong>Usare con parsimonia.</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="golden-rule">
+                <p><strong>La Regola del Respiro:</strong> Dopo ogni picco horror, dai ai giocatori un momento per respirare. Una scena tranquilla, un NPC amichevole, un piccolo successo. Horror costante diventa rumore di fondo — perde impatto.</p>
+            </div>
+
+            <h3 id="errori">❌ Errori Comuni da Evitare</h3>
+
+            <div class="ref-table-container">
+                <table class="ref-table">
+                    <thead>
+                        <tr>
+                            <th>❌ Sbagliato</th>
+                            <th>✓ Giusto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Horror Costante:</strong> Ogni scena è terrificante, mostri ovunque</td>
+                            <td>Alterna horror e respiro. Scene tranquille rendono l'orrore più potente</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Spiegare Troppo:</strong> Descrizioni dettagliate, mitologia completa</td>
+                            <td>Lascia domande senza risposta. Il non-detto è più spaventoso</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Togliere Agency:</strong> I giocatori non possono fare niente</td>
+                            <td>Anche nell'horror, le scelte devono essere significative</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ignorare i Limiti:</strong> Procedere nonostante il disagio</td>
+                            <td>Il consenso viene prima della storia. Sempre.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Punire l'Horror:</strong> Usare la Tenuta come punizione</td>
+                            <td>La Tenuta è narrativa, non punizione. Crea momenti significativi</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="divider">🌑 ═══ ◆ ═══ 🌑</div>
+
+            <!-- ═══════════════════════════════════════════════════════════════
+                 CHAPTER 8: EXPANDED LORE
+            ═══════════════════════════════════════════════════════════════ -->
+            <div class="chapter-header lore" id="lore">
+                <div class="chapter-sigil">👁</div>
+                <div class="chapter-number">CAPITOLO VIII</div>
+                <h2>IL LORE ESPANSO</h2>
+                <p class="chapter-desc">Gli Antichi • Il Tempo Profondo • La Verità Cosmica</p>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>🚫 SPOILER MASSIVI 🚫</strong><br>Questo capitolo contiene informazioni complete sulla trama, inclusi segreti rivelati solo alla fine della campagna. È pensato <strong>esclusivamente</strong> per il Game Master.</p>
+            </div>
+
+            <h3 id="antichi">🐍 Gli Antichi</h3>
+
+            <p>Gli Antichi (chiamati anche "I Serpenti delle Profondità" o "Gli Oceanici") sono entità non terrestri che arrivarono sulla Terra durante l'<strong>era Cambriana</strong> (circa 500 milioni di anni fa), quando il pianeta era quasi coperto da oceani primordiali.</p>
+
+            <div class="ref-table-container">
+                <table class="ref-table">
+                    <thead>
+                        <tr>
+                            <th>Attributo</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Forma</strong></td><td>Serpentina o cefalopode, da 3 a 50+ metri</td></tr>
+                        <tr><td><strong>Biologia</strong></td><td>Semi-acquatici, respirano aria e acqua</td></tr>
+                        <tr><td><strong>Metabolismo</strong></td><td>Letargo profondo per millenni senza deterioramento</td></tr>
+                        <tr><td><strong>Intelligenza</strong></td><td>Superiore a quella umana, ma aliena (pensiero non-lineare)</td></tr>
+                        <tr><td><strong>Comunicazione</strong></td><td>Telepatia, bioluminescenza, vibrazioni subsoniche</td></tr>
+                        <tr><td><strong>Longevità</strong></td><td>Praticamente immortali</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="entity-card">
+                <div class="entity-header">
+                    <div class="entity-sigil">🐍</div>
+                    <div class="entity-title">
+                        <h3>Il Serpente Che Giace Sotto la Sabbia</h3>
+                        <div class="subtitle">Volume I — L'Antico di Silver Hollow</div>
+                    </div>
+                </div>
+                <div class="entity-body">
+                    <p>Forma serpentina con scaglie nere iridescenti. Testa ornata da 8-12 occhi disposti verticalmente che brillano di verde fosforescente. Bocca triplice con denti cristallini. Il corpo termina in una massa di tentacoli sottili e prensili.</p>
+                    <div class="entity-stats-grid">
+                        <div class="entity-stat">
+                            <div class="label">Posizione</div>
+                            <div class="value">Silver Hollow, NM</div>
+                        </div>
+                        <div class="entity-stat">
+                            <div class="label">Stato</div>
+                            <div class="value">Dormiente (99%)</div>
+                        </div>
+                        <div class="entity-stat">
+                            <div class="label">Dimensioni</div>
+                            <div class="value">~30 metri</div>
+                        </div>
+                    </div>
+                    <div class="entity-abilities">
+                        <h5>✨ Capacità Speciali</h5>
+                        <ul>
+                            <li>Controllo mentale limitato entro 50 metri</li>
+                            <li>Induce visioni e incubi nei seguaci</li>
+                            <li>Trasforma lentamente umani in servitori (settimane)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="entity-card">
+                <div class="entity-header">
+                    <div class="entity-sigil">🐙</div>
+                    <div class="entity-title">
+                        <h3>Il Guardiano dell'Abisso Insondabile</h3>
+                        <div class="subtitle">Volume II — L'Antico della Città Sommersa</div>
+                    </div>
+                </div>
+                <div class="entity-body">
+                    <p>Forma gigantesca cefalopode. Corpo centrale sferico (10m diametro) di "pietra vivente". Almeno 12 tentacoli da 20-30 metri con ventose contenenti "occhi". Testa con simmetria radiale complessa, multipli orifizi che fungono da bocche/occhi/sensi alieni.</p>
+                    <div class="entity-stats-grid">
+                        <div class="entity-stat">
+                            <div class="label">Posizione</div>
+                            <div class="value">Occhio Asciutto, AZ</div>
+                        </div>
+                        <div class="entity-stat">
+                            <div class="label">Stato</div>
+                            <div class="value">Semi-Sveglio (20-30%)</div>
+                        </div>
+                        <div class="entity-stat">
+                            <div class="label">Dimensioni</div>
+                            <div class="value">50+ metri</div>
+                        </div>
+                    </div>
+                    <div class="entity-abilities">
+                        <h5>✨ Capacità Speciali</h5>
+                        <ul>
+                            <li>Controllo mentale potente entro 500 metri</li>
+                            <li>Trasformazione rapida (giorni invece di settimane)</li>
+                            <li>Manipolazione dell'acqua (correnti, onde, pressione)</li>
+                            <li>Rigenerazione estrema (quasi immortale in combattimento)</li>
+                            <li>Proiezione mentale (appare nei sogni anche a distanza)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="cronologia">⏳ Cronologia Cosmica</h3>
+
+            <div class="warning-box">
+                <p><strong>💀 LA GRANDE VERITÀ TERRIFICANTE:</strong> L'umanità NON è la prima civiltà intelligente sulla Terra. Non è nemmeno la seconda. La Terra ha 4,5 miliardi di anni. L'umanità moderna esiste da appena 300.000 anni. Siamo nuovi arrivati. E profondamente <em>temporanei</em>.</p>
+            </div>
+
+            <div class="cosmic-timeline">
+                <div class="timeline-event">
+                    <div class="timeline-marker">
+                        <span class="era">Era Cambriana</span>
+                        <span class="years">540M anni fa</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>🌊 L'Arrivo</h4>
+                        <p>Gli Antichi arrivano sulla Terra (metodo sconosciuto — portale? nave organica?). Trovano un pianeta coperto da oceani primordiali. Stabiliscono centinaia di insediamenti globali, città sottomarine in "pietra vivente".</p>
+                    </div>
+                </div>
+
+                <div class="timeline-event">
+                    <div class="timeline-marker">
+                        <span class="era">L'Apogeo</span>
+                        <span class="years">500-100M anni fa</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>👑 Il Regno</h4>
+                        <p>Gli Antichi dominano gli oceani per <strong>400 MILIONI di anni</strong>. Sviluppano scienza/magia per manipolare la realtà. Costruiscono templi dimensionali. L'"esplosione Cambriana" coincide col loro arrivo. Coincidenza?</p>
+                    </div>
+                </div>
+
+                <div class="timeline-event corrupted">
+                    <div class="timeline-marker">
+                        <span class="era">La Recessione</span>
+                        <span class="years">100M anni fa</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>🏜️ Gli Oceani Si Ritirano</h4>
+                        <p>Cambiamenti geologici drammatici. Per gli Antichi è una catastrofe. Alcuni migrano negli oceani profondi. Altri entrano in letargo nelle città sepolte. Le città oceaniche sono ora sottoterra — ma gli Antichi attendono. <em>Gli oceani torneranno.</em></p>
+                    </div>
+                </div>
+
+                <div class="timeline-event corrupted">
+                    <div class="timeline-marker">
+                        <span class="era">Era Umana</span>
+                        <span class="years">300.000 anni fa</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>🧍 L'Umanità (Temporanea)</h4>
+                        <p>L'Homo sapiens evolve. Per gli Antichi, questo è un battito di ciglia. Loro: 500 milioni di anni. Noi: 300.000. <strong>Niente.</strong> Contatti sporadici: miti su "serpenti delle profondità", culti isolati, scoperte sepolte.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="trasformazione">🦠 La Trasformazione</h3>
+
+            <p>La "radiazione" degli Antichi altera il DNA umano, creando creature anfibie asservite alla loro volontà. Il processo è graduale e terrificante.</p>
+
+            <div class="transformation-stages">
+                <div class="transform-stage">
+                    <div class="stage-indicator">
+                        <span class="num">1</span>
+                        <span class="days">0-24h</span>
+                    </div>
+                    <div class="stage-content">
+                        <h5>Contatto</h5>
+                        <p>Incubi, attrazione verso l'acqua, irritabilità. <strong>Reversibile</strong> con distanza.</p>
+                    </div>
+                </div>
+                <div class="transform-stage">
+                    <div class="stage-indicator">
+                        <span class="num">2</span>
+                        <span class="days">1-3 giorni</span>
+                    </div>
+                    <div class="stage-content">
+                        <h5>Infezione</h5>
+                        <p>Pelle secca, sete costante, sensibilità alla luce. <strong>Reversibile</strong> con cure intensive.</p>
+                    </div>
+                </div>
+                <div class="transform-stage">
+                    <div class="stage-indicator">
+                        <span class="num">3</span>
+                        <span class="days">3-7 giorni</span>
+                    </div>
+                    <div class="stage-content">
+                        <h5>Mutazione</h5>
+                        <p>Scaglie visibili, branchie incipienti, occhi che scuriscono. <strong>Parzialmente</strong> reversibile (cicatrici permanenti).</p>
+                    </div>
+                </div>
+                <div class="transform-stage">
+                    <div class="stage-indicator">
+                        <span class="num">4</span>
+                        <span class="days">7-14 giorni</span>
+                    </div>
+                    <div class="stage-content">
+                        <h5>Ibrido</h5>
+                        <p>Trasformazione completa, intelligenza ridotta, istinto predatorio. <strong>IRREVERSIBILE.</strong></p>
+                    </div>
+                </div>
+                <div class="transform-stage">
+                    <div class="stage-indicator">
+                        <span class="num">5</span>
+                        <span class="days">14+ giorni</span>
+                    </div>
+                    <div class="stage-content">
+                        <h5>Completo</h5>
+                        <p>Perdita totale dell'umanità, servitore degli Antichi. Resta solo la misericordia.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider">👁 ═══ ◆ ═══ 👁</div>
+
+            <!-- ═══════════════════════════════════════════════════════════════
+                 CHAPTER 9: QUICK REFERENCE
+            ═══════════════════════════════════════════════════════════════ -->
+            <div class="chapter-header reference" id="riferimento">
+                <div class="chapter-sigil">📋</div>
+                <div class="chapter-number">CAPITOLO IX</div>
+                <h2>RIFERIMENTO RAPIDO</h2>
+                <p class="chapter-desc">Tabelle • Tracker • Checklist</p>
+            </div>
+
+            <h3 id="tabelle">🎲 Tabelle di Gioco</h3>
+
+            <h4>Classi di Difficoltà</h4>
+            <div class="ref-table-container">
+                <table class="ref-table">
+                    <thead>
+                        <tr><th>Difficoltà</th><th>Livello</th><th>Descrizione</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>10</strong></td><td>Facile</td><td>Compito di routine</td></tr>
+                        <tr><td><strong>12</strong></td><td>Moderato</td><td>Richiede competenza</td></tr>
+                        <tr><td><strong>14</strong></td><td>Impegnativo</td><td>Sfida significativa</td></tr>
+                        <tr><td><strong>16</strong></td><td>Difficile</td><td>Molto arduo</td></tr>
+                        <tr><td><strong>18</strong></td><td>Eroico</td><td>Quasi impossibile</td></tr>
+                        <tr><td><strong>20+</strong></td><td>Leggendario</td><td>Impresa epica</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>Risultati dei Dadi della Dualità</h4>
+            <div class="ref-table-container">
+                <table class="ref-table">
+                    <thead>
+                        <tr><th>Risultato</th><th>Effetto</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Hope > Fear</strong></td><td>Successo + segnalino Hope al giocatore</td></tr>
+                        <tr><td><strong>Fear > Hope</strong></td><td>Complicazione/Fallimento + segnalino Fear al GM</td></tr>
+                        <tr><td><strong>Pareggio</strong></td><td>Successo parziale + entrambi i segnalini</td></tr>
+                        <tr><td><strong>Doppio 12</strong></td><td>Miglior risultato possibile + effetto bonus</td></tr>
+                        <tr><td><strong>Doppio 1</strong></td><td>Peggior risultato possibile + segnalino Fear</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>Tenuta Mentale — Eventi Scatenanti</h4>
+            <div class="ref-table-container">
+                <table class="ref-table">
+                    <thead>
+                        <tr><th>Evento</th><th>Difficoltà</th><th>Segmenti</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Vedere un cadavere</td><td>11</td><td>1</td></tr>
+                        <tr><td>Orrore corporeo lieve</td><td>12</td><td>1-2</td></tr>
+                        <tr><td>Zombi o non-morti</td><td>13-14</td><td>2</td></tr>
+                        <tr><td>Architettura aliena</td><td>15-16</td><td>3-4</td></tr>
+                        <tr><td>Entità cosmica (Ibridi)</td><td>17-18</td><td>4-6</td></tr>
+                        <tr><td>Grande Antico</td><td>19-20</td><td>6-8</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 id="tracker">📊 Tracker Stampabili</h3>
+
+            <div class="tracker-section">
+                <h4>💚 Speranza & ❤️ Paura</h4>
+                <div class="tracker-row">
+                    <span class="tracker-label">💚 Speranza (PG)</span>
+                    <div class="tracker-boxes">
+                        <div class="tracker-box hope"></div>
+                        <div class="tracker-box hope"></div>
+                        <div class="tracker-box hope"></div>
+                        <div class="tracker-box hope"></div>
+                        <div class="tracker-box hope"></div>
+                        <div class="tracker-box hope"></div>
+                        <div class="tracker-box hope"></div>
+                        <div class="tracker-box hope"></div>
+                        <div class="tracker-box hope"></div>
+                        <div class="tracker-box hope"></div>
+                    </div>
+                </div>
+                <div class="tracker-row">
+                    <span class="tracker-label">❤️ Paura (GM)</span>
+                    <div class="tracker-boxes">
+                        <div class="tracker-box fear"></div>
+                        <div class="tracker-box fear"></div>
+                        <div class="tracker-box fear"></div>
+                        <div class="tracker-box fear"></div>
+                        <div class="tracker-box fear"></div>
+                        <div class="tracker-box fear"></div>
+                        <div class="tracker-box fear"></div>
+                        <div class="tracker-box fear"></div>
+                        <div class="tracker-box fear"></div>
+                        <div class="tracker-box fear"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tracker-section">
+                <h4>😱 Tenuta Mentale dei Personaggi</h4>
+                <div class="tracker-row">
+                    <span class="tracker-label">PG 1: _______</span>
+                    <div class="tracker-boxes">
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                    </div>
+                </div>
+                <div class="tracker-row">
+                    <span class="tracker-label">PG 2: _______</span>
+                    <div class="tracker-boxes">
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                    </div>
+                </div>
+                <div class="tracker-row">
+                    <span class="tracker-label">PG 3: _______</span>
+                    <div class="tracker-boxes">
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                    </div>
+                </div>
+                <div class="tracker-row">
+                    <span class="tracker-label">PG 4: _______</span>
+                    <div class="tracker-boxes">
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                        <div class="tracker-box tenuta"></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="checklist">✅ Checklist del GM</h3>
+
+            <div class="checklist-grid">
+                <div class="checklist-card">
+                    <h4>📋 Prima della Sessione</h4>
+                    <ul>
+                        <li>File dello scenario letto</li>
+                        <li>Schede PG disponibili</li>
+                        <li>Statistiche creature preparate</li>
+                        <li>Dadi pronti (2d12 + set completo)</li>
+                        <li>Segnalini Hope/Fear</li>
+                        <li>Strumenti di sicurezza spiegati</li>
+                    </ul>
+                </div>
+
+                <div class="checklist-card">
+                    <h4>🎭 Durante la Sessione</h4>
+                    <ul>
+                        <li>Traccia i segnalini Hope/Fear</li>
+                        <li>Segna i segmenti Tenuta</li>
+                        <li>Traccia gli HP nemici</li>
+                        <li>Annota successi/fallimenti memorabili</li>
+                        <li>Bilancia horror e respiro</li>
+                        <li>Prepara un finale impattante</li>
+                    </ul>
+                </div>
+
+                <div class="checklist-card">
+                    <h4>🎬 Narrazione Horror</h4>
+                    <ul>
+                        <li>Usa tutti i 5 sensi nelle descrizioni</li>
+                        <li>Sfrutta le pause drammatiche</li>
+                        <li>L'implicazione > l'esposizione</li>
+                        <li>Le scelte dei PG devono contare</li>
+                        <li>Pianta indizi 2-3 scene prima</li>
+                        <li>Sussurra nei momenti di tensione</li>
+                    </ul>
+                </div>
+
+                <div class="checklist-card">
+                    <h4>💬 Dopo la Sessione</h4>
+                    <ul>
+                        <li>Check-in emotivo con i giocatori</li>
+                        <li>Cosa ha funzionato bene?</li>
+                        <li>Qualcosa ha messo a disagio?</li>
+                        <li>I momenti horror hanno funzionato?</li>
+                        <li>I giocatori hanno avuto agency?</li>
+                        <li>Serve più o meno horror?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="divider">📋 ═══ ◆ ═══ 📋</div>
+
+            <!-- ═══════════════════════════════════════════════════════════════
+                 APPENDIX
+            ═══════════════════════════════════════════════════════════════ -->
+            <h3 id="crediti">📜 Note Legali e Crediti</h3>
+
+            <p><strong>Licenza:</strong> Questo prodotto include materiali dal Daggerheart System Reference Document 1.0, © Critical Role, LLC, utilizzati secondo i termini della Darrington Press Community Gaming License (DPCGL).</p>
+
+            <p><strong>Contenuto Originale:</strong> Tutti i personaggi, le località, le trame e le storie sono creazioni originali © Riccardo 2025. Tutti i diritti riservati.</p>
+
+            <div class="ref-table-container">
+                <table class="ref-table">
+                    <thead>
+                        <tr><th>Campo</th><th>Dettaglio</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Design e Scrittura</strong></td><td>Riccardo</td></tr>
+                        <tr><td><strong>Sistema di Gioco</strong></td><td>Daggerheart™ (Darrington Press)</td></tr>
+                        <tr><td><strong>Genere</strong></td><td>Weird West / Orrore Cosmico</td></tr>
+                        <tr><td><strong>Ispirazioni</strong></td><td>Deadlands, Il Richiamo di Cthulhu, True Detective, The Terror</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <footer>
+            <div class="brand">❧ GUNSMOKE & DREAD ❧</div>
+            <p>Guida del Game Master — Parte V<br><em>"La Paura è uno strumento. Usalo con rispetto."</em></p>
+            <div class="final-warning">ALCUNE VERITÀ NON DOVREBBERO ESSERE CONOSCIUTE</div>
+        </footer>
+    </main>
+</body>
+</html>

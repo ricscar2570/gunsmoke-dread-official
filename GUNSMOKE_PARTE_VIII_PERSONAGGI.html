@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUNSMOKE & DREAD — Parte VIII: Archivio Personaggi Completo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Special+Elite&family=IM+Fell+English:ital@0;1&family=Rye&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --parchment: #f4e4c1;
+            --parchment-dark: #e8d4a8;
+            --wood-dark: #3d2914;
+            --wood-medium: #5c3d1e;
+            --leather: #654321;
+            --blood-red: #8b0000;
+            --gold: #d4a017;
+            --gold-dark: #a47a0a;
+            --ink-sepia: #3a2a1a;
+            --steel: #4a5568;
+            
+            /* Character colors */
+            --jack: #8b4513;
+            --sarah: #4a5568;
+            --doc: #2d5a27;
+            --elena: #8b0000;
+            --william: #654321;
+            --isabella: #5a2d82;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--ink-sepia);
+            background: linear-gradient(180deg, #c4a47a 0%, #b4946a 100%);
+            background-attachment: fixed;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 240px;
+            height: 100vh;
+            background: linear-gradient(180deg, #2a1a0a 0%, #1a0a00 100%);
+            padding: 0;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 5px 0 20px rgba(0,0,0,0.5);
+            border-right: 4px solid var(--wood-dark);
+        }
+
+        .nav-header {
+            text-align: center;
+            padding: 20px 15px;
+            background: var(--wood-dark);
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .nav-header h1 {
+            font-family: 'Rye', cursive;
+            font-size: 1.1rem;
+            color: var(--gold);
+        }
+
+        .nav-header p {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            color: var(--parchment);
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        .nav-section {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(212,160,23,0.2);
+        }
+
+        .nav-section-title {
+            font-family: 'Rye', cursive;
+            font-size: 0.6rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        nav a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--parchment);
+            text-decoration: none;
+            padding: 5px 10px;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+            border-left: 2px solid transparent;
+        }
+
+        nav a:hover {
+            background: rgba(212,160,23,0.15);
+            border-left-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .char-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .char-dot.jack { background: var(--jack); }
+        .char-dot.sarah { background: var(--sarah); }
+        .char-dot.doc { background: var(--doc); }
+        .char-dot.elena { background: var(--elena); }
+        .char-dot.william { background: var(--william); }
+        .char-dot.isabella { background: var(--isabella); }
+
+        /* Main */
+        main {
+            margin-left: 240px;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: 
+                radial-gradient(ellipse at center, rgba(212,160,23,0.1) 0%, transparent 50%),
+                var(--parchment);
+            padding: 60px 40px;
+            border-bottom: 5px double var(--wood-dark);
+        }
+
+        .hero-badge {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            color: var(--blood-red);
+            letter-spacing: 5px;
+            padding: 8px 25px;
+            border: 2px solid var(--blood-red);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Rye', cursive;
+            font-size: 2.8rem;
+            color: var(--wood-dark);
+            margin-bottom: 10px;
+        }
+
+        .hero .subtitle {
+            font-family: 'IM Fell English', serif;
+            font-size: 1.2rem;
+            color: var(--leather);
+            font-style: italic;
+        }
+
+        .roster-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 40px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .roster-item {
+            padding: 15px;
+            background: var(--parchment);
+            border: 2px solid var(--wood-dark);
+            text-align: center;
+        }
+
+        .roster-item .icon { font-size: 1.8rem; }
+        .roster-item .name {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: var(--wood-dark);
+            margin-top: 5px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            padding: 40px;
+            margin: 50px -40px 30px;
+            background: var(--parchment);
+            border-top: 3px double var(--wood-dark);
+            border-bottom: 3px double var(--wood-dark);
+        }
+
+        .section-header.veteran {
+            background: linear-gradient(135deg, rgba(139,0,0,0.1) 0%, var(--parchment) 100%);
+        }
+
+        .section-header h2 {
+            font-family: 'Rye', cursive;
+            font-size: 1.6rem;
+            color: var(--wood-dark);
+        }
+
+        .section-header p {
+            font-family: 'IM Fell English', serif;
+            color: var(--leather);
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* Character Card */
+        .char-card {
+            background: var(--parchment);
+            border: 3px solid var(--wood-dark);
+            margin: 40px 0;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .char-card::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border: 1px solid var(--wood-medium);
+            pointer-events: none;
+        }
+
+        /* Card Header */
+        .card-header {
+            padding: 25px;
+            text-align: center;
+            border-bottom: 3px double var(--wood-dark);
+            position: relative;
+        }
+
+        .card-header.jack { background: linear-gradient(180deg, rgba(139,69,19,0.15) 0%, transparent 100%); }
+        .card-header.sarah { background: linear-gradient(180deg, rgba(74,85,104,0.15) 0%, transparent 100%); }
+        .card-header.doc { background: linear-gradient(180deg, rgba(45,90,39,0.15) 0%, transparent 100%); }
+        .card-header.elena { background: linear-gradient(180deg, rgba(139,0,0,0.15) 0%, transparent 100%); }
+        .card-header.william { background: linear-gradient(180deg, rgba(101,67,33,0.15) 0%, transparent 100%); }
+        .card-header.isabella { background: linear-gradient(180deg, rgba(90,45,130,0.15) 0%, transparent 100%); }
+
+        .level-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 50px;
+            height: 50px;
+            background: var(--blood-red);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Rye', cursive;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .level-badge .num { font-size: 1.3rem; }
+        .level-badge .txt { font-size: 0.4rem; text-transform: uppercase; }
+
+        .veteran-ribbon {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 5px 12px;
+            background: var(--gold);
+            color: var(--wood-dark);
+            font-family: 'Rye', cursive;
+            font-size: 0.55rem;
+            transform: rotate(-5deg);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .char-icon { font-size: 2.5rem; margin-bottom: 10px; }
+
+        .char-name {
+            font-family: 'Rye', cursive;
+            font-size: 1.4rem;
+            color: var(--wood-dark);
+        }
+
+        .char-title {
+            font-family: 'IM Fell English', serif;
+            font-size: 0.95rem;
+            color: var(--leather);
+            font-style: italic;
+        }
+
+        .char-class {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            color: var(--wood-medium);
+            margin-top: 10px;
+            padding: 5px 15px;
+            background: rgba(0,0,0,0.05);
+            display: inline-block;
+        }
+
+        /* Stats */
+        .stats-section {
+            padding: 20px;
+            background: var(--parchment-dark);
+            border-bottom: 2px solid var(--wood-medium);
+        }
+
+        .main-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 12px 8px;
+            background: var(--parchment);
+            border: 2px solid var(--wood-dark);
+        }
+
+        .stat-box .val {
+            font-family: 'Rye', cursive;
+            font-size: 1.4rem;
+            color: var(--blood-red);
+        }
+
+        .stat-box .lbl {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.5rem;
+            color: var(--wood-medium);
+            text-transform: uppercase;
+        }
+
+        .attributes {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+        }
+
+        .attr {
+            text-align: center;
+            padding: 8px 4px;
+            background: var(--parchment);
+            border: 1px solid var(--wood-medium);
+        }
+
+        .attr .mod {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--wood-dark);
+            font-weight: bold;
+        }
+
+        .attr .name {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.4rem;
+            color: var(--leather);
+            text-transform: uppercase;
+        }
+
+        /* Story */
+        .story-section {
+            padding: 20px;
+            border-bottom: 1px dashed var(--wood-medium);
+        }
+
+        .story-section h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--wood-dark);
+            margin-bottom: 10px;
+        }
+
+        .story-section p {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        /* Abilities */
+        .abilities-section {
+            padding: 20px;
+        }
+
+        .abilities-section h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--wood-dark);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--wood-medium);
+        }
+
+        .ability {
+            background: var(--parchment-dark);
+            border: 1px solid var(--wood-medium);
+            margin: 10px 0;
+            padding: 12px;
+        }
+
+        .ability.new {
+            border-color: var(--blood-red);
+            background: linear-gradient(135deg, var(--parchment-dark) 0%, rgba(139,0,0,0.05) 100%);
+        }
+
+        .ability.new::before {
+            content: '★ NUOVA';
+            font-family: 'Special Elite', monospace;
+            font-size: 0.5rem;
+            color: var(--blood-red);
+            float: right;
+        }
+
+        .ability .ab-name {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--wood-dark);
+            font-weight: 600;
+        }
+
+        .ability .ab-desc {
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        .ability .ab-quote {
+            font-family: 'IM Fell English', serif;
+            font-style: italic;
+            font-size: 0.75rem;
+            color: var(--leather);
+            margin-top: 5px;
+            padding-left: 10px;
+            border-left: 2px solid var(--gold);
+        }
+
+        /* Equipment */
+        .equipment-section {
+            padding: 20px;
+            background: var(--parchment-dark);
+            border-top: 2px solid var(--wood-medium);
+        }
+
+        .equipment-section h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--wood-dark);
+            margin-bottom: 10px;
+        }
+
+        .equip-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .equip-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            background: var(--parchment);
+            border: 1px solid var(--wood-medium);
+            font-size: 0.8rem;
+        }
+
+        .equip-item .eq-icon { font-size: 1rem; }
+        .equip-item .eq-stats {
+            color: var(--blood-red);
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+        }
+
+        /* Connections */
+        .connections-section {
+            padding: 20px;
+            border-top: 2px solid var(--wood-medium);
+        }
+
+        .connections-section h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--wood-dark);
+            margin-bottom: 10px;
+        }
+
+        .connection {
+            padding: 10px 12px;
+            margin: 8px 0;
+            background: var(--parchment-dark);
+            border-left: 3px solid var(--gold);
+            font-size: 0.85rem;
+        }
+
+        .connection strong {
+            font-family: 'Cinzel', serif;
+            color: var(--wood-dark);
+        }
+
+        /* Flaw */
+        .flaw-box {
+            padding: 12px 15px;
+            margin-top: 15px;
+            background: rgba(139,0,0,0.08);
+            border: 1px solid var(--blood-red);
+        }
+
+        .flaw-box .label {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            color: var(--blood-red);
+            text-transform: uppercase;
+        }
+
+        .flaw-box p {
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        /* Scars (veterans) */
+        .scars-section {
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(139,0,0,0.08) 0%, transparent 100%);
+            border-top: 2px solid var(--blood-red);
+        }
+
+        .scars-section h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--blood-red);
+            margin-bottom: 10px;
+        }
+
+        .scar-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .scar {
+            padding: 8px 12px;
+            background: var(--parchment);
+            border: 1px solid var(--blood-red);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .scar::before { content: '💀'; font-size: 0.9rem; }
+
+        /* Divider */
+        .divider {
+            text-align: center;
+            margin: 50px 0;
+            color: var(--wood-medium);
+            font-size: 1rem;
+            letter-spacing: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--wood-dark);
+            color: var(--parchment);
+            padding: 40px;
+            text-align: center;
+            border-top: 4px solid var(--gold);
+        }
+
+        footer .brand {
+            font-family: 'Rye', cursive;
+            font-size: 1.3rem;
+            color: var(--gold);
+        }
+
+        footer p {
+            font-family: 'IM Fell English', serif;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            nav { display: none; }
+            main { margin-left: 0; }
+            .content-wrapper { padding: 25px; }
+            .main-stats { grid-template-columns: repeat(2, 1fr); }
+            .attributes { grid-template-columns: repeat(3, 1fr); }
+            .equip-grid { grid-template-columns: 1fr; }
+            .scar-list { grid-template-columns: 1fr; }
+            .roster-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-header">
+            <h1>🔫 ARCHIVIO</h1>
+            <p>Dossier Personaggi</p>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">📋 Livello 2 — Novizi</div>
+            <a href="#jack-2"><span class="char-dot jack"></span> Jack Malone</a>
+            <a href="#sarah-2"><span class="char-dot sarah"></span> Sarah Blackwood</a>
+            <a href="#doc-2"><span class="char-dot doc"></span> Doc Wells</a>
+            <a href="#elena-2"><span class="char-dot elena"></span> Elena Vasquez</a>
+            <a href="#william-2"><span class="char-dot william"></span> William Cross</a>
+            <a href="#isabella-2"><span class="char-dot isabella"></span> Isabella Rossi</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">⭐ Livello 5 — Veterani</div>
+            <a href="#jack-5"><span class="char-dot jack"></span> Jack Veterano</a>
+            <a href="#sarah-5"><span class="char-dot sarah"></span> Sarah Veterana</a>
+            <a href="#doc-5"><span class="char-dot doc"></span> Doc Veterano</a>
+            <a href="#elena-5"><span class="char-dot elena"></span> Elena Veterana</a>
+            <a href="#william-5"><span class="char-dot william"></span> William Veterano</a>
+            <a href="#isabella-5"><span class="char-dot isabella"></span> Isabella Veterana</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-badge">DOSSIER COMPLETO</div>
+            <h1>EROI DEL WEST</h1>
+            <p class="subtitle">Sei Anime Dannate • Dodici Destini</p>
+
+            <div class="roster-grid">
+                <div class="roster-item"><span class="icon">🔫</span><div class="name">Jack</div></div>
+                <div class="roster-item"><span class="icon">🙏</span><div class="name">Sarah</div></div>
+                <div class="roster-item"><span class="icon">🔬</span><div class="name">Doc</div></div>
+                <div class="roster-item"><span class="icon">🎯</span><div class="name">Elena</div></div>
+                <div class="roster-item"><span class="icon">🪶</span><div class="name">William</div></div>
+                <div class="roster-item"><span class="icon">🎭</span><div class="name">Isabella</div></div>
+            </div>
+        </section>
+
+        <div class="content-wrapper">
+
+            <!-- ════════════════════════════════════════════════════════════════════
+                 LEVEL 2 CHARACTERS
+            ════════════════════════════════════════════════════════════════════ -->
+            <div class="section-header">
+                <h2>📋 LIVELLO 2 — I NOVIZI</h2>
+                <p>Prima di Silver Hollow</p>
+            </div>
+
+            <!-- ELENA LV.2 -->
+            <div class="char-card" id="elena-2">
+                <div class="card-header elena">
+                    <div class="level-badge"><span class="num">2</span><span class="txt">Liv</span></div>
+                    <div class="char-icon">🎯</div>
+                    <h3 class="char-name">ELENA "LA VEDOVA" VASQUEZ</h3>
+                    <p class="char-title">La Cacciatrice Spietata — Vendetta Personificata</p>
+                    <div class="char-class">Ranger | Evasion 12 | Specializzazione: Cecchino</div>
+                </div>
+
+                <div class="stats-section">
+                    <div class="main-stats">
+                        <div class="stat-box"><div class="val">26</div><div class="lbl">HP</div></div>
+                        <div class="stat-box"><div class="val">1</div><div class="lbl">Armor</div></div>
+                        <div class="stat-box"><div class="val">6/10</div><div class="lbl">Tenuta</div></div>
+                        <div class="stat-box"><div class="val">STD</div><div class="lbl">Velocità</div></div>
+                    </div>
+                    <div class="attributes">
+                        <div class="attr"><div class="mod">+1</div><div class="name">Forza</div></div>
+                        <div class="attr"><div class="mod">+3</div><div class="name">Agilità</div></div>
+                        <div class="attr"><div class="mod">+0</div><div class="name">Conoscenza</div></div>
+                        <div class="attr"><div class="mod">+1</div><div class="name">Presenza</div></div>
+                        <div class="attr"><div class="mod">+2</div><div class="name">Istinto</div></div>
+                        <div class="attr"><div class="mod">+0</div><div class="name">Finezza</div></div>
+                    </div>
+                </div>
+
+                <div class="story-section">
+                    <h4>📜 Storia Personale</h4>
+                    <p>Il marito di Elena fu ucciso dai Morrison tre anni fa. Da allora, ha dato la caccia a ogni membro della banda, uno per uno. Clay Morrison è l'ultimo. Dopo di lui... non sa cosa farà.</p>
+                </div>
+
+                <div class="abilities-section">
+                    <h4>✨ Abilità</h4>
+                    <div class="ability">
+                        <div class="ab-name">🎯 Cacciatrice</div>
+                        <div class="ab-desc"><strong>+1d6</strong> a tracciare e pedinare bersagli. Può seguire tracce vecchie di giorni.</div>
+                    </div>
+                    <div class="ability">
+                        <div class="ab-name">💀 Precisione Letale</div>
+                        <div class="ab-desc">Colpo critico su <strong>19-20</strong> invece che solo su doppio 12.</div>
+                    </div>
+                    <div class="ability">
+                        <div class="ab-name">🔥 Vendetta</div>
+                        <div class="ab-desc"><strong>+1d6 danni</strong> contro un bersaglio designato a inizio combattimento.</div>
+                        <div class="ab-quote">"Questo è per Miguel."</div>
+                    </div>
+                </div>
+
+                <div class="equipment-section">
+                    <h4>🎒 Equipaggiamento</h4>
+                    <div class="equip-grid">
+                        <div class="equip-item"><span class="eq-icon">🎯</span> Fucile da cecchino <span class="eq-stats">2d8+2, Very Far</span></div>
+                        <div class="equip-item"><span class="eq-icon">🔫</span> Revolver <span class="eq-stats">2d6</span></div>
+                        <div class="equip-item"><span class="eq-icon">🗡️</span> Coltelli da lancio (×3) <span class="eq-stats">1d4</span></div>
+                        <div class="equip-item"><span class="eq-icon">🧥</span> Mantello da viaggio</div>
+                        <div class="equip-item"><span class="eq-icon">📷</span> Foto del marito</div>
+                        <div class="equip-item"><span class="eq-icon">📋</span> Lista dei Morrison (6 cancellati)</div>
+                    </div>
+                </div>
+
+                <div class="connections-section">
+                    <h4>💬 Connessioni</h4>
+                    <div class="connection"><strong>→ Jack Malone:</strong> Capisce la sua sete di vendetta. Condividono un silenzio confortevole.</div>
+                    <div class="connection"><strong>→ William Cross:</strong> Le ricorda che c'è ancora bellezza nel mondo. Lo trova irritante e necessario.</div>
+                    <div class="flaw-box">
+                        <div class="label">💔 Difetto — Ossessione</div>
+                        <p>Se Morrison è in vista: <strong>PRE 14</strong> o deve attaccare, ignorando tutto il resto.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WILLIAM LV.2 -->
+            <div class="char-card" id="william-2">
+                <div class="card-header william">
+                    <div class="level-badge"><span class="num">2</span><span class="txt">Liv</span></div>
+                    <div class="char-icon">🪶</div>
+                    <h3 class="char-name">WILLIAM "THUNDERFOOT" CROSS</h3>
+                    <p class="char-title">Il Guardiano Navajo — Ultimo dei Cercatori</p>
+                    <div class="char-class">Guardian | Evasion 10 | Specializzazione: Sciamano</div>
+                </div>
+
+                <div class="stats-section">
+                    <div class="main-stats">
+                        <div class="stat-box"><div class="val">32</div><div class="lbl">HP</div></div>
+                        <div class="stat-box"><div class="val">2</div><div class="lbl">Armor</div></div>
+                        <div class="stat-box"><div class="val">7/10</div><div class="lbl">Tenuta</div></div>
+                        <div class="stat-box"><div class="val">STD</div><div class="lbl">Velocità</div></div>
+                    </div>
+                    <div class="attributes">
+                        <div class="attr"><div class="mod">+3</div><div class="name">Forza</div></div>
+                        <div class="attr"><div class="mod">+0</div><div class="name">Agilità</div></div>
+                        <div class="attr"><div class="mod">+1</div><div class="name">Conoscenza</div></div>
+                        <div class="attr"><div class="mod">+1</div><div class="name">Presenza</div></div>
+                        <div class="attr"><div class="mod">+2</div><div class="name">Istinto</div></div>
+                        <div class="attr"><div class="mod">+1</div><div class="name">Finezza</div></div>
+                    </div>
+                </div>
+
+                <div class="story-section">
+                    <h4>📜 Storia Personale</h4>
+                    <p>Guerriero Navajo, William ha lasciato la sua tribù per cercare "i Serpenti sotto la Terra" delle antiche leggende. Gli anziani dicevano che si sarebbero risvegliati. Nessuno gli credeva. Ora non ride più nessuno.</p>
+                </div>
+
+                <div class="abilities-section">
+                    <h4>✨ Abilità</h4>
+                    <div class="ability">
+                        <div class="ab-name">🛡️ Resistenza</div>
+                        <div class="ab-desc">Riduce il <strong>danno subito di 2</strong> (dopo Armor).</div>
+                    </div>
+                    <div class="ability">
+                        <div class="ab-name">👻 Spiriti Guida</div>
+                        <div class="ab-desc"><strong>1/riposo:</strong> Chiede consiglio agli antenati. Ottieni <strong>+1d6</strong> alla prossima prova.</div>
+                        <div class="ab-quote">"Gli spiriti mi mostrano la via."</div>
+                    </div>
+                    <div class="ability">
+                        <div class="ab-name">🛡️ Protettore</div>
+                        <div class="ab-desc">Può subire un colpo al posto di un <strong>alleato adiacente</strong>.</div>
+                    </div>
+                </div>
+
+                <div class="equipment-section">
+                    <h4>🎒 Equipaggiamento</h4>
+                    <div class="equip-grid">
+                        <div class="equip-item"><span class="eq-icon">🪓</span> Tomahawk cerimoniale <span class="eq-stats">1d8+1</span></div>
+                        <div class="equip-item"><span class="eq-icon">🏹</span> Arco composito <span class="eq-stats">1d8, Far</span></div>
+                        <div class="equip-item"><span class="eq-icon">🛡️</span> Scudo di pelle <span class="eq-stats">Armor +1</span></div>
+                        <div class="equip-item"><span class="eq-icon">🌿</span> Erbe medicinali</div>
+                        <div class="equip-item"><span class="eq-icon">👝</span> Sacchetto della medicina</div>
+                        <div class="equip-item"><span class="eq-icon">🪶</span> Penna d'aquila sacra</div>
+                    </div>
+                </div>
+
+                <div class="connections-section">
+                    <h4>💬 Connessioni</h4>
+                    <div class="connection"><strong>→ Sarah Blackwood:</strong> Vede in lei una sciamana. Condividono una connessione spirituale.</div>
+                    <div class="connection"><strong>→ Isabella Rossi:</strong> La protegge come una sorella minore, senza chiedere nulla in cambio.</div>
+                    <div class="flaw-box">
+                        <div class="label">💔 Difetto — Visioni</div>
+                        <p>Quando vicino al soprannaturale: <strong>INS 13</strong> o visione debilitante (1 round stun).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ISABELLA LV.2 -->
+            <div class="char-card" id="isabella-2">
+                <div class="card-header isabella">
+                    <div class="level-badge"><span class="num">2</span><span class="txt">Liv</span></div>
+                    <div class="char-icon">🎭</div>
+                    <h3 class="char-name">ISABELLA ROSSI</h3>
+                    <p class="char-title">L'Ombra Italiana — Segreti e Veleno</p>
+                    <div class="char-class">Bard | Evasion 12 | Specializzazione: Infiltratrice</div>
+                </div>
+
+                <div class="stats-section">
+                    <div class="main-stats">
+                        <div class="stat-box"><div class="val">22</div><div class="lbl">HP</div></div>
+                        <div class="stat-box"><div class="val">0</div><div class="lbl">Armor</div></div>
+                        <div class="stat-box"><div class="val">6/10</div><div class="lbl">Tenuta</div></div>
+                        <div class="stat-box"><div class="val">STD</div><div class="lbl">Velocità</div></div>
+                    </div>
+                    <div class="attributes">
+                        <div class="attr"><div class="mod">+0</div><div class="name">Forza</div></div>
+                        <div class="attr"><div class="mod">+2</div><div class="name">Agilità</div></div>
+                        <div class="attr"><div class="mod">+2</div><div class="name">Conoscenza</div></div>
+                        <div class="attr"><div class="mod">+3</div><div class="name">Presenza</div></div>
+                        <div class="attr"><div class="mod">+1</div><div class="name">Istinto</div></div>
+                        <div class="attr"><div class="mod">+2</div><div class="name">Finezza</div></div>
+                    </div>
+                </div>
+
+                <div class="story-section">
+                    <h4>📜 Storia Personale</h4>
+                    <p>Figlia di un boss della Camorra, Isabella è fuggita dall'Italia con segreti che potrebbero far cadere un impero criminale. Si è reinventata come attrice e truffatrice. Nessuno sospetta che sotto il sorriso si nasconda un assassino.</p>
+                </div>
+
+                <div class="abilities-section">
+                    <h4>✨ Abilità</h4>
+                    <div class="ability">
+                        <div class="ab-name">💋 Affabulatrice</div>
+                        <div class="ab-desc"><strong>+2d6</strong> a prove di Persuasione, Inganno, Performance.</div>
+                    </div>
+                    <div class="ability">
+                        <div class="ab-name">🎭 Mille Volti</div>
+                        <div class="ab-desc">Può impersonare chiunque abbia osservato per almeno <strong>10 minuti</strong>.</div>
+                        <div class="ab-quote">"Chi vuoi che sia oggi, caro?"</div>
+                    </div>
+                    <div class="ability">
+                        <div class="ab-name">🗡️ Colpo Sporco</div>
+                        <div class="ab-desc"><strong>+1d6 danni</strong> se il bersaglio è distratto o non ti ha visto.</div>
+                    </div>
+                </div>
+
+                <div class="equipment-section">
+                    <h4>🎒 Equipaggiamento</h4>
+                    <div class="equip-grid">
+                        <div class="equip-item"><span class="eq-icon">🗡️</span> Stiletto nascosto <span class="eq-stats">1d6, Precisione</span></div>
+                        <div class="equip-item"><span class="eq-icon">🔫</span> Derringer <span class="eq-stats">1d6, nascosto</span></div>
+                        <div class="equip-item"><span class="eq-icon">👗</span> Abiti eleganti (×2)</div>
+                        <div class="equip-item"><span class="eq-icon">💄</span> Kit da truccatrice</div>
+                        <div class="equip-item"><span class="eq-icon">📜</span> Documenti falsi</div>
+                        <div class="equip-item"><span class="eq-icon">☠️</span> Veleno sonnifero (2 dosi)</div>
+                    </div>
+                </div>
+
+                <div class="connections-section">
+                    <h4>💬 Connessioni</h4>
+                    <div class="connection"><strong>→ Doc Artemis Wells:</strong> È l'unico che sospetta la verità. Lo trova affascinante e pericoloso.</div>
+                    <div class="connection"><strong>→ William Cross:</strong> La protegge senza chiedere nulla. Non capisce perché.</div>
+                    <div class="flaw-box">
+                        <div class="label">💔 Difetto — Segreti</div>
+                        <p>Se qualcuno menziona l'Italia: <strong>PRE 13</strong> o tradisce nervosismo visibile.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider">◆ ═══ ◆ ═══ ◆</div>
+
+            <!-- ════════════════════════════════════════════════════════════════════
+                 LEVEL 5 VETERANS
+            ════════════════════════════════════════════════════════════════════ -->
+            <div class="section-header veteran">
+                <h2>⭐ LIVELLO 5 — I VETERANI</h2>
+                <p>Sopravvissuti a Silver Hollow — 3 Mesi Dopo</p>
+            </div>
+
+            <p style="text-align: center; padding: 20px; background: rgba(139,0,0,0.1); border: 1px solid var(--blood-red); margin-bottom: 30px; font-family: 'IM Fell English', serif; font-style: italic;">
+                ⚠️ <strong>SPOILER:</strong> Questi personaggi hanno affrontato il culto di Jeremiah, visto i morti risorgere e combattuto il Serpente.
+            </p>
+
+            <!-- ELENA LV.5 -->
+            <div class="char-card" id="elena-5">
+                <div class="veteran-ribbon">★ VETERANA ★</div>
+                <div class="card-header elena">
+                    <div class="level-badge"><span class="num">5</span><span class="txt">Liv</span></div>
+                    <div class="char-icon">🎯</div>
+                    <h3 class="char-name">ELENA "WIDOW" VASQUEZ</h3>
+                    <p class="char-title">La Vendicatrice — Cacciatrice di Mostri</p>
+                    <div class="char-class">Ranger Lv.5 | Evasion 13 | Specializzazione: Assassina</div>
+                </div>
+
+                <div class="stats-section">
+                    <div class="main-stats">
+                        <div class="stat-box"><div class="val">38</div><div class="lbl">HP (+12)</div></div>
+                        <div class="stat-box"><div class="val">2</div><div class="lbl">Armor</div></div>
+                        <div class="stat-box"><div class="val">5/10</div><div class="lbl">Tenuta ⚠️</div></div>
+                        <div class="stat-box"><div class="val">STD+</div><div class="lbl">Velocità</div></div>
+                    </div>
+                    <div class="attributes">
+                        <div class="attr"><div class="mod">+1</div><div class="name">Forza</div></div>
+                        <div class="attr"><div class="mod">+4 ↑</div><div class="name">Agilità</div></div>
+                        <div class="attr"><div class="mod">+1 ↑</div><div class="name">Conoscenza</div></div>
+                        <div class="attr"><div class="mod">+2 ↑</div><div class="name">Presenza</div></div>
+                        <div class="attr"><div class="mod">+3 ↑</div><div class="name">Istinto</div></div>
+                        <div class="attr"><div class="mod">+1 ↑</div><div class="name">Finezza</div></div>
+                    </div>
+                </div>
+
+                <div class="story-section">
+                    <h4>📜 Dopo Silver Hollow</h4>
+                    <p>Elena ha smesso di contare i banditi uccisi. Ha iniziato a contare le <em>creature</em>. Silver Hollow le ha insegnato che ci sono cose peggiori degli uomini. Ora caccia entrambi con la stessa fredda efficienza.</p>
+                </div>
+
+                <div class="abilities-section">
+                    <h4>✨ Abilità Veterano</h4>
+                    <div class="ability">
+                        <div class="ab-name">🎯 Tiro Mortale — POTENZIATA</div>
+                        <div class="ab-desc">Ignora copertura. <strong>+1d6 danni</strong> a distanza.</div>
+                    </div>
+                    <div class="ability new">
+                        <div class="ab-name">💀 Assassina</div>
+                        <div class="ab-desc"><strong>+3d6 danni</strong> se il bersaglio non ti ha visto.</div>
+                    </div>
+                    <div class="ability new">
+                        <div class="ab-name">🔖 Marchio del Cacciatore</div>
+                        <div class="ab-desc">Segna 1 bersaglio. <strong>+1d6</strong> a tutti gli attacchi contro di esso.</div>
+                    </div>
+                    <div class="ability new">
+                        <div class="ab-name">⚡ Evasione Istintiva</div>
+                        <div class="ab-desc"><strong>1/round:</strong> Dimezza i danni di un attacco.</div>
+                    </div>
+                    <div class="ability new">
+                        <div class="ab-name">🔥 Vendetta Fredda</div>
+                        <div class="ab-desc"><strong>+2d6</strong> vs umanoidi, <strong>+1d6</strong> vs creature che hanno ucciso alleati.</div>
+                        <div class="ab-quote">"Li conto tutti."</div>
+                    </div>
+                </div>
+
+                <div class="scars-section">
+                    <h4>💀 Cicatrici Permanenti</h4>
+                    <div class="scar-list">
+                        <div class="scar">Non riesce a smettere di cacciare</div>
+                        <div class="scar">La vendetta è diventata tutto ciò che è</div>
+                        <div class="scar">Se si ferma, crolla</div>
+                        <div class="scar">Incubi ricorrenti sui trasformati</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WILLIAM LV.5 -->
+            <div class="char-card" id="william-5">
+                <div class="veteran-ribbon">★ VETERANO ★</div>
+                <div class="card-header william">
+                    <div class="level-badge"><span class="num">5</span><span class="txt">Liv</span></div>
+                    <div class="char-icon">🪶</div>
+                    <h3 class="char-name">WILLIAM "THUNDERFOOT" CROSS</h3>
+                    <p class="char-title">Il Guardiano — Sciamano Guerriero</p>
+                    <div class="char-class">Guardian Lv.5 | Evasion 11 | Specializzazione: Sciamano Guerriero</div>
+                </div>
+
+                <div class="stats-section">
+                    <div class="main-stats">
+                        <div class="stat-box"><div class="val">48</div><div class="lbl">HP (+16)</div></div>
+                        <div class="stat-box"><div class="val">3</div><div class="lbl">Armor</div></div>
+                        <div class="stat-box"><div class="val">6/10</div><div class="lbl">Tenuta</div></div>
+                        <div class="stat-box"><div class="val">STD</div><div class="lbl">Velocità</div></div>
+                    </div>
+                    <div class="attributes">
+                        <div class="attr"><div class="mod">+4 ↑</div><div class="name">Forza</div></div>
+                        <div class="attr"><div class="mod">+1 ↑</div><div class="name">Agilità</div></div>
+                        <div class="attr"><div class="mod">+1</div><div class="name">Conoscenza</div></div>
+                        <div class="attr"><div class="mod">+2 ↑</div><div class="name">Presenza</div></div>
+                        <div class="attr"><div class="mod">+3 ↑</div><div class="name">Istinto</div></div>
+                        <div class="attr"><div class="mod">+1</div><div class="name">Finezza</div></div>
+                    </div>
+                </div>
+
+                <div class="story-section">
+                    <h4>📜 Dopo Silver Hollow</h4>
+                    <p>Gli anziani avevano ragione. I Serpenti Sotto la Terra sono reali. William porta il peso di essere l'ultimo che conosce le storie. Deve sopravvivere — non per sé stesso, ma perché qualcuno deve ricordare <em>come combatterli</em>.</p>
+                </div>
+
+                <div class="abilities-section">
+                    <h4>✨ Abilità Veterano</h4>
+                    <div class="ability new">
+                        <div class="ab-name">🦬 Forza del Bisonte</div>
+                        <div class="ab-desc"><strong>+2</strong> a tutti i danni in mischia.</div>
+                    </div>
+                    <div class="ability new">
+                        <div class="ab-name">👻 Spirito Guardiano</div>
+                        <div class="ab-desc"><strong>1/riposo:</strong> Assorbe <strong>20 danni</strong> per un alleato.</div>
+                    </div>
+                    <div class="ability new">
+                        <div class="ab-name">📜 Conoscenza Ancestrale</div>
+                        <div class="ab-desc"><strong>+2d6</strong> vs creature del Mito. Conosce automaticamente le loro debolezze.</div>
+                        <div class="ab-quote">"Gli antenati me lo hanno mostrato."</div>
+                    </div>
+                    <div class="ability new">
+                        <div class="ab-name">📢 Grido di Guerra</div>
+                        <div class="ab-desc">Alleati entro 10m: <strong>+1d6</strong> al prossimo attacco.</div>
+                    </div>
+                    <div class="ability new">
+                        <div class="ab-name">🌍 Resilienza della Terra</div>
+                        <div class="ab-desc"><strong>Resistenza 2</strong> a tutti i danni.</div>
+                    </div>
+                </div>
+
+                <div class="scars-section">
+                    <h4>💀 Cicatrici Permanenti</h4>
+                    <div class="scar-list">
+                        <div class="scar">Il peso della responsabilità lo schiaccia</div>
+                        <div class="scar">È l'ultimo che ricorda le storie</div>
+                        <div class="scar">Non può fallire — mai</div>
+                        <div class="scar">Visioni più intense e frequenti</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ISABELLA LV.5 -->
+            <div class="char-card" id="isabella-5">
+                <div class="veteran-ribbon">★ VETERANA ★</div>
+                <div class="card-header isabella">
+                    <div class="level-badge"><span class="num">5</span><span class="txt">Liv</span></div>
+                    <div class="char-icon">🎭</div>
+                    <h3 class="char-name">ISABELLA ROSSI</h3>
+                    <p class="char-title">L'Ombra — Maestra dell'Inganno</p>
+                    <div class="char-class">Bard Lv.5 | Evasion 13 | Specializzazione: Infiltratrice</div>
+                </div>
+
+                <div class="stats-section">
+                    <div class="main-stats">
+                        <div class="stat-box"><div class="val">32</div><div class="lbl">HP (+10)</div></div>
+                        <div class="stat-box"><div class="val">1</div><div class="lbl">Armor</div></div>
+                        <div class="stat-box"><div class="val">5/10</div><div class="lbl">Tenuta ⚠️</div></div>
+                        <div class="stat-box"><div class="val">STD</div><div class="lbl">Velocità</div></div>
+                    </div>
+                    <div class="attributes">
+                        <div class="attr"><div class="mod">+1 ↑</div><div class="name">Forza</div></div>
+                        <div class="attr"><div class="mod">+3 ↑</div><div class="name">Agilità</div></div>
+                        <div class="attr"><div class="mod">+2</div><div class="name">Conoscenza</div></div>
+                        <div class="attr"><div class="mod">+4 ↑</div><div class="name">Presenza</div></div>
+                        <div class="attr"><div class="mod">+2 ↑</div><div class="name">Istinto</div></div>
+                        <div class="attr"><div class="mod">+2</div><div class="name">Finezza</div></div>
+                    </div>
+                </div>
+
+                <div class="story-section">
+                    <h4>📜 Dopo Silver Hollow</h4>
+                    <p>I segreti che Isabella portava dall'Italia sembrano insignificanti ora. Ha visto cose che fanno sembrare la Camorra un club di gentiluomini. Ma le sue abilità — mentire, infiltrarsi, sopravvivere — sono più utili che mai.</p>
+                </div>
+
+                <div class="abilities-section">
+                    <h4>✨ Abilità Veterano</h4>
+                    <div class="ability">
+                        <div class="ab-name">💋 Fascino Irresistibile — POTENZIATA</div>
+                        <div class="ab-desc"><strong>+2d6</strong> a tutte le prove sociali.</div>
+                    </div>
+                    <div class="ability new">
+                        <div class="ab-name">🗡️ Lama nell'Ombra</div>
+                        <div class="ab-desc"><strong>+2d6 danni</strong> se attacca da nascosta.</div>
+                    </div>
+                    <div class="ability">
+                        <div class="ab-name">🎭 Mille Volti — POTENZIATA</div>
+                        <div class="ab-desc">Può impersonare chiunque abbia osservato per <strong>10 minuti</strong>. Include voce e manierismi.</div>
+                    </div>
+                    <div class="ability new">
+                        <div class="ab-name">🌍 Lingue</div>
+                        <div class="ab-desc">Parla <strong>6 lingue</strong>. Può decifrare testi sconosciuti.</div>
+                    </div>
+                    <div class="ability new">
+                        <div class="ab-name">🚪 Fuga Impossibile</div>
+                        <div class="ab-desc"><strong>1/sessione:</strong> Sfugge automaticamente a qualsiasi situazione.</div>
+                        <div class="ab-quote">"Non mi vedrete andare via."</div>
+                    </div>
+                </div>
+
+                <div class="scars-section">
+                    <h4>💀 Cicatrici Permanenti</h4>
+                    <div class="scar-list">
+                        <div class="scar">Non si fida di nessuno completamente</div>
+                        <div class="scar">Nemmeno di sé stessa</div>
+                        <div class="scar">Il sorriso non raggiunge più gli occhi</div>
+                        <div class="scar">Incubi in italiano e lingue sconosciute</div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; padding: 30px; font-family: 'IM Fell English', serif; font-style: italic; color: var(--leather);">
+                <em>Per le schede complete di Jack, Sarah e Doc (Lv.2 e Lv.5), vedere le Parti VI e VII.</em>
+            </p>
+
+        </div>
+
+        <footer>
+            <div class="brand">🔫 GUNSMOKE & DREAD 🔫</div>
+            <p>Parte VIII — Archivio Personaggi Completo<br><em>"Sei anime. Dodici destini. Un solo West."</em></p>
+        </footer>
+    </main>
+</body>
+</html>

@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUNSMOKE & DREAD — Parte IV: Il Bestiario Completo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Special+Elite&family=IM+Fell+English:ital@0;1&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --parchment: #f4e4c1;
+            --parchment-dark: #e8d4a8;
+            --parchment-aged: #d4c4a1;
+            --brown-dark: #3d2914;
+            --brown-medium: #5c3d1e;
+            --brown-light: #8b6914;
+            --blood-red: #8b0000;
+            --blood-dark: #5a0000;
+            --gold: #d4a017;
+            --gold-dark: #a47a0a;
+            --ink-black: #1a1a1a;
+            --ink-sepia: #3a2a1a;
+            --shadow: rgba(0,0,0,0.3);
+            
+            /* Creature Categories */
+            --human-color: #6b5a4a;
+            --undead-color: #4a5a4a;
+            --aberration-color: #3a5a6a;
+            --boss-color: #8b0000;
+            --nature-color: #5a6a3a;
+            --cosmic-color: #4a3a6a;
+            
+            /* Threat Levels */
+            --threat-low: #4a8a4a;
+            --threat-medium: #d4a017;
+            --threat-high: #c45a00;
+            --threat-extreme: #8b0000;
+            --threat-cosmic: #4a1a6a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--ink-sepia);
+            background: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="50" cy="50" r="0.5" fill="%23a09080" opacity="0.2"/><circle cx="150" cy="100" r="0.3" fill="%238a7a6a" opacity="0.15"/><circle cx="100" cy="180" r="0.4" fill="%239a8a7a" opacity="0.1"/></svg>') repeat,
+                linear-gradient(180deg, var(--parchment) 0%, var(--parchment-dark) 50%, var(--parchment-aged) 100%);
+            background-size: 200px 200px, 100% 100%;
+            background-attachment: fixed;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           NAVIGATION - VICTORIAN ENCYCLOPEDIA
+        ═══════════════════════════════════════════════════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100vh;
+            background: 
+                linear-gradient(180deg, #2a1a0a 0%, #1a0a00 100%);
+            padding: 0;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 6px 0 30px rgba(0,0,0,0.5);
+            border-right: 4px solid var(--gold-dark);
+        }
+
+        .nav-header {
+            text-align: center;
+            padding: 30px 20px;
+            background: 
+                radial-gradient(ellipse at center, rgba(212,160,23,0.15) 0%, transparent 70%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,10 L90,50 L50,90 L10,50 Z" fill="none" stroke="%23d4a017" stroke-width="0.5" opacity="0.2"/></svg>') repeat;
+            background-size: 100% 100%, 50px 50px;
+            border-bottom: 3px solid var(--gold);
+            position: relative;
+        }
+
+        .nav-header::before,
+        .nav-header::after {
+            content: '❧';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--gold);
+            opacity: 0.6;
+        }
+
+        .nav-header::before { left: 15px; }
+        .nav-header::after { right: 15px; transform: translateY(-50%) scaleX(-1); }
+
+        .nav-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .nav-header .subtitle {
+            font-family: 'IM Fell English', serif;
+            font-size: 1.3rem;
+            color: var(--parchment);
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        .nav-header .volume-badge {
+            display: inline-block;
+            background: transparent;
+            color: var(--gold);
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            padding: 5px 15px;
+            margin-top: 12px;
+            letter-spacing: 2px;
+            border: 1px solid var(--gold);
+            border-radius: 0;
+        }
+
+        .nav-section { padding: 15px 20px; }
+
+        .nav-section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(212,160,23,0.3);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--parchment);
+            text-decoration: none;
+            padding: 8px 12px;
+            margin: 3px 0;
+            font-size: 0.85rem;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            font-family: 'Crimson Text', serif;
+        }
+
+        nav a:hover {
+            background: rgba(212,160,23,0.1);
+            border-left-color: var(--gold);
+            color: var(--gold);
+            padding-left: 18px;
+        }
+
+        nav a .threat-pip {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .threat-pip.low { background: var(--threat-low); }
+        .threat-pip.medium { background: var(--threat-medium); }
+        .threat-pip.high { background: var(--threat-high); }
+        .threat-pip.extreme { background: var(--threat-extreme); }
+        .threat-pip.cosmic { background: var(--threat-cosmic); box-shadow: 0 0 8px var(--threat-cosmic); }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           MAIN CONTENT
+        ═══════════════════════════════════════════════════════════════════════ */
+        main {
+            margin-left: 300px;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 60px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           HERO - VICTORIAN TITLE PAGE
+        ═══════════════════════════════════════════════════════════════════════ */
+        .bestiary-hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: 
+                radial-gradient(ellipse at center, rgba(212,160,23,0.1) 0%, transparent 50%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><circle cx="200" cy="200" r="150" fill="none" stroke="%233d2914" stroke-width="1" opacity="0.1"/><circle cx="200" cy="200" r="120" fill="none" stroke="%233d2914" stroke-width="0.5" opacity="0.08"/><circle cx="200" cy="200" r="180" fill="none" stroke="%233d2914" stroke-width="0.5" opacity="0.05"/></svg>') no-repeat center center,
+                linear-gradient(180deg, var(--parchment) 0%, var(--parchment-dark) 100%);
+            background-size: 100% 100%, 600px 600px, 100% 100%;
+            padding: 60px 40px;
+            position: relative;
+            border-bottom: 4px double var(--brown-dark);
+        }
+
+        .bestiary-hero::before {
+            content: '☠';
+            position: absolute;
+            top: 40px;
+            font-size: 3rem;
+            color: var(--brown-dark);
+            opacity: 0.15;
+        }
+
+        .hero-ornament {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            letter-spacing: 20px;
+        }
+
+        .bestiary-hero .volume-label {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.8rem;
+            color: var(--brown-medium);
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .bestiary-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            color: var(--brown-dark);
+            letter-spacing: 8px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0 var(--parchment-dark);
+        }
+
+        .bestiary-hero .tagline {
+            font-family: 'IM Fell English', serif;
+            font-size: 1.4rem;
+            color: var(--brown-medium);
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .bestiary-hero .author-line {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.75rem;
+            color: var(--brown-light);
+            letter-spacing: 3px;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--brown-light);
+        }
+
+        .hero-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .hero-stat-box {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid var(--brown-light);
+            background: rgba(255,255,255,0.3);
+        }
+
+        .hero-stat-box .number {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--blood-red);
+            line-height: 1;
+        }
+
+        .hero-stat-box .label {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            color: var(--brown-medium);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           THREAT CLASSIFICATION SYSTEM
+        ═══════════════════════════════════════════════════════════════════════ */
+        .threat-legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 40px 0;
+            padding: 25px;
+            background: rgba(0,0,0,0.03);
+            border: 1px solid var(--brown-light);
+        }
+
+        .threat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.75rem;
+            color: var(--brown-dark);
+        }
+
+        .threat-badge {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .threat-badge.g0 { background: var(--threat-low); }
+        .threat-badge.g1 { background: var(--threat-medium); }
+        .threat-badge.g2 { background: var(--threat-high); }
+        .threat-badge.g3 { background: var(--threat-extreme); }
+        .threat-badge.g4 { background: var(--threat-cosmic); box-shadow: 0 0 10px var(--threat-cosmic); }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           CATEGORY HEADERS
+        ═══════════════════════════════════════════════════════════════════════ */
+        .category-header {
+            text-align: center;
+            padding: 50px 40px;
+            margin: 60px -60px 40px;
+            position: relative;
+            border-top: 3px double var(--brown-dark);
+            border-bottom: 3px double var(--brown-dark);
+        }
+
+        .category-header.humanoid { background: linear-gradient(180deg, rgba(107,90,74,0.1) 0%, transparent 100%); }
+        .category-header.undead { background: linear-gradient(180deg, rgba(74,90,74,0.1) 0%, transparent 100%); }
+        .category-header.aberration { background: linear-gradient(180deg, rgba(58,90,106,0.15) 0%, transparent 100%); }
+        .category-header.boss { background: linear-gradient(180deg, rgba(139,0,0,0.1) 0%, transparent 100%); }
+        .category-header.nature { background: linear-gradient(180deg, rgba(90,106,58,0.1) 0%, transparent 100%); }
+
+        .category-header .category-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .category-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--brown-dark);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .category-header .category-desc {
+            font-family: 'IM Fell English', serif;
+            font-size: 1.1rem;
+            color: var(--brown-medium);
+            font-style: italic;
+        }
+
+        .category-header::before,
+        .category-header::after {
+            content: '◆';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: var(--brown-light);
+            opacity: 0.5;
+        }
+
+        .category-header::before { left: 30px; }
+        .category-header::after { right: 30px; }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           CREATURE CARD - VICTORIAN FIELD GUIDE
+        ═══════════════════════════════════════════════════════════════════════ */
+        .creature-card {
+            background: var(--parchment);
+            border: 2px solid var(--brown-dark);
+            margin: 40px 0;
+            position: relative;
+            box-shadow: 
+                0 4px 20px rgba(0,0,0,0.15),
+                inset 0 0 60px rgba(0,0,0,0.03);
+        }
+
+        .creature-card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid var(--brown-light);
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* Threat ribbon */
+        .threat-ribbon {
+            position: absolute;
+            top: -5px;
+            right: 20px;
+            width: 50px;
+            height: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Cinzel', serif;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+            z-index: 10;
+        }
+
+        .threat-ribbon.g0 { background: linear-gradient(180deg, var(--threat-low), #3a6a3a); }
+        .threat-ribbon.g1 { background: linear-gradient(180deg, var(--threat-medium), var(--gold-dark)); }
+        .threat-ribbon.g2 { background: linear-gradient(180deg, var(--threat-high), #a44a00); }
+        .threat-ribbon.g3 { background: linear-gradient(180deg, var(--threat-extreme), var(--blood-dark)); }
+        .threat-ribbon.g4 { background: linear-gradient(180deg, var(--threat-cosmic), #2a0a4a); box-shadow: 0 0 20px var(--threat-cosmic); }
+
+        .threat-ribbon .grade {
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .threat-ribbon .grade-label {
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        /* Card header */
+        .creature-card-header {
+            padding: 25px 30px 20px;
+            border-bottom: 2px solid var(--brown-dark);
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .creature-icon-frame {
+            width: 80px;
+            height: 80px;
+            border: 3px solid var(--brown-dark);
+            background: var(--parchment-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .creature-icon-frame::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 1px solid var(--brown-light);
+        }
+
+        .creature-title-block {
+            flex: 1;
+            padding-right: 60px;
+        }
+
+        .creature-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            color: var(--brown-dark);
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+        }
+
+        .creature-subtitle {
+            font-family: 'IM Fell English', serif;
+            font-size: 0.95rem;
+            color: var(--brown-medium);
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .creature-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .creature-tag {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.6rem;
+            padding: 3px 10px;
+            border: 1px solid var(--brown-light);
+            color: var(--brown-medium);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .creature-tag.vol1 { border-color: var(--gold); color: var(--gold-dark); }
+        .creature-tag.vol2 { border-color: var(--aberration-color); color: var(--aberration-color); }
+
+        /* Card body */
+        .creature-card-body {
+            padding: 25px 30px;
+        }
+
+        .creature-description {
+            font-family: 'IM Fell English', serif;
+            font-size: 1rem;
+            color: var(--ink-sepia);
+            line-height: 1.7;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--brown-light);
+            text-align: justify;
+        }
+
+        /* Stats grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 12px 8px;
+            background: var(--parchment-dark);
+            border: 1px solid var(--brown-light);
+            position: relative;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            right: 3px;
+            bottom: 3px;
+            border: 1px solid rgba(139,105,20,0.3);
+        }
+
+        .stat-box .stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--blood-red);
+            line-height: 1;
+        }
+
+        .stat-box .stat-label {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.55rem;
+            color: var(--brown-medium);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* Sections */
+        .creature-section {
+            margin-top: 20px;
+        }
+
+        .creature-section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--brown-dark);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--brown-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .creature-section ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .creature-section li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            font-size: 0.95rem;
+            border-bottom: 1px dotted rgba(139,105,20,0.2);
+        }
+
+        .creature-section li:last-child { border-bottom: none; }
+
+        .creature-section li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--blood-red);
+            font-size: 0.6rem;
+            top: 12px;
+        }
+
+        .creature-section li strong {
+            color: var(--brown-dark);
+        }
+
+        /* Attack entries */
+        .attack-entry {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px dotted rgba(139,105,20,0.2);
+        }
+
+        .attack-entry:last-child { border-bottom: none; }
+
+        .attack-name {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            color: var(--blood-red);
+            min-width: 150px;
+        }
+
+        .attack-stats {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.85rem;
+            color: var(--brown-dark);
+        }
+
+        .attack-effect {
+            color: var(--brown-medium);
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        /* Tenuta box */
+        .tenuta-box {
+            background: linear-gradient(135deg, rgba(74,26,106,0.08) 0%, rgba(74,26,106,0.02) 100%);
+            border: 1px solid var(--threat-cosmic);
+            padding: 15px 20px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .tenuta-box::before {
+            content: '💀 TENUTA MENTALE';
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.65rem;
+            color: var(--threat-cosmic);
+            background: var(--parchment);
+            padding: 2px 10px;
+            letter-spacing: 1px;
+        }
+
+        .tenuta-box p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* GM Tip box */
+        .gm-tip-box {
+            background: linear-gradient(135deg, rgba(212,160,23,0.1) 0%, rgba(212,160,23,0.03) 100%);
+            border: 1px solid var(--gold);
+            padding: 15px 20px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .gm-tip-box::before {
+            content: '💡 TATTICA';
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.65rem;
+            color: var(--gold-dark);
+            background: var(--parchment);
+            padding: 2px 10px;
+            letter-spacing: 1px;
+        }
+
+        .gm-tip-box p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Combat phases */
+        .combat-phases {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(139,0,0,0.05);
+            border: 1px solid var(--blood-red);
+        }
+
+        .combat-phases h5 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: var(--blood-red);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(139,0,0,0.3);
+        }
+
+        .phase-entry {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 10px 0;
+        }
+
+        .phase-badge {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.7rem;
+            padding: 5px 12px;
+            border-radius: 3px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .phase-badge.p1 { background: var(--threat-medium); color: white; }
+        .phase-badge.p2 { background: var(--threat-high); color: white; }
+        .phase-badge.p3 { background: var(--threat-extreme); color: white; }
+
+        .phase-desc {
+            font-size: 0.9rem;
+            color: var(--brown-dark);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           QUICK REFERENCE TABLE
+        ═══════════════════════════════════════════════════════════════════════ */
+        .reference-table-container {
+            margin: 50px 0;
+            overflow-x: auto;
+        }
+
+        .reference-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--parchment);
+            border: 2px solid var(--brown-dark);
+        }
+
+        .reference-table thead {
+            background: var(--brown-dark);
+        }
+
+        .reference-table th {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            padding: 15px 12px;
+            text-align: left;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .reference-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--brown-light);
+            font-size: 0.9rem;
+            vertical-align: middle;
+        }
+
+        .reference-table tbody tr:nth-child(even) {
+            background: var(--parchment-dark);
+        }
+
+        .reference-table tbody tr:hover {
+            background: rgba(212,160,23,0.1);
+        }
+
+        .table-creature-name {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            color: var(--brown-dark);
+        }
+
+        .table-threat {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            color: white;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           TYPOGRAPHY
+        ═══════════════════════════════════════════════════════════════════════ */
+        h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--brown-dark);
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--brown-light);
+            letter-spacing: 2px;
+        }
+
+        p { margin-bottom: 16px; text-align: justify; }
+
+        .divider {
+            text-align: center;
+            margin: 50px 0;
+            color: var(--brown-light);
+            font-size: 1.2rem;
+            letter-spacing: 10px;
+        }
+
+        .section-intro {
+            font-family: 'IM Fell English', serif;
+            font-size: 1.1rem;
+            color: var(--brown-medium);
+            font-style: italic;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════════════════════════════════════ */
+        footer {
+            background: var(--brown-dark);
+            color: var(--parchment);
+            padding: 50px 60px;
+            text-align: center;
+            border-top: 4px double var(--gold);
+        }
+
+        footer .brand {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            font-family: 'IM Fell English', serif;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════════════════════════════════════ */
+        @media (max-width: 1200px) {
+            nav { width: 260px; }
+            main { margin-left: 260px; }
+        }
+
+        @media (max-width: 1000px) {
+            .stats-grid { grid-template-columns: repeat(3, 1fr); }
+            .hero-stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 850px) {
+            nav { display: none; }
+            main { margin-left: 0; }
+            .content-wrapper { padding: 40px 30px; }
+            .category-header { margin: 40px -30px 30px; }
+            .bestiary-hero h1 { font-size: 2.5rem; }
+            .stats-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-stats-grid { grid-template-columns: 1fr 1fr; }
+            .threat-legend { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-header">
+            <h1>Gunsmoke & Dread</h1>
+            <div class="subtitle">Il Bestiario</div>
+            <div class="volume-badge">Enciclopedia Completa</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">👤 Umanoidi</div>
+            <a href="#cultista"><span class="threat-pip low"></span> Cultista</a>
+            <a href="#bandito"><span class="threat-pip low"></span> Bandito</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">💀 Non-Morti</div>
+            <a href="#nonmorto"><span class="threat-pip low"></span> Non-Morto</a>
+            <a href="#ghoul"><span class="threat-pip medium"></span> Ghoul</a>
+            <a href="#bandito-risorto"><span class="threat-pip medium"></span> Bandito Risorto</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">🐙 Aberrazioni Marine</div>
+            <a href="#ibrido-iniziale"><span class="threat-pip medium"></span> Ibrido Iniziale</a>
+            <a href="#ibrido-avanzato"><span class="threat-pip high"></span> Ibrido Avanzato</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">👑 Boss</div>
+            <a href="#jeremiah"><span class="threat-pip extreme"></span> Padre Jeremiah</a>
+            <a href="#sacerdote"><span class="threat-pip extreme"></span> Il Sacerdote</a>
+            <a href="#guardiano"><span class="threat-pip cosmic"></span> Il Guardiano</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">🦎 Creature Naturali</div>
+            <a href="#serpente"><span class="threat-pip low"></span> Serpente a Sonagli</a>
+            <a href="#scorpione"><span class="threat-pip low"></span> Scorpione</a>
+            <a href="#coyote"><span class="threat-pip low"></span> Coyote</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">📊 Riferimenti</div>
+            <a href="#tabella">Tabella Rapida</a>
+            <a href="#scalabilita">Note di Scalabilità</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="bestiary-hero">
+            <div class="hero-ornament">❧ ☠ ❧</div>
+            <div class="volume-label">Parte IV</div>
+            <h1>IL BESTIARIO</h1>
+            <p class="tagline">Catalogo Completo delle Creature del Weird West</p>
+
+            <div class="hero-stats-grid">
+                <div class="hero-stat-box">
+                    <div class="number">12</div>
+                    <div class="label">Creature</div>
+                </div>
+                <div class="hero-stat-box">
+                    <div class="number">5</div>
+                    <div class="label">Categorie</div>
+                </div>
+                <div class="hero-stat-box">
+                    <div class="number">3</div>
+                    <div class="label">Boss</div>
+                </div>
+                <div class="hero-stat-box">
+                    <div class="number">0-4</div>
+                    <div class="label">Gradi</div>
+                </div>
+            </div>
+
+            <p class="author-line">Compilato per i Cacciatori di Mostri del Territorio • A.D. 1886</p>
+        </section>
+
+        <div class="content-wrapper">
+            <!-- Threat Legend -->
+            <div class="threat-legend">
+                <div class="threat-item">
+                    <div class="threat-badge g0">0</div>
+                    <span>Pericolo Ambientale</span>
+                </div>
+                <div class="threat-item">
+                    <div class="threat-badge g1">1</div>
+                    <span>Minaccia Standard</span>
+                </div>
+                <div class="threat-item">
+                    <div class="threat-badge g2">2</div>
+                    <span>Nemico d'Élite</span>
+                </div>
+                <div class="threat-item">
+                    <div class="threat-badge g3">3</div>
+                    <span>Boss Maggiore</span>
+                </div>
+                <div class="threat-item">
+                    <div class="threat-badge g4">4</div>
+                    <span>Entità Cosmica</span>
+                </div>
+            </div>
+
+            <p class="section-intro">Le seguenti pagine documentano le creature incontrate durante le investigazioni nei territori del New Mexico e dell'Arizona. Ogni voce include statistiche complete, comportamento tattico e note per il Game Master. Si raccomanda estrema cautela.</p>
+
+            <!-- HUMANOIDS -->
+            <div class="category-header humanoid" id="umanoidi">
+                <div class="category-icon">👤</div>
+                <h2>Creature Umanoidi</h2>
+                <p class="category-desc">Umani corrotti, fanatici, o spinti alla disperazione</p>
+            </div>
+
+            <!-- Cultista -->
+            <div class="creature-card" id="cultista">
+                <div class="threat-ribbon g1">
+                    <span class="grade">1</span>
+                    <span class="grade-label">Grado</span>
+                </div>
+                <div class="creature-card-header">
+                    <div class="creature-icon-frame">🧙</div>
+                    <div class="creature-title-block">
+                        <h3 class="creature-name">Cultista</h3>
+                        <p class="creature-subtitle">Gregario • Fanatico del Serpente</p>
+                        <div class="creature-tags">
+                            <span class="creature-tag vol1">Volume I</span>
+                            <span class="creature-tag">Umanoide</span>
+                            <span class="creature-tag">Fanatico</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="creature-card-body">
+                    <p class="creature-description">Cittadini di Silver Hollow corrotti dall'influenza del Grande Antico. Indossano tonache nere con simboli alieni dipinti col sangue. Occhi febbrili, voci che mormorano in lingue morte. Completamente dediti al loro "dio serpente" sotterraneo.</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-value">5</div>
+                            <div class="stat-label">HP</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">Armor</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">11</div>
+                            <div class="stat-label">Difficoltà</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">+4</div>
+                            <div class="stat-label">Attacco</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">STD</div>
+                            <div class="stat-label">Velocità</div>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">⚔️ Attacchi</div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Coltello Rituale</span>
+                            <span class="attack-stats">+4, 1d6+2 fisico</span>
+                        </div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Revolver Malandato</span>
+                            <span class="attack-stats">+3, 2d6 fisico</span>
+                            <span class="attack-effect">(6 colpi, ricarica 1 azione)</span>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">✨ Abilità Speciali</div>
+                        <ul>
+                            <li><strong>Fanatico:</strong> Advantage sui Tiri Reazione contro Frightened e Ammaliato</li>
+                            <li><strong>Morte Devota:</strong> A 0 HP, può fare un ultimo attacco come Reaction (muore gridando lodi)</li>
+                            <li><strong>Tattiche di Branco:</strong> Se 3+ cultisti adiacenti allo stesso bersaglio, +1d6 agli attacchi</li>
+                        </ul>
+                    </div>
+
+                    <div class="gm-tip-box">
+                        <p>Carne da cannone ma pericolosi in numero. Usali in gruppi da 4 a 8. Combattono senza Fear, si sacrificano volentieri. <strong>Non negoziano</strong> — sono oltre ogni ragione. Variante Élite: +10 HP, può lanciare 1 rituale minore.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bandito -->
+            <div class="creature-card" id="bandito">
+                <div class="threat-ribbon g1">
+                    <span class="grade">1</span>
+                    <span class="grade-label">Grado</span>
+                </div>
+                <div class="creature-card-header">
+                    <div class="creature-icon-frame">🤠</div>
+                    <div class="creature-title-block">
+                        <h3 class="creature-name">Bandito</h3>
+                        <p class="creature-subtitle">Standard • Fuorilegge del West</p>
+                        <div class="creature-tags">
+                            <span class="creature-tag vol1">Volume I</span>
+                            <span class="creature-tag">Umanoide</span>
+                            <span class="creature-tag">Fuorilegge</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="creature-card-body">
+                    <p class="creature-description">Uomini disperati spinti al crimine dalle circostanze. Non sono mostri — sono persone che hanno fatto scelte discutibili. Alcuni cercano denaro per familiari malati, altri sono stati derubati delle loro terre. Non vogliono uccidere, ma lo faranno se necessario.</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-value">6</div>
+                            <div class="stat-label">HP</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">1</div>
+                            <div class="stat-label">Armor</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">11</div>
+                            <div class="stat-label">Difficoltà</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">+5</div>
+                            <div class="stat-label">Attacco</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">STD</div>
+                            <div class="stat-label">Velocità</div>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">⚔️ Attacchi</div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Revolver</span>
+                            <span class="attack-stats">+5, 2d6 fisico</span>
+                            <span class="attack-effect">(6 colpi)</span>
+                        </div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Fucile</span>
+                            <span class="attack-stats">+4, 2d8+2 fisico</span>
+                            <span class="attack-effect">(gittata Far)</span>
+                        </div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Coltello</span>
+                            <span class="attack-stats">+4, 1d6+2 fisico</span>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">✨ Abilità Speciali</div>
+                        <ul>
+                            <li><strong>Copertura:</strong> +1d6 alla difesa se dietro copertura</li>
+                            <li><strong>Mira Attenta (1 azione):</strong> Il prossimo attacco a distanza ha +1d6</li>
+                            <li><strong>Istinto di Sopravvivenza:</strong> Se sotto il 50% HP, può Disimpegnarsi gratuitamente</li>
+                        </ul>
+                    </div>
+
+                    <div class="gm-tip-box">
+                        <p>I banditi sono avversari umani — <strong>le loro morti dovrebbero avere peso narrativo</strong>. Descrivi le conseguenze: famiglie distrutte, scelte tragiche. Non tutti i banditi meritano la morte. Alcuni possono essere redenti o negoziati.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNDEAD -->
+            <div class="category-header undead" id="nonmorti">
+                <div class="category-icon">💀</div>
+                <h2>Non-Morti</h2>
+                <p class="category-desc">Morti rianimati da forze oscure, maledizioni, o volontà malvagia</p>
+            </div>
+
+            <!-- Non-Morto Standard -->
+            <div class="creature-card" id="nonmorto">
+                <div class="threat-ribbon g1">
+                    <span class="grade">1</span>
+                    <span class="grade-label">Grado</span>
+                </div>
+                <div class="creature-card-header">
+                    <div class="creature-icon-frame">☠️</div>
+                    <div class="creature-title-block">
+                        <h3 class="creature-name">Non-Morto</h3>
+                        <p class="creature-subtitle">Gregario • Cadavere Rianimato</p>
+                        <div class="creature-tags">
+                            <span class="creature-tag vol1">Volume I</span>
+                            <span class="creature-tag">Non-Morto</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="creature-card-body">
+                    <p class="creature-description">Cadavere rianimato. Carne putrescente, vestiti strappati, movimenti goffi ma inesorabili. Occhi vitrei senza intelligenza. Odore di decomposizione. Geme costantemente. Non sente dolore, non conosce Fear. Continua ad avanzare finché non viene distrutto completamente.</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-value">4</div>
+                            <div class="stat-label">HP</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">Armor</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">11</div>
+                            <div class="stat-label">Difficoltà</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">+4</div>
+                            <div class="stat-label">Attacco</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">LENTO</div>
+                            <div class="stat-label">Velocità</div>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">⚔️ Attacchi</div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Colpo</span>
+                            <span class="attack-stats">+4, 1d8+2 fisico</span>
+                        </div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Morso</span>
+                            <span class="attack-stats">+4, 1d6+2 fisico</span>
+                            <span class="attack-effect">+ rischio infezione (Strength 12)</span>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">✨ Abilità Speciali</div>
+                        <ul>
+                            <li><strong>Non-Morto:</strong> Immune a veleno, malattia, charm, sonno, Fear</li>
+                            <li><strong>Inesorabile:</strong> La velocità non viene ridotta da terreno difficile o ferite</li>
+                            <li><strong>Debolezza Sacra:</strong> Vulnerable ai danni magic (+50%), può essere scacciato</li>
+                            <li><strong>Debolezza alla Testa:</strong> Critical hit (doppio 12) = morte istantanea</li>
+                        </ul>
+                    </div>
+
+                    <div class="tenuta-box">
+                        <p><strong>Prima volta:</strong> Prova di Instinct (12) — Successo: 0 segmenti | Fallimento: 1 segmento (orrore primordiale)</p>
+                    </div>
+
+                    <div class="gm-tip-box">
+                        <p>Minacce numeriche. Usali in orde da 6 a 12. Lenti ma inesorabili. Perfetti per creare tensione: <em>"Li senti arrivare... passo... dopo passo..."</em> Variante Veloce: HP 4, Velocità: Veloce.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ghoul -->
+            <div class="creature-card" id="ghoul">
+                <div class="threat-ribbon g1">
+                    <span class="grade">1</span>
+                    <span class="grade-label">Grado</span>
+                </div>
+                <div class="creature-card-header">
+                    <div class="creature-icon-frame">👹</div>
+                    <div class="creature-title-block">
+                        <h3 class="creature-name">Ghoul</h3>
+                        <p class="creature-subtitle">Standard • Non-Morto Intelligente</p>
+                        <div class="creature-tags">
+                            <span class="creature-tag vol1">Volume I</span>
+                            <span class="creature-tag">Non-Morto</span>
+                            <span class="creature-tag">Intelligente</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="creature-card-body">
+                    <p class="creature-description">Cadavere rianimato ma con intelligenza malevola. Pelle grigio-verdastra tesa sulle ossa. Artigli lunghi e affilati. Denti aguzzi. Occhi che brillano con fame innaturale. Si muove a quattro zampe come una bestia ma può parlare (voce raspante). Mangia carne, preferibilmente fresca.</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-value">8</div>
+                            <div class="stat-label">HP</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">1</div>
+                            <div class="stat-label">Armor</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">11</div>
+                            <div class="stat-label">Difficoltà</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">+5</div>
+                            <div class="stat-label">Attacco</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">VELOCE</div>
+                            <div class="stat-label">Velocità</div>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">⚔️ Attacchi</div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Artigli (×2)</span>
+                            <span class="attack-stats">+5, 2d4+3 fisico</span>
+                        </div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Morso</span>
+                            <span class="attack-stats">+5, 2d6+3 fisico</span>
+                            <span class="attack-effect">+ Paralisi (Strength 13 o Restrained 1 min)</span>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">✨ Abilità Speciali</div>
+                        <ul>
+                            <li><strong>Non-Morto:</strong> Immune a veleno, malattia, charm</li>
+                            <li><strong>Olfatto Acuto:</strong> +1d6 alla Percezione basata sull'olfatto, fiuta il sangue entro Molto Far</li>
+                            <li><strong>Scalatore:</strong> Può arrampicarsi su pareti e soffitti senza prove</li>
+                            <li><strong>Predatore Notturno:</strong> Darksight raggio Far, +1d6 agli attacchi furtivi dal buio</li>
+                            <li><strong>Frenesia Alimentare:</strong> Se un PG è sotto 50% HP e sanguina, +1d6 agli attacchi contro quel PG</li>
+                        </ul>
+                    </div>
+
+                    <div class="tenuta-box">
+                        <p><strong>Prima volta:</strong> Prova di Instinct (13) — Successo: 1 segmento | Fallimento: 2 segmenti (orrore corporeo + movimento innaturale)</p>
+                    </div>
+
+                    <div class="gm-tip-box">
+                        <p>Predatori da imboscata. Usali 1-2 alla volta, attacco dal buio o dall'alto. La Paralisi è devastante. Possono parlare — usali per dialoghi disturbanti: <em>"Carne... fresca... AFFAMATO..."</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABERRATIONS -->
+            <div class="category-header aberration" id="aberrazioni">
+                <div class="category-icon">🐙</div>
+                <h2>Aberrazioni Marine</h2>
+                <p class="category-desc">Creature ibride, trasformate dall'influenza di entità cosmiche oceaniche</p>
+            </div>
+
+            <!-- Ibrido Iniziale -->
+            <div class="creature-card" id="ibrido-iniziale">
+                <div class="threat-ribbon g1">
+                    <span class="grade">1</span>
+                    <span class="grade-label">Grado</span>
+                </div>
+                <div class="creature-card-header">
+                    <div class="creature-icon-frame">🧬</div>
+                    <div class="creature-title-block">
+                        <h3 class="creature-name">Ibrido Iniziale</h3>
+                        <p class="creature-subtitle">Standard • Trasformazione Precoce</p>
+                        <div class="creature-tags">
+                            <span class="creature-tag vol2">Volume II</span>
+                            <span class="creature-tag">Aberrazione</span>
+                            <span class="creature-tag">Acquatico</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="creature-card-body">
+                    <p class="creature-description">Geometra scomparso trasformato dopo 3-5 giorni di esposizione all'influenza del Guardiano. Pelle verde-grigia, branchie incipienti, dita palmate. Si muove con fluidità innaturale. Occhi completamente neri. Ancora vagamente umanoide ma... alterato. Gorgoglia invece di parlare.</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-value">8</div>
+                            <div class="stat-label">HP</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">2</div>
+                            <div class="stat-label">Armor</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">11</div>
+                            <div class="stat-label">Difficoltà</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">+6</div>
+                            <div class="stat-label">Attacco</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">VELOCE</div>
+                            <div class="stat-label">In Acqua</div>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">⚔️ Attacchi</div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Artigli</span>
+                            <span class="attack-stats">+6, 2d6+3 fisico</span>
+                        </div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Morso</span>
+                            <span class="attack-stats">+6, 1d10+3 fisico</span>
+                            <span class="attack-effect">+ Veleno Marino (Strength 13 o Poisoned 1 min)</span>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">✨ Abilità Speciali</div>
+                        <ul>
+                            <li><strong>Pelle Scivolosa:</strong> -1d6 alle prove per afferrarlo o lottare</li>
+                            <li><strong>Rigenerazione Marina:</strong> Se in contatto con acqua, recupera 5 HP a inizio azione</li>
+                            <li><strong>Grido Ultrasonico (1/comb):</strong> Tutti entro Close, Strength 14 o Stunned 1 azione</li>
+                            <li><strong>Anfibio:</strong> Respira aria e acqua, +1d6 alla Percezione sott'acqua</li>
+                        </ul>
+                    </div>
+
+                    <div class="tenuta-box">
+                        <p><strong>Vedere un Ibrido:</strong> Prova di Instinct (14) — Successo: 1 segmento | Fallimento: 2 segmenti (<em>"questo era un UOMO pochi giorni fa"</em>). Se i PG riconoscono l'ibrido (ex-amico): +1 segmento extra.</p>
+                    </div>
+
+                    <div class="gm-tip-box">
+                        <p>Primi incontri con l'orrore corporeo. Usali singolarmente o in coppia. Preferiscono combattere vicino all'acqua (rigenerazione). Se feriti gravemente, tentano la fuga.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ibrido Avanzato -->
+            <div class="creature-card" id="ibrido-avanzato">
+                <div class="threat-ribbon g2">
+                    <span class="grade">2</span>
+                    <span class="grade-label">Grado</span>
+                </div>
+                <div class="creature-card-header">
+                    <div class="creature-icon-frame">🦑</div>
+                    <div class="creature-title-block">
+                        <h3 class="creature-name">Ibrido Avanzato</h3>
+                        <p class="creature-subtitle">Bruto • Trasformazione Completa</p>
+                        <div class="creature-tags">
+                            <span class="creature-tag vol2">Volume II</span>
+                            <span class="creature-tag">Aberrazione</span>
+                            <span class="creature-tag">Acquatico</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="creature-card-body">
+                    <p class="creature-description">Trasformazione completa dopo 7-10 giorni. Quasi irriconoscibile come umano. Pelle squamosa verde-grigia dura come cuoio. Branchie completamente funzionali. Artigli affilati come rasoi. Denti da predatore. Intelligenza ridotta ma istinto predatorio acutissimo.</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-value">10</div>
+                            <div class="stat-label">HP</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">Armor</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">14</div>
+                            <div class="stat-label">Difficoltà</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">+7 ×2</div>
+                            <div class="stat-label">Attacco</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">M.VELOCE</div>
+                            <div class="stat-label">In Acqua</div>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">⚔️ Attacchi (2 per azione)</div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Artigli Potenziati</span>
+                            <span class="attack-stats">+7, 2d6+4 fisico</span>
+                        </div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Morso Devastante</span>
+                            <span class="attack-stats">+7, 2d8+4 fisico</span>
+                            <span class="attack-effect">+ Veleno Paralizzante (Strength 14 o Restrained 1d4 azioni)</span>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">✨ Abilità Speciali</div>
+                        <ul>
+                            <li><strong>Rigenerazione Marina Potenziata:</strong> Recupera 8 HP a inizio azione se in acqua</li>
+                            <li><strong>Invisibilità Acquatica:</strong> Se completamente sommerso, -1d6 per individuarlo</li>
+                            <li><strong>Tattiche di Branco:</strong> +1d6 agli attacchi se 2+ ibridi adiacenti al bersaglio</li>
+                            <li><strong>Grido Ultrasonico Potenziato (1/comb):</strong> Tutti Close, Strength 15 o Stunned 2 azioni + 2d6 sonici</li>
+                            <li><strong>Anfibio Perfetto:</strong> Nessuna penalità in qualsiasi ambiente</li>
+                        </ul>
+                    </div>
+
+                    <div class="gm-tip-box">
+                        <p>Nemici d'élite. Usali in gruppi di 2-3. Combattono coordinati (comunicano con click ultrasonici). Strategia: 1-2 emergono per attacco diretto, 1 rimane sommerso per attacchi a sorpresa. <strong>Massimamente pericolosi in aree parzialmente allagate.</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOSSES -->
+            <div class="category-header boss" id="boss">
+                <div class="category-icon">👑</div>
+                <h2>Creature Boss</h2>
+                <p class="category-desc">Minacce maggiori, climax degli atti, boss finali</p>
+            </div>
+
+            <!-- Padre Jeremiah -->
+            <div class="creature-card" id="jeremiah">
+                <div class="threat-ribbon g3">
+                    <span class="grade">3</span>
+                    <span class="grade-label">Grado</span>
+                </div>
+                <div class="creature-card-header">
+                    <div class="creature-icon-frame">🐍</div>
+                    <div class="creature-title-block">
+                        <h3 class="creature-name">Padre Jeremiah Trasformato</h3>
+                        <p class="creature-subtitle">Boss Volume I • Sacerdote Corrotto</p>
+                        <div class="creature-tags">
+                            <span class="creature-tag vol1">Volume I</span>
+                            <span class="creature-tag">Aberrazione</span>
+                            <span class="creature-tag">Boss</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="creature-card-body">
+                    <p class="creature-description">L'uomo che un tempo guidava la congregazione di Silver Hollow. Ora è una cosa... diversa. Alto 2 metri, pelle scura e squamosa, occhi che brillano di luce verde. Il bastone pastorale è fuso con la sua mano, coperto di simboli pulsanti. Parla ancora — predica la "verità" del Serpente.</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-value">14</div>
+                            <div class="stat-label">HP</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">Armor</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">16</div>
+                            <div class="stat-label">Difficoltà</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">+7</div>
+                            <div class="stat-label">Attacco</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">VELOCE</div>
+                            <div class="stat-label">Velocità</div>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">⚔️ Attacchi (2 per azione)</div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Artigli</span>
+                            <span class="attack-stats">+7, 2d8+4 fisico</span>
+                        </div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Colpo del Serpente</span>
+                            <span class="attack-stats">+7, 2d10+4 fisico</span>
+                            <span class="attack-effect">+ veleno (Strength 15)</span>
+                        </div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Colpo di Bastone</span>
+                            <span class="attack-stats">+6, 3d6+3 fisico</span>
+                            <span class="attack-effect">+ push Very Close</span>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">✨ Abilità Speciali</div>
+                        <ul>
+                            <li><strong>Multiattacco:</strong> 2 attacchi per azione</li>
+                            <li><strong>Rigenerazione:</strong> Recupera 8 HP per azione</li>
+                            <li><strong>Presenza Empia:</strong> Aura Close, -1d6 ai tiri di Tenuta</li>
+                            <li><strong>Voce del Serpente:</strong> Prova di Presence (16) o affascinato (1/combattimento)</li>
+                            <li><strong>Evoca Ombre:</strong> 2d4 serpenti spettrali (1/combattimento)</li>
+                            <li><strong>Forma Finale (sotto 20 HP):</strong> Resistenza fisica, Vulnerable al radioso</li>
+                        </ul>
+                    </div>
+
+                    <div class="combat-phases">
+                        <h5>⚔️ Fasi di Combattimento</h5>
+                        <div class="phase-entry">
+                            <span class="phase-badge p1">HP 14-9</span>
+                            <span class="phase-desc">Usa bastone e artigli. Predica durante il combattimento. Cerca di convertire.</span>
+                        </div>
+                        <div class="phase-entry">
+                            <span class="phase-badge p2">HP 9-4</span>
+                            <span class="phase-desc">Attiva Colpo del Serpente, Evoca Ombre. Più aggressivo, meno eloquente.</span>
+                        </div>
+                        <div class="phase-entry">
+                            <span class="phase-badge p3">HP &lt;4</span>
+                            <span class="phase-desc">Forma Finale. Resistenza fisica. Se Sarah ragiona con lui, conflitto interno.</span>
+                        </div>
+                    </div>
+
+                    <div class="tenuta-box">
+                        <p><strong>Vedere Jeremiah:</strong> Prova di Instinct (17) — Successo: 4 segmenti | Fallimento: 6 segmenti + Fuggi (deve superare Presence 14 per restare)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Il Guardiano -->
+            <div class="creature-card" id="guardiano">
+                <div class="threat-ribbon g4">
+                    <span class="grade">4</span>
+                    <span class="grade-label">Grado</span>
+                </div>
+                <div class="creature-card-header">
+                    <div class="creature-icon-frame">🐙</div>
+                    <div class="creature-title-block">
+                        <h3 class="creature-name">Il Guardiano</h3>
+                        <p class="creature-subtitle">Grande Antico Minore • Entità Cosmica</p>
+                        <div class="creature-tags">
+                            <span class="creature-tag vol2">Volume II</span>
+                            <span class="creature-tag">Grande Antico</span>
+                            <span class="creature-tag">Aberrazione</span>
+                            <span class="creature-tag">Divino</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="creature-card-body">
+                    <p class="creature-description">È... impossibile descriverlo completamente. Forma principale: serpente colossale (30m di lunghezza, 3m di diametro) con scaglie nere lucenti che riflettono la luce in modi fisicamente impossibili. Dal corpo emergono dozzine di tentacoli (10m ciascuno). La testa NON è da serpente — è qualcosa di più antico. 7 occhi brillano con intelligenza aliena. Quando apre la bocca... vedi STELLE. Letteralmente. Come se la gola fosse un portale verso lo spazio profondo.</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-value">25</div>
+                            <div class="stat-label">HP</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">6</div>
+                            <div class="stat-label">Armor</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">20</div>
+                            <div class="stat-label">Difficoltà</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">+10</div>
+                            <div class="stat-label">Attacco</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">3/turno</div>
+                            <div class="stat-label">Azioni</div>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">⚔️ Attacchi</div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Morso Colossale</span>
+                            <span class="attack-stats">+10, 4d10+8 fisico</span>
+                            <span class="attack-effect">(portata Close)</span>
+                        </div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Colpo di Tentacolo</span>
+                            <span class="attack-stats">+9, 3d8+6 fisico</span>
+                            <span class="attack-effect">+ può afferrare (Strength 18 per liberarsi)</span>
+                        </div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Stritolamento</span>
+                            <span class="attack-stats">Automatico, 3d10/azione</span>
+                            <span class="attack-effect">+ Soffocato (se afferrato)</span>
+                        </div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Spazzata di Coda</span>
+                            <span class="attack-stats">+10, 3d12+8 fisico</span>
+                            <span class="attack-effect">tutti in linea Far + push + Prono</span>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">✨ Abilità Cosmiche</div>
+                        <ul>
+                            <li><strong>Presenza Cosmica:</strong> Aura Molto Far — tutti -1d6 attacchi, -1d6 Tenuta, Presence 17 o Spaventati</li>
+                            <li><strong>Rigenerazione Divina:</strong> Recupera 25 HP/azione se in acqua</li>
+                            <li><strong>Pelle Aliena:</strong> Resistenza a danni physical normali (dimezzati). Vulnerable a fuoco/esplosivo (+50%)</li>
+                            <li><strong>Sguardo Folle (1 az):</strong> Bersaglio Far, Instinct 19 o +5 segmenti Tenuta + Confuso 1d4 azioni</li>
+                            <li><strong>Urlo Devastante (2 az):</strong> Tutti Far, Strength 18 o 6d8 sonici + Stunned 3 azioni</li>
+                            <li><strong>Evoca Servitori (3 az, 1/comb):</strong> 2d4 Ibridi Avanzati emergono dall'acqua</li>
+                            <li><strong>Immortalità:</strong> A 0 HP, corpo si dissolve. Essenza in letargo per 100-500 anni</li>
+                        </ul>
+                    </div>
+
+                    <div class="combat-phases">
+                        <h5>⚔️ Fasi di Combattimento</h5>
+                        <div class="phase-entry">
+                            <span class="phase-badge p1">HP 25-15</span>
+                            <span class="phase-desc">Emerge lentamente. Usa Sguardo Folle. Attacca con tentacoli da distanza.</span>
+                        </div>
+                        <div class="phase-entry">
+                            <span class="phase-badge p2">HP 15-8</span>
+                            <span class="phase-desc">Si arrabbia. Usa Urlo. Stritola più PG. Evoca Servitori.</span>
+                        </div>
+                        <div class="phase-entry">
+                            <span class="phase-badge p3">HP &lt;8</span>
+                            <span class="phase-desc">Ferito, si ritira verso l'acqua. Attacchi disperati. A HP 2: tenta fuga nell'Abisso.</span>
+                        </div>
+                    </div>
+
+                    <div class="tenuta-box">
+                        <p><strong>Vedere il Guardiano:</strong> Prova di Instinct (18) — Successo: 4 segmenti | Fallimento: 6 segmenti + Fuggi terrorizzato | Critico: Tenuta piena + Catatonia 1d4 azioni</p>
+                    </div>
+
+                    <div class="gm-tip-box">
+                        <p><strong>NON È UN COMBATTIMENTO NORMALE.</strong> Non può essere "ucciso", solo forzato in letargo.<br><br>
+                        <strong>COME VINCERE:</strong><br>
+                        • Punto debole (centro massa) ignora Armor (Agility 16)<br>
+                        • Dinamite combinata: 18d6×1.5 = ~135 danni medi!<br>
+                        • Attirarlo fuori dall'acqua elimina rigenerazione<br>
+                        • Abbattere pilastri su di lui (4d10 + Prono)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NATURAL CREATURES -->
+            <div class="category-header nature" id="naturali">
+                <div class="category-icon">🦎</div>
+                <h2>Creature Naturali</h2>
+                <p class="category-desc">Animali pericolosi del deserto. Completamente naturali, ma letali per i non preparati.</p>
+            </div>
+
+            <!-- Serpente a Sonagli -->
+            <div class="creature-card" id="serpente">
+                <div class="threat-ribbon g0">
+                    <span class="grade">0</span>
+                    <span class="grade-label">Grado</span>
+                </div>
+                <div class="creature-card-header">
+                    <div class="creature-icon-frame">🐍</div>
+                    <div class="creature-title-block">
+                        <h3 class="creature-name">Serpente a Sonagli</h3>
+                        <p class="creature-subtitle">Pericolo Ambientale • Velenoso</p>
+                        <div class="creature-tags">
+                            <span class="creature-tag vol1">Vol I & II</span>
+                            <span class="creature-tag">Bestia</span>
+                            <span class="creature-tag">Velenoso</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="creature-card-body">
+                    <p class="creature-description">Rettile mimetico che si nasconde sotto rocce e arbusti. Il caratteristico sonaglio avverte solo quando è troppo tardi. Il morso inietta un potente veleno emolitico che può essere fatale senza trattamento.</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-value">2</div>
+                            <div class="stat-label">HP</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">Armor</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">—</div>
+                            <div class="stat-label">Difficoltà</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">+6</div>
+                            <div class="stat-label">Attacco</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">VELOCE</div>
+                            <div class="stat-label">Scatto</div>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">⚔️ Attacchi</div>
+                        <div class="attack-entry">
+                            <span class="attack-name">Morso Velenoso</span>
+                            <span class="attack-stats">+6, 1d4 fisico</span>
+                            <span class="attack-effect">+ Veleno (Strength 14 o 2d6 danni + Poisoned 1 ora)</span>
+                        </div>
+                    </div>
+
+                    <div class="creature-section">
+                        <div class="creature-section-title">✨ Abilità Speciali</div>
+                        <ul>
+                            <li><strong>Mimetico:</strong> -1d6 per individuarlo prima che attacchi</li>
+                            <li><strong>Scatto Fulmineo:</strong> Primo attacco ha Advantage</li>
+                        </ul>
+                    </div>
+
+                    <div class="gm-tip-box">
+                        <p>Pericolo ambientale, non nemico vero. Usalo come complicazione: <em>"Mentre cerchi tra le rocce, senti un sibilo..."</em> Prova di Instinct (12) per notarlo in tempo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUICK REFERENCE -->
+            <div class="divider">❧ ◆ ❧</div>
+
+            <h3 id="tabella">📊 Tabella di Riferimento Rapido</h3>
+
+            <div class="reference-table-container">
+                <table class="reference-table">
+                    <thead>
+                        <tr>
+                            <th>Creatura</th>
+                            <th>Vol</th>
+                            <th>Grado</th>
+                            <th>HP</th>
+                            <th>Armor</th>
+                            <th>Attacco</th>
+                            <th>Abilità Chiave</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="table-creature-name">Cultista</td>
+                            <td>I</td>
+                            <td><span class="table-threat" style="background: var(--threat-medium);">1</span></td>
+                            <td>5</td>
+                            <td>0</td>
+                            <td>+4 (1d6+2)</td>
+                            <td>Fanatico, Branco</td>
+                        </tr>
+                        <tr>
+                            <td class="table-creature-name">Bandito</td>
+                            <td>I</td>
+                            <td><span class="table-threat" style="background: var(--threat-medium);">1</span></td>
+                            <td>6</td>
+                            <td>1</td>
+                            <td>+5 (2d6)</td>
+                            <td>Copertura, Sopravvivenza</td>
+                        </tr>
+                        <tr>
+                            <td class="table-creature-name">Non-Morto</td>
+                            <td>I</td>
+                            <td><span class="table-threat" style="background: var(--threat-medium);">1</span></td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>+4 (1d8+2)</td>
+                            <td>Inesorabile, Immune</td>
+                        </tr>
+                        <tr>
+                            <td class="table-creature-name">Ghoul</td>
+                            <td>I</td>
+                            <td><span class="table-threat" style="background: var(--threat-medium);">1</span></td>
+                            <td>8</td>
+                            <td>1</td>
+                            <td>+5 (2d6+3)</td>
+                            <td>Paralisi, Scalatore</td>
+                        </tr>
+                        <tr>
+                            <td class="table-creature-name">Ibrido Iniziale</td>
+                            <td>II</td>
+                            <td><span class="table-threat" style="background: var(--threat-medium);">1</span></td>
+                            <td>8</td>
+                            <td>2</td>
+                            <td>+6 (2d6+3)</td>
+                            <td>Rigenerazione 5</td>
+                        </tr>
+                        <tr>
+                            <td class="table-creature-name">Ibrido Avanzato</td>
+                            <td>II</td>
+                            <td><span class="table-threat" style="background: var(--threat-high);">2</span></td>
+                            <td>10</td>
+                            <td>3</td>
+                            <td>+7 ×2</td>
+                            <td>Rigenerazione 8, Branco</td>
+                        </tr>
+                        <tr>
+                            <td class="table-creature-name">Padre Jeremiah</td>
+                            <td>I</td>
+                            <td><span class="table-threat" style="background: var(--threat-extreme);">3</span></td>
+                            <td>14</td>
+                            <td>3</td>
+                            <td>+7 ×2</td>
+                            <td>Rigenerazione 8, Evoca</td>
+                        </tr>
+                        <tr>
+                            <td class="table-creature-name">Il Sacerdote</td>
+                            <td>II</td>
+                            <td><span class="table-threat" style="background: var(--threat-extreme);">3</span></td>
+                            <td>18</td>
+                            <td>4</td>
+                            <td>+8 ×4</td>
+                            <td>Rigenerazione 12, Evoca</td>
+                        </tr>
+                        <tr>
+                            <td class="table-creature-name">Il Guardiano</td>
+                            <td>II</td>
+                            <td><span class="table-threat" style="background: var(--threat-cosmic);">4</span></td>
+                            <td>25</td>
+                            <td>6</td>
+                            <td>+10 (4d10+8)</td>
+                            <td>Rigenerazione 25, Immortale</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 id="scalabilita">📝 Note di Scalabilità</h3>
+            <p>Per scalare una creatura di ±1 livello:</p>
+            <ul>
+                <li><strong>HP:</strong> ±3 per livello</li>
+                <li><strong>Danni:</strong> ±2 per livello</li>
+                <li><strong>Difficoltà prove:</strong> ±1 per livello</li>
+            </ul>
+
+            <div class="gm-tip-box" style="margin-top: 30px;">
+                <p><strong>Note sulle Creature Cosmiche:</strong> Le creature contrassegnate come "Aberrazione" o "Grande Antico" seguono regole speciali: causano danni alla Tenuta Mentale anche solo vedendole, hanno spesso resistenze innaturali, non possono essere veramente "uccise" (solo scacciate o sigillate), e la loro presenza altera la realtà locale.</p>
+            </div>
+        </div>
+
+        <footer>
+            <div class="brand">❧ GUNSMOKE & DREAD ❧</div>
+            <p>Il Bestiario Completo • Parte IV<br><em>"Conosci il tuo nemico — o diventa la sua prossima vittima."</em></p>
+        </footer>
+    </main>
+</body>
+</html>

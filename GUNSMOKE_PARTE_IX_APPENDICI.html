@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUNSMOKE & DREAD — Parte IX: Appendici Complete</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Special+Elite&family=IM+Fell+English:ital@0;1&family=Rye&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --parchment: #f4e4c1;
+            --parchment-dark: #e8d4a8;
+            --wood-dark: #3d2914;
+            --wood-medium: #5c3d1e;
+            --leather: #654321;
+            --blood-red: #8b0000;
+            --gold: #d4a017;
+            --ink-sepia: #3a2a1a;
+            --steel: #4a5568;
+            --reference-blue: #1a3a5c;
+            --reference-light: #2a4a6c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--ink-sepia);
+            background: var(--parchment);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 220px;
+            height: 100vh;
+            background: var(--reference-blue);
+            padding: 0;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 5px 0 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-header {
+            text-align: center;
+            padding: 20px 15px;
+            background: var(--wood-dark);
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .nav-header h1 {
+            font-family: 'Rye', cursive;
+            font-size: 1rem;
+            color: var(--gold);
+        }
+
+        .nav-header p {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.55rem;
+            color: var(--parchment);
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        .nav-section {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        nav a {
+            display: block;
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            padding: 5px 10px;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+            border-left: 2px solid transparent;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.1);
+            border-left-color: var(--gold);
+            color: white;
+        }
+
+        /* Main */
+        main {
+            margin-left: 220px;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: 
+                linear-gradient(180deg, var(--reference-blue) 0%, var(--reference-light) 100%);
+            color: white;
+            padding: 60px 40px;
+            border-bottom: 5px solid var(--gold);
+        }
+
+        .hero-badge {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.65rem;
+            color: var(--gold);
+            letter-spacing: 5px;
+            padding: 8px 25px;
+            border: 1px solid var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Rye', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero .subtitle {
+            font-family: 'IM Fell English', serif;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .appendix-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .appendix-item {
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            text-align: center;
+        }
+
+        .appendix-item .letter {
+            font-family: 'Rye', cursive;
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+
+        .appendix-item .name {
+            font-size: 0.7rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        /* Appendix Headers */
+        .appendix-header {
+            text-align: center;
+            padding: 30px 40px;
+            margin: 40px -40px 30px;
+            background: var(--reference-blue);
+            color: white;
+            border-top: 3px solid var(--gold);
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .appendix-header .letter {
+            font-family: 'Rye', cursive;
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        .appendix-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            margin-top: 5px;
+        }
+
+        .appendix-header p {
+            font-family: 'IM Fell English', serif;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* Glossary */
+        .glossary-grid {
+            display: grid;
+            gap: 0;
+        }
+
+        .glossary-entry {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            border-bottom: 1px solid var(--parchment-dark);
+            padding: 12px 0;
+        }
+
+        .glossary-entry:hover {
+            background: rgba(26,58,92,0.05);
+        }
+
+        .glossary-term {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            color: var(--reference-blue);
+            font-size: 0.9rem;
+        }
+
+        .glossary-def {
+            font-size: 0.9rem;
+        }
+
+        .glossary-def em {
+            color: var(--blood-red);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        /* Stat Blocks */
+        .creature-category {
+            margin: 30px 0 15px;
+            padding: 10px 15px;
+            background: var(--wood-dark);
+            color: var(--gold);
+            font-family: 'Rye', cursive;
+            font-size: 1rem;
+        }
+
+        .stat-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+        }
+
+        .stat-table th {
+            background: var(--reference-blue);
+            color: white;
+            padding: 8px 10px;
+            text-align: left;
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--parchment-dark);
+            vertical-align: top;
+        }
+
+        .stat-table tr:hover {
+            background: rgba(26,58,92,0.05);
+        }
+
+        .stat-table .name {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            color: var(--wood-dark);
+        }
+
+        .stat-table .tier {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.65rem;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .tier.minion { background: #6b7280; }
+        .tier.standard { background: #2563eb; }
+        .tier.leader { background: #7c3aed; }
+        .tier.solo { background: var(--blood-red); }
+
+        .stat-table .hp { color: var(--blood-red); font-weight: bold; }
+        .stat-table .eva { color: var(--reference-blue); }
+        .stat-table .atk { font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; }
+        .stat-table .tenuta { color: #6b21a8; font-style: italic; font-size: 0.7rem; }
+
+        /* Boss Cards */
+        .boss-card {
+            background: linear-gradient(135deg, var(--parchment) 0%, var(--parchment-dark) 100%);
+            border: 3px solid var(--blood-red);
+            margin: 20px 0;
+            padding: 20px;
+        }
+
+        .boss-card h4 {
+            font-family: 'Rye', cursive;
+            color: var(--blood-red);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .boss-card .boss-stats {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--reference-blue);
+            margin-bottom: 15px;
+        }
+
+        .boss-phases {
+            display: grid;
+            gap: 10px;
+        }
+
+        .phase {
+            padding: 10px 15px;
+            background: white;
+            border-left: 4px solid var(--blood-red);
+        }
+
+        .phase .phase-name {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--wood-dark);
+        }
+
+        .phase .phase-desc {
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        /* Quick Reference */
+        .qr-section {
+            margin: 25px 0;
+            padding: 20px;
+            background: white;
+            border: 2px solid var(--reference-blue);
+        }
+
+        .qr-section h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--reference-blue);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--parchment-dark);
+        }
+
+        .qr-formula {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--parchment);
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-left: 4px solid var(--gold);
+        }
+
+        .qr-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .qr-table th {
+            background: var(--reference-blue);
+            color: white;
+            padding: 8px;
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+        }
+
+        .qr-table td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid var(--parchment-dark);
+        }
+
+        .qr-table tr:nth-child(even) {
+            background: var(--parchment);
+        }
+
+        .qr-inline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .qr-chip {
+            padding: 6px 12px;
+            background: var(--parchment);
+            border: 1px solid var(--wood-medium);
+            font-size: 0.8rem;
+        }
+
+        .qr-chip strong {
+            color: var(--reference-blue);
+        }
+
+        /* SRD Compliance */
+        .srd-box {
+            padding: 20px;
+            background: white;
+            border: 2px solid var(--reference-blue);
+            margin: 20px 0;
+        }
+
+        .srd-box h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--reference-blue);
+            margin-bottom: 15px;
+        }
+
+        .srd-list {
+            list-style: none;
+        }
+
+        .srd-list li {
+            padding: 8px 0 8px 25px;
+            border-bottom: 1px solid var(--parchment-dark);
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .srd-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #16a34a;
+            font-weight: bold;
+        }
+
+        .srd-list.original li::before {
+            content: '★';
+            color: var(--gold);
+        }
+
+        /* Print Section */
+        .print-note {
+            text-align: center;
+            padding: 30px;
+            background: var(--parchment-dark);
+            border: 2px dashed var(--wood-medium);
+            margin-top: 40px;
+        }
+
+        .print-note h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--wood-dark);
+            margin-bottom: 10px;
+        }
+
+        .print-note p {
+            font-size: 0.9rem;
+            color: var(--leather);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--reference-blue);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-top: 4px solid var(--gold);
+        }
+
+        footer .brand {
+            font-family: 'Rye', cursive;
+            font-size: 1.3rem;
+            color: var(--gold);
+        }
+
+        footer p {
+            font-family: 'IM Fell English', serif;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            nav { display: none; }
+            main { margin-left: 0; }
+            .content-wrapper { padding: 25px; }
+            .glossary-entry { grid-template-columns: 1fr; gap: 5px; }
+            .stat-table { font-size: 0.7rem; }
+            .appendix-list { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media print {
+            nav { display: none; }
+            main { margin-left: 0; }
+            .hero { min-height: auto; padding: 30px; }
+            .appendix-header { break-before: page; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-header">
+            <h1>📚 APPENDICI</h1>
+            <p>Riferimento Rapido</p>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">A — Glossario</div>
+            <a href="#glossary">Termini Daggerheart</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">B — Stat Block</div>
+            <a href="#humans">Umani</a>
+            <a href="#cultists">Cultisti</a>
+            <a href="#undead">Non-Morti</a>
+            <a href="#hybrids">Ibridi Oceanici</a>
+            <a href="#bosses">Boss Maggiori</a>
+            <a href="#fauna">Fauna Deserto</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">C — Quick Ref</div>
+            <a href="#action-roll">Tiro Azione</a>
+            <a href="#difficulty">Difficoltà</a>
+            <a href="#damage">Danno</a>
+            <a href="#tenuta-qr">Tenuta</a>
+            <a href="#conditions">Condizioni</a>
+            <a href="#rest">Riposo</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">D — SRD</div>
+            <a href="#srd">Conformità</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-badge">DOCUMENTO DI RIFERIMENTO</div>
+            <h1>APPENDICI</h1>
+            <p class="subtitle">Tutto ciò che serve per giocare — in un unico documento</p>
+
+            <div class="appendix-list">
+                <div class="appendix-item"><div class="letter">A</div><div class="name">Glossario</div></div>
+                <div class="appendix-item"><div class="letter">B</div><div class="name">Stat Block</div></div>
+                <div class="appendix-item"><div class="letter">C</div><div class="name">Quick Ref</div></div>
+                <div class="appendix-item"><div class="letter">D</div><div class="name">SRD</div></div>
+            </div>
+        </section>
+
+        <div class="content-wrapper">
+
+            <!-- ════════════════════════════════════════════════════════════════════
+                 APPENDIX A: GLOSSARY
+            ════════════════════════════════════════════════════════════════════ -->
+            <div class="appendix-header" id="glossary">
+                <div class="letter">A</div>
+                <h2>GLOSSARIO DEI TERMINI DAGGERHEART</h2>
+                <p>Termini tecnici mantenuti in inglese per coerenza con il Daggerheart SRD 1.0</p>
+            </div>
+
+            <div class="glossary-grid">
+                <div class="glossary-entry">
+                    <div class="glossary-term">Hope</div>
+                    <div class="glossary-def"><em>Speranza</em> — Dado chiaro, risorsa positiva per i giocatori</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Fear</div>
+                    <div class="glossary-def"><em>Paura</em> — Dado scuro, risorsa per il Game Master</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Duality Dice</div>
+                    <div class="glossary-def">I <em>2d12</em> (Hope + Fear) usati per ogni Action Roll</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Action Roll</div>
+                    <div class="glossary-def"><em>Tiro Azione</em> — 2d12 + modificatore vs Difficoltà</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Evasion</div>
+                    <div class="glossary-def">Difficoltà per colpire un personaggio</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Armor Slot</div>
+                    <div class="glossary-def"><em>Singolo uso protezione</em> — Marca per ridurre severità di 1 livello</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Damage Threshold</div>
+                    <div class="glossary-def">Soglie danno: <em>Minor</em> (1-9), <em>Major</em> (10-19), <em>Severe</em> (20+)</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Frightened</div>
+                    <div class="glossary-def">Condizione: <em>-1d6</em> vs fonte, non avvicinarsi</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Restrained</div>
+                    <div class="glossary-def">Condizione: <em>velocità 0</em>, -1d6 attacchi</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Vulnerable</div>
+                    <div class="glossary-def">Condizione: attacchi vs te <em>+1d6</em></div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Hidden</div>
+                    <div class="glossary-def">Condizione: non rilevato, <em>+1d6</em> primo attacco</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Poisoned</div>
+                    <div class="glossary-def">Condizione: <em>-1d6</em> a tutti i tiri</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Short Rest</div>
+                    <div class="glossary-def"><em>Riposo Breve</em> (1 ora): scegli 2 benefici</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Long Rest</div>
+                    <div class="glossary-def"><em>Riposo Lungo</em> (6-8 ore): recupero completo</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Milestone</div>
+                    <div class="glossary-def">Punto narrativo per Level Up</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Tenuta Mentale</div>
+                    <div class="glossary-def"><em>Sistema originale G&D</em>: 10 segmenti di deterioramento psicologico</div>
+                </div>
+            </div>
+
+            <!-- ════════════════════════════════════════════════════════════════════
+                 APPENDIX B: STAT BLOCKS
+            ════════════════════════════════════════════════════════════════════ -->
+            <div class="appendix-header" id="stat-blocks">
+                <div class="letter">B</div>
+                <h2>STAT BLOCK COMPLETI</h2>
+                <p>Formato: Tier | HP | Evasion | Thresholds | Attacco | Abilità</p>
+            </div>
+
+            <!-- UMANI -->
+            <div class="creature-category" id="humans">👤 UMANI</div>
+            <table class="stat-table">
+                <thead>
+                    <tr>
+                        <th>Creatura</th>
+                        <th>Tier</th>
+                        <th>HP</th>
+                        <th>Eva</th>
+                        <th>Soglie</th>
+                        <th>Attacco</th>
+                        <th>Abilità</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="name">Bandito Comune</td>
+                        <td><span class="tier minion">Minion</span></td>
+                        <td class="hp">8</td>
+                        <td class="eva">10</td>
+                        <td>1-4/5-9/10+</td>
+                        <td class="atk">Revolver +3 (1d6)</td>
+                        <td>Vantaggio Numerico</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Bandito Veterano</td>
+                        <td><span class="tier standard">Standard</span></td>
+                        <td class="hp">18</td>
+                        <td class="eva">12</td>
+                        <td>1-5/6-12/13+</td>
+                        <td class="atk">Fucile +5 (2d6)</td>
+                        <td>Tiro Mirato (1 Fear), Immune Frightened</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Capo Banda</td>
+                        <td><span class="tier leader">Leader</span></td>
+                        <td class="hp">35</td>
+                        <td class="eva">14</td>
+                        <td>1-6/7-15/16+</td>
+                        <td class="atk">Doppio Revolver +6 (2d8)</td>
+                        <td>Comando (1 Fear), Ultima Resistenza</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- CULTISTI -->
+            <div class="creature-category" id="cultists">🐍 CULTISTI</div>
+            <table class="stat-table">
+                <thead>
+                    <tr>
+                        <th>Creatura</th>
+                        <th>Tier</th>
+                        <th>HP</th>
+                        <th>Eva</th>
+                        <th>Soglie</th>
+                        <th>Attacco</th>
+                        <th>Abilità / Tenuta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="name">Cultista Iniziato</td>
+                        <td><span class="tier minion">Minion</span></td>
+                        <td class="hp">6</td>
+                        <td class="eva">9</td>
+                        <td>1-3/4-7/8+</td>
+                        <td class="atk">Pugnale +2 (1d4+1)</td>
+                        <td>Fervore, Sacrificio<br><span class="tenuta">Tenuta: rituali = 1</span></td>
+                    </tr>
+                    <tr>
+                        <td class="name">Cultista Adepto</td>
+                        <td><span class="tier standard">Standard</span></td>
+                        <td class="hp">15</td>
+                        <td class="eva">11</td>
+                        <td>1-5/6-10/11+</td>
+                        <td class="atk">Maledizione +5 (2d6)</td>
+                        <td>Canto (1 Fear)<br><span class="tenuta">Tenuta: Canto = 1</span></td>
+                    </tr>
+                    <tr>
+                        <td class="name">Sacerdote Serpente</td>
+                        <td><span class="tier leader">Leader</span></td>
+                        <td class="hp">28</td>
+                        <td class="eva">13</td>
+                        <td>1-6/7-14/15+</td>
+                        <td class="atk">Comando +6 (3d6)</td>
+                        <td>Evocazione (2 Fear), Armor 2<br><span class="tenuta">Tenuta: trasformazione = 2</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- NON-MORTI -->
+            <div class="creature-category" id="undead">💀 NON-MORTI</div>
+            <table class="stat-table">
+                <thead>
+                    <tr>
+                        <th>Creatura</th>
+                        <th>Tier</th>
+                        <th>HP</th>
+                        <th>Eva</th>
+                        <th>Soglie</th>
+                        <th>Attacco</th>
+                        <th>Abilità / Tenuta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="name">Zombi Treno</td>
+                        <td><span class="tier minion">Minion</span></td>
+                        <td class="hp">12</td>
+                        <td class="eva">8</td>
+                        <td>1-4/5-10/11+</td>
+                        <td class="atk">Artigli +3 (1d6)</td>
+                        <td>Inesorabile, Resurrezione notte<br><span class="tenuta">Tenuta: rialzarsi = 2/1</span></td>
+                    </tr>
+                    <tr>
+                        <td class="name">Non-Morto Veterano</td>
+                        <td><span class="tier standard">Standard</span></td>
+                        <td class="hp">22</td>
+                        <td class="eva">10</td>
+                        <td>1-6/7-14/15+</td>
+                        <td class="atk">Arma +5 (2d6)</td>
+                        <td>Memoria Muscolare, Aura Freddo<br><span class="tenuta">Tenuta: riconoscere = 2</span></td>
+                    </tr>
+                    <tr>
+                        <td class="name">Wraith Deserto</td>
+                        <td><span class="tier standard">Standard</span></td>
+                        <td class="hp">18</td>
+                        <td class="eva">14</td>
+                        <td>1-5/6-11/12+</td>
+                        <td class="atk">Tocco +6 (2d6 ignora Armor)</td>
+                        <td>Incorporeo, Possessione (2 Fear)<br><span class="tenuta">Tenuta: posseduto = 3</span></td>
+                    </tr>
+                    <tr>
+                        <td class="name">Orda Non-Morti</td>
+                        <td><span class="tier standard">Standard</span></td>
+                        <td class="hp">30</td>
+                        <td class="eva">8</td>
+                        <td>1-8/9-18/19+</td>
+                        <td class="atk">Marea +4 (3d6 area)</td>
+                        <td>Sciame, Dispersione<br><span class="tenuta">Tenuta: circondati = 2</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- IBRIDI -->
+            <div class="creature-category" id="hybrids">🐙 IBRIDI OCEANICI</div>
+            <table class="stat-table">
+                <thead>
+                    <tr>
+                        <th>Creatura</th>
+                        <th>Tier</th>
+                        <th>HP</th>
+                        <th>Eva</th>
+                        <th>Soglie</th>
+                        <th>Attacco</th>
+                        <th>Abilità / Tenuta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="name">Ibrido Stadio 1</td>
+                        <td><span class="tier standard">Standard</span></td>
+                        <td class="hp">20</td>
+                        <td class="eva">11</td>
+                        <td>1-5/6-12/13+</td>
+                        <td class="atk">Artigli +4 (1d8)</td>
+                        <td>Anfibio, Richiamo<br><span class="tenuta">Tenuta: tratti umani = 2</span></td>
+                    </tr>
+                    <tr>
+                        <td class="name">Ibrido Stadio 2</td>
+                        <td><span class="tier standard">Standard</span></td>
+                        <td class="hp">28</td>
+                        <td class="eva">12</td>
+                        <td>1-6/7-15/16+</td>
+                        <td class="atk">Artigli +5 (2d6), Canto +5 (2d6 psi)</td>
+                        <td>Rigenerazione, Eco (1 Fear)<br><span class="tenuta">Tenuta: Canto = 2</span></td>
+                    </tr>
+                    <tr>
+                        <td class="name">Ibrido Stadio 3</td>
+                        <td><span class="tier leader">Leader</span></td>
+                        <td class="hp">40</td>
+                        <td class="eva">13</td>
+                        <td>1-8/9-22/23+</td>
+                        <td class="atk">Fauci +6 (2d8 inghiotte)</td>
+                        <td>Armor 3, Comando (2 Fear)<br><span class="tenuta">Tenuta: forma = 3</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- BOSS -->
+            <div class="creature-category" id="bosses">⚔️ BOSS MAGGIORI</div>
+
+            <div class="boss-card">
+                <h4>🐍 PADRE JEREMIAH</h4>
+                <div class="boss-stats">Solo | HP 85 | Eva 14 | Soglie: 1-10/11-25/26+ | Ricompensa: Level Up</div>
+                <div class="boss-phases">
+                    <div class="phase">
+                        <div class="phase-name">Fase 1 (85-50 HP) — Il Predicatore</div>
+                        <div class="phase-desc">Sermone +7 (3d6 psi), Aura -1 a tutti, Evocazione (2 Fear)</div>
+                    </div>
+                    <div class="phase">
+                        <div class="phase-name">Fase 2 (49-20 HP) — La Trasformazione</div>
+                        <div class="phase-desc">Morso +8 (2d10+2d6), Armor 2, Rigenerazione | <em>Tenuta: trasformazione = 3</em></div>
+                    </div>
+                    <div class="phase">
+                        <div class="phase-name">Fase 3 (19-0 HP) — Il Serpente</div>
+                        <div class="phase-desc">Fauci +9 (3d10), Disperazione (3 Fear)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="boss-card">
+                <h4>🐙 IL GUARDIANO DELL'ABISSO</h4>
+                <div class="boss-stats">Solo | HP 120 | Eva 12 | Soglie: 1-12/13-30/31+ | Ricompensa: Doppio Level Up</div>
+                <div class="boss-phases">
+                    <div class="phase">
+                        <div class="phase-name">Fase 1 (120-70 HP) — Il Risveglio</div>
+                        <div class="phase-desc">Tentacolo +8 (3d8), Armor 4, Aura Disperazione</div>
+                    </div>
+                    <div class="phase">
+                        <div class="phase-name">Fase 2 (69-30 HP) — La Furia</div>
+                        <div class="phase-desc">+2 attacchi, Canto +10 (4d6), Evocazione (3 Fear), Rigenera 2d6</div>
+                    </div>
+                    <div class="phase">
+                        <div class="phase-name">Fase 3 (29-0 HP) — La Connessione</div>
+                        <div class="phase-desc">Furia +10 (4d10 area), Connessione Cthulhu (4 Fear) | <em>Tenuta: emergere = 3+1+2</em></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAUNA -->
+            <div class="creature-category" id="fauna">🦎 FAUNA DEL DESERTO</div>
+            <table class="stat-table">
+                <thead>
+                    <tr>
+                        <th>Creatura</th>
+                        <th>Tier</th>
+                        <th>HP</th>
+                        <th>Eva</th>
+                        <th>Attacco</th>
+                        <th>Abilità</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="name">Serpente a Sonagli</td>
+                        <td><span class="tier minion">Minion</span></td>
+                        <td class="hp">4</td>
+                        <td class="eva">13</td>
+                        <td class="atk">Morso +4 (1d4 + veleno STR 14)</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Sciame Scorpioni</td>
+                        <td><span class="tier standard">Standard</span></td>
+                        <td class="hp">15</td>
+                        <td class="eva">10</td>
+                        <td class="atk">Punture +5 (2d4 + veleno STR 12)</td>
+                        <td>Sciame</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Coyote</td>
+                        <td><span class="tier minion">Minion</span></td>
+                        <td class="hp">8</td>
+                        <td class="eva">12</td>
+                        <td class="atk">Morso +3 (1d6)</td>
+                        <td>Branco, Codardo</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Puma</td>
+                        <td><span class="tier standard">Standard</span></td>
+                        <td class="hp">25</td>
+                        <td class="eva">14</td>
+                        <td class="atk">Artigli +6 (2d6)</td>
+                        <td>Agguato +2d6, Balzo</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- ════════════════════════════════════════════════════════════════════
+                 APPENDIX C: QUICK REFERENCE
+            ════════════════════════════════════════════════════════════════════ -->
+            <div class="appendix-header" id="quick-ref">
+                <div class="letter">C</div>
+                <h2>RIFERIMENTO RAPIDO</h2>
+                <p>Le regole essenziali in un colpo d'occhio</p>
+            </div>
+
+            <div class="qr-section" id="action-roll">
+                <h4>🎲 TIRO AZIONE</h4>
+                <div class="qr-formula">
+                    2d12 (Hope + Fear) → prendi il più alto + modificatore → vs Difficoltà
+                </div>
+                <div class="qr-inline">
+                    <div class="qr-chip"><strong>≥ Diff + Hope alto</strong> = Successo + 1 Hope</div>
+                    <div class="qr-chip"><strong>≥ Diff + Fear alto</strong> = Successo + 1 Fear GM</div>
+                    <div class="qr-chip"><strong>&lt; Diff</strong> = Fallimento</div>
+                </div>
+            </div>
+
+            <div class="qr-section" id="difficulty">
+                <h4>🎯 DIFFICOLTÀ</h4>
+                <table class="qr-table">
+                    <tr>
+                        <th>6</th><th>10</th><th>12</th><th>15</th><th>18</th><th>20+</th>
+                    </tr>
+                    <tr>
+                        <td>Banale</td><td>Standard</td><td>Moderato</td><td>Difficile</td><td>Molto Difficile</td><td>Leggendario</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="qr-section" id="damage">
+                <h4>💥 DANNO</h4>
+                <table class="qr-table">
+                    <tr>
+                        <th>Minor</th><th>Major</th><th>Severe</th>
+                    </tr>
+                    <tr>
+                        <td>1-9</td><td>10-19</td><td>20+</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 10px; font-size: 0.85rem;"><strong>Armor Slot:</strong> Marca per ridurre la severità di 1 livello</p>
+            </div>
+
+            <div class="qr-section" id="tenuta-qr">
+                <h4>🧠 TENUTA MENTALE</h4>
+                <table class="qr-table">
+                    <tr>
+                        <th>Livello</th><th>Stato</th><th>Effetto</th>
+                    </tr>
+                    <tr><td>0-2</td><td>Normale</td><td>—</td></tr>
+                    <tr><td>3-5</td><td>Scosso</td><td>-1 PRE</td></tr>
+                    <tr><td>6-8</td><td>Traumatizzato</td><td>-2 PRE, -1 INS</td></tr>
+                    <tr><td>9</td><td>In Bilico</td><td>-2 a tutto</td></tr>
+                    <tr><td>10</td><td>Crollo</td><td>Conseguenza Permanente</td></tr>
+                </table>
+            </div>
+
+            <div class="qr-section" id="conditions">
+                <h4>⚠️ CONDIZIONI</h4>
+                <div class="qr-inline">
+                    <div class="qr-chip"><strong>Frightened:</strong> -1d6 vs fonte</div>
+                    <div class="qr-chip"><strong>Restrained:</strong> velocità 0, -1d6</div>
+                    <div class="qr-chip"><strong>Vulnerable:</strong> +1d6 vs te</div>
+                    <div class="qr-chip"><strong>Poisoned:</strong> -1d6 a tutto</div>
+                </div>
+            </div>
+
+            <div class="qr-section" id="dying">
+                <h4>💀 MORENTE</h4>
+                <div class="qr-formula">
+                    0 HP = 2d12: Hope > Fear = successo | Fear > Hope = fallimento
+                </div>
+                <div class="qr-inline">
+                    <div class="qr-chip"><strong>3 successi</strong> = Stabilizzato</div>
+                    <div class="qr-chip"><strong>3 fallimenti</strong> = Morte</div>
+                </div>
+            </div>
+
+            <div class="qr-section" id="rest">
+                <h4>🛏️ RIPOSO</h4>
+                <table class="qr-table">
+                    <tr>
+                        <th>Tipo</th><th>Durata</th><th>Benefici</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Short Rest</strong></td>
+                        <td>1 ora</td>
+                        <td>Scegli 2: ½ HP, Stress, Armor, Prepara</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Long Rest</strong></td>
+                        <td>6-8 ore</td>
+                        <td>Tutto + 1d4 Tenuta</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="qr-section" id="balance">
+                <h4>⚖️ BILANCIAMENTO INCONTRI (3 PG)</h4>
+                <table class="qr-table">
+                    <tr>
+                        <th>Difficoltà</th><th>Minion</th><th>Standard</th><th>Leader</th>
+                    </tr>
+                    <tr><td>Facile</td><td>4-6</td><td>2</td><td>—</td></tr>
+                    <tr><td>Medio</td><td>8-10</td><td>3-4</td><td>1</td></tr>
+                    <tr><td>Difficile</td><td>12+</td><td>5-6</td><td>2</td></tr>
+                </table>
+            </div>
+
+            <!-- ════════════════════════════════════════════════════════════════════
+                 APPENDIX D: SRD COMPLIANCE
+            ════════════════════════════════════════════════════════════════════ -->
+            <div class="appendix-header" id="srd">
+                <div class="letter">D</div>
+                <h2>CONFORMITÀ AL DAGGERHEART SRD</h2>
+                <p>Daggerheart System Reference Document 1.0 • Darrington Press Community Gaming License</p>
+            </div>
+
+            <div class="srd-box">
+                <h4>✓ TERMINOLOGIA CORRETTA</h4>
+                <ul class="srd-list">
+                    <li>'Difficoltà' invece di 'CD' o 'Classe di Difficoltà'</li>
+                    <li>'Milestone' e 'Level Up' invece di 'PE' o 'Punti Esperienza'</li>
+                    <li>'Fallimento Grave' invece di 'Fallimento Critico'</li>
+                    <li>Condizioni SRD: Frightened, Restrained, Vulnerable, Hidden, Poisoned</li>
+                    <li>Soglie Danno: Minor (1-9), Major (10-19), Severe (20+)</li>
+                    <li>Sistema Armor a slot (riduce severità)</li>
+                </ul>
+            </div>
+
+            <div class="srd-box">
+                <h4>★ MECCANICHE ORIGINALI GUNSMOKE & DREAD</h4>
+                <ul class="srd-list original">
+                    <li>Sistema Tenuta Mentale (10 segmenti, 5 fasi, Conseguenze Permanenti)</li>
+                    <li>Armi da fuoco western con meccaniche realistiche</li>
+                    <li>Bestiario Weird West / Orrore Cosmico</li>
+                    <li>Pericoli ambientali del deserto</li>
+                    <li>Sistema di corruzione e trasformazione</li>
+                </ul>
+            </div>
+
+            <div class="print-note">
+                <h4>🖨️ NOTA PER LA STAMPA</h4>
+                <p>Questo documento è ottimizzato per la stampa. Usa Ctrl+P o Cmd+P per stampare le appendici come riferimento rapido da tenere al tavolo.</p>
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="brand">🔫 GUNSMOKE & DREAD 🔫</div>
+            <p>Parte IX — Appendici Complete<br><em>Conforme al Daggerheart SRD 1.0</em></p>
+        </footer>
+    </main>
+</body>
+</html>
